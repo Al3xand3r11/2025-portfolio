@@ -3,7 +3,6 @@
 import { useEffect } from "react"
 import Intro from "./components/intro/intro"
 import ExpDescription from "./components/description/description"
-import Projects from "../employers/projects"
 import Employers from "./components/employers/projects"
 
 export default function Experience() {
