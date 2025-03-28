@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Eczar} from "next/font/google";
 import "./globals.css";
+import NavBar from "./nav/navbar";
 
 
 const eczar = Eczar({
@@ -21,6 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${eczar}`}>
+        <NavBar/>
         {children}
       </body>
     </html>
