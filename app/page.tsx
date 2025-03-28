@@ -5,6 +5,7 @@ import Header from "./header/header";
 import Landing from "./landing";
 import { useEffect } from "react";
 import Lenis from "lenis";
+import Projects from "./projects/projects";
 
 export default function Home(){
 
@@ -23,6 +24,7 @@ export default function Home(){
     <main>
       <Landing/>
       <Header/>
+      <Projects/>
       <Experience/>
     </main>
   )
