@@ -4,15 +4,7 @@ export const links = [
         href: "/"
     },
     {
-        title: "Agency",
-        href: "/"
-    },
-    {
-        title: "Expertise",
-        href: "/"
-    },
-    {
-        title: "Careers",
+        title: "Experience",
         href: "/"
     },
     {
@@ -23,7 +15,7 @@ export const links = [
 
 export const footerLinks = [
     {
-        title: "Facebook",
+        title: "Github",
         href: "/"
     },
     {
@@ -31,11 +23,11 @@ export const footerLinks = [
         href: "/"
     },
     {
-        title: "Instagram",
+        title: "Resume",
         href: "/"
     },
     {
-        title: "Twitter",
+        title: "Medium",
         href: "/"
     }
 ]
