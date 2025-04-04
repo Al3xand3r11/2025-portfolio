@@ -46,8 +46,8 @@ export default function Footer () {
                 <div className="text-white text-center">
                     <p>Get In Touch</p>
                 </div>
-                <div className="flex flex-row justify-around text-white pb-12">
-                    <div className="flex flex-col">
+                <div className="flex flex-row justify-around pb-12">
+                    <div className="flex flex-col text-black">
                         <p>LinkedIn</p>
                         <p>Github</p>
                         <p>Medium</p>
