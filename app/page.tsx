@@ -2,10 +2,11 @@
 
 import Experience from "./experience/experience";
 import Header from "./header/header";
-import Landing from "./landing";
+import Landing from "./landing/landing";
 import { useEffect } from "react";
 import Lenis from "lenis";
-import Projects from "./projects/projects";
+import ProjectsNew from "./projectsNew/projects";
+import Footer from "./footer";
 
 export default function Home(){
 
@@ -20,12 +21,26 @@ export default function Home(){
     requestAnimationFrame(raf)
 },[])
 
+useEffect( () => {
+  (
+      async () => {
+          const LocomotiveScroll = (await import('locomotive-scroll')).default
+          const locomotiveScroll = new LocomotiveScroll();
+      }
+  )()
+}, [])
+
   return (
     <main>
       <Landing/>
       <Header/>
-      <Projects/>
+      <ProjectsNew/>
+      <div className="h-[50vh]"></div>
       <Experience/>
+      <div className="h-20vh]"></div>
+      <Footer/>
+      
+      
     </main>
   )
 }
