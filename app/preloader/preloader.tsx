@@ -10,11 +10,11 @@ import { opacity, slideUp } from './anim';
 
 
 
-const words = ["Hello", "Bonjour", "Ciao", "Olà", "やあ", "Hallå", "Guten tag", "Hallo"]
+const words = ["Create", "Build", "Explore", "Inspire", "Dream", "Question", "Cultivate", "Welcome"]
 
 
 
-export default function Index() {
+export default function Preloader() {
 
     const [index, setIndex] = useState(0);
 

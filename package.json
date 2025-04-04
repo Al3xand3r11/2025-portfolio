@@ -9,8 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@studio-freight/lenis": "^1.0.42",
     "@tailwindcss/postcss": "^4.1.2",
+    "emailjs": "^4.0.3",
     "framer-motion": "^12.6.0",
     "gsap": "^3.12.7",
     "lenis": "^1.2.3",
