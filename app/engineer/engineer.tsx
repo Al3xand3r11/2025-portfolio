@@ -10,7 +10,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 
 
-const phrase = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.";
+const phrase = "A creative engineer pulls from imagination, collective ideas and the world around them to cultivate stories, realize visions and solve real world problems through the medium of modern technology.";
 
 
 

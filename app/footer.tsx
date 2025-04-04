@@ -44,7 +44,7 @@ export default function Footer () {
         <main>
             <div className="h-auto">
                 <div className="text-white text-center">
-                    <p>Get In Touch</p>
+                    <p className="font-bold text-3xl">Get In Touch</p>
                 </div>
                 <div className="flex flex-row justify-around pb-12">
                     <div className="flex flex-col text-black">

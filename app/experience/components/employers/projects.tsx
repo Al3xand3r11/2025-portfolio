@@ -51,10 +51,10 @@ export default function Employers() {
                     />
                 </div>
                 <div className={styles.column}>
-                    <p>The flora is characterized by the presence of high elevation wetland, as well as yellow straw, broom sedge, tola de agua and tola amaia.</p>
+                    <p>When not behind a computer screen, I am a community ambassador for nike and have worked in customer service roles for Towson University and Apple helping me stay well rounded.</p>
                 </div>
                 <div className={styles.column}>
-                    <p>Some, like the southern viscacha, vicuña and Darwins rhea, are classified as endangered species. Others, such as Andean goose, horned coot, Andean gull, puna tinamou and the three flamingo species inhabiting in Chile (Andean flamingo, Chilean flamingo, and Jamess flamingo) are considered vulnerable.</p>
+                    <p>My technical skills within software engineering have continuously progressed. From a degree in computer science to multiple personal projects and 3 years of experience with Paramount. My language of choice is typescript.</p>
                 </div>
             </div>
 
