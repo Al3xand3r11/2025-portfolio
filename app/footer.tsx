@@ -9,10 +9,10 @@ export default function Footer () {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [message, setMessage] = useState('')
-    const [isError, setIsError] = useState(false)
 
     const form = useRef<HTMLFormElement>(null);
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const sendEmail = (e: any) => {
         e.preventDefault();
 
@@ -28,15 +28,13 @@ export default function Footer () {
         }
 
         emailjs.send(serviceID, templateID, templateParams, publicKey)
-        .then((response: any) => {
+        .then((response: unknown) => {
             console.log('Email sent successfully', response)
             setName('');
             setEmail('');
             setMessage('');
-            setIsError(false)
         }).catch((error: Error) => {
             console.error('Error sending email', error);
-            setIsError(true)
         });
     }
 

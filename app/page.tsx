@@ -18,6 +18,7 @@ export default function Home(){
   useEffect( () => {
     const lenis = new Lenis()
    
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function raf(time: any) {
         lenis.raf(time)
         requestAnimationFrame(raf)
@@ -30,6 +31,7 @@ useEffect( () => {
   (
       async () => {
           const LocomotiveScroll = (await import('locomotive-scroll')).default
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const locomotiveScroll = new LocomotiveScroll();
 
           setTimeout( () => {

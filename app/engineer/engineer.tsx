@@ -1,8 +1,9 @@
+/* eslint-disable prefer-const */
 'use client'
 
 import styles from './page.module.css'
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, JSX } from 'react';
 
 import gsap from 'gsap';
 
@@ -18,6 +19,7 @@ export default function Engineer() {
 
 
 
+     
     let refs = useRef([]);
     const body = useRef(null);
     const container = useRef(null);
@@ -61,9 +63,11 @@ export default function Engineer() {
     }
 
 
-  const splitWords = (phrase) => {
+  const splitWords = (phrase: string) => {
 
-    let body = [];
+    
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let body: any = [];
 
     phrase.split(" ").forEach( (word, i) => {
 
@@ -79,9 +83,9 @@ export default function Engineer() {
 
 
 
-  const splitLetters = (word) => {
+  const splitLetters = (word: string) => {
 
-    let letters = []
+    const letters: JSX.Element[] = []
 
     word.split("").forEach( (letter, i) => {
 
