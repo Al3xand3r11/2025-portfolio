@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import styles from './style.module.scss';
 
-export default function Button({isActive, toggleMenu}) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default function Button({isActive, toggleMenu}: {isActive: boolean, toggleMenu: any }) {
   return (
     <div className={styles.button}>
         <motion.div 
@@ -26,7 +27,7 @@ export default function Button({isActive, toggleMenu}) {
   )
 }
 
-function PerspectiveText({label}) {
+function PerspectiveText({label}: {label: string}) {
     return (    
         <div className={styles.perspectiveText}>
             <p>{label}</p>

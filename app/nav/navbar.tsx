@@ -23,7 +23,7 @@ const menu = {
 }
 
 export default function NavBar() {
-    const [isActive, setIsActive] = useState(false);
+    const [isActive, setIsActive] = useState<boolean>(false);
 
     return (
         <div className={styles.header}>
