@@ -24,7 +24,7 @@ export const footerLinks = [
     },
     {
         title: "Resume",
-        href: "/"
+        href: "/BrandonNance2024Resume.pdf"
     },
     {
         title: "Medium",

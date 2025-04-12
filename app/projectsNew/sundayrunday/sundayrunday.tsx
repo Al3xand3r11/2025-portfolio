@@ -20,7 +20,7 @@ export default function SundayRunday() {
         >
         <div className='relative z-10 p-20 mix-blend-difference text-white w-full h-full flex flex-col justify-between'>
             <p className='w-[50vw] text-[2vw] self-end uppercase mix-blend-difference'>One of the biggest LA-based running clubs. Cultivating community and promoting fitness within the Downtown Los Angeles Area.</p>
-            <p className='text-[5vw] uppercase mix-blend-difference'>Sunday Runday LA</p>
+            <a href='https://www.sundayrundayla.com/' target='_blank' className='text-[5vw] uppercase mix-blend-difference'>Sunday Runday LA</a>
         </div>
         <div className='fixed top-[-10vh] left-0 h-[120vh] w-full'>
             <motion.div style={{y}} className='relative w-full h-full'>

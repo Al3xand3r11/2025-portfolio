@@ -21,7 +21,7 @@ export default function Tminus() {
         >
         <div className='relative z-10 p-20 mix-blend-difference text-white w-full h-full flex flex-col justify-between'>
             <p className='w-[50vw] text-[2vw] self-end uppercase mix-blend-difference'>A DC based recruiting agency that is bridging the gap between employers and job seekers, helping candidates find the right job and leaders find the right workers.</p>
-            <p className='text-[5vw] uppercase mix-blend-difference'>T-Minus Talent</p>
+            <a  href='https://tminustalent.com/' target='_blank' className='text-[5vw] uppercase mix-blend-difference'>T-Minus Talent</a>
         </div>
         <div className='fixed top-[-10vh] left-0 h-[120vh] w-full'>
             <motion.div style={{y}} className='relative w-full h-full'>
