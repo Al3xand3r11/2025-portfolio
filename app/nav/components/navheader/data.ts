@@ -16,11 +16,11 @@ export const links = [
 export const footerLinks = [
     {
         title: "Github",
-        href: "/"
+        href: "https://github.com/Al3xand3r11"
     },
     {
         title: "LinkedIn",
-        href: "/"
+        href: "https://www.linkedin.com/in/bnance1/"
     },
     {
         title: "Resume",
@@ -28,6 +28,6 @@ export const footerLinks = [
     },
     {
         title: "Medium",
-        href: "/"
+        href: "https://medium.com/@alexander.nance11"
     }
 ]

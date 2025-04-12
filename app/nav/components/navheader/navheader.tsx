@@ -41,6 +41,7 @@ export default function NavHeader() {
                             animate="enter"
                             exit="exit"
                             key={`f_${i}`}
+                            href={href}
                         >
                             {title}
                         </motion.a>
