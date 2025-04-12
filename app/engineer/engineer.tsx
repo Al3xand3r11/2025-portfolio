@@ -20,7 +20,8 @@ export default function Engineer() {
 
 
      
-    let refs = useRef([]);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let refs = useRef<any>([]);
     const body = useRef(null);
     const container = useRef(null);
   
@@ -89,7 +90,7 @@ export default function Engineer() {
 
     word.split("").forEach( (letter, i) => {
 
-      letters.push(<span key={letter + "_" + i} ref={el => {refs.current.push(el)}}>{letter}</span>)
+      letters.push(<span key={letter + "_" + i} ref={(el) => {refs.current.push(el)}}>{letter}</span>)
 
     })
 

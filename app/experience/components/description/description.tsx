@@ -6,7 +6,7 @@ import styles from './style.module.css';
 const phrases = ["My wide ranging professional experience,", "not only in a technical sense,", "but also in a customer service sense,", "has allowed me to address consumers need effectively", "and solve them technically simultaneously."]
 
 export default function ExpDescription() {
-
+    
   return (
     <div className={styles.description} >
         {
@@ -18,7 +18,8 @@ export default function ExpDescription() {
   )
 }
 
-function AnimatedText({children}) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function AnimatedText({children}: any) {
     const text = useRef(null);
 
     useLayoutEffect( () => {
@@ -36,5 +37,5 @@ function AnimatedText({children}) {
         })
     }, [])
 
-    return <p ref={text}>{children}</p>
+    return <p ref={text}>{(children)}</p>
 }
