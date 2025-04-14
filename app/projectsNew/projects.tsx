@@ -6,7 +6,7 @@ import Text from "./text";
 
 export default function ProjectsNew() {
     return(
-        <main className="h-auto">
+        <main className="h-auto" id="Projects">
             <Text/>
             <SundayRunday/>
             <HikeCrew/>

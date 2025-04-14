@@ -39,7 +39,7 @@ export default function Footer () {
     }
 
     return (
-        <main>
+        <main id="Contact">
             <div className="h-auto">
                 <div className="text-white text-center">
                     <p className="font-bold text-3xl">Get In Touch</p>

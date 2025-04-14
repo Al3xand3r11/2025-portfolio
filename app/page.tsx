@@ -54,7 +54,7 @@ useEffect( () => {
       </AnimatePresence>
       <Landing/>
       <div className="h-20vh] text-center">
-        <p className="text-white font-bold text-[128px]">What is a Creative Engineer?</p>
+        <p className="text-white font-bold text-[64px] md:text-[128px]">What is a Creative Engineer?</p>
       </div>
       <Header/>
       <Engineer/>

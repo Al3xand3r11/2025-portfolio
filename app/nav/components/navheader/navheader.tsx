@@ -19,7 +19,7 @@ export default function NavHeader() {
                           animate="enter"
                           exit="exit"
                         >
-                            <a>
+                            <a href={`#${title}`}>
                                 {title}
                             </a>
                         </motion.div>

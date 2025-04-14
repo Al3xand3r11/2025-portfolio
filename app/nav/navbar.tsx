@@ -7,7 +7,7 @@ import Nav from './components/navheader/navheader'
 
 const menu = {
     open: {
-        width: "480px",
+        width: "300px",
         height: "650px",
         top: "-25px",
         right: "-25px",
