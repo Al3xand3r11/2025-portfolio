@@ -2,6 +2,8 @@
 
 import { useRef, useState } from "react"
 import emailjs from '@emailjs/browser'
+import Image from "next/image"
+import image_247 from "../public/images/IMG_0247.webp"
 
 export default function Footer () {
 
@@ -39,57 +41,109 @@ export default function Footer () {
     }
 
     return (
-        <main id="Contact">
-            <div className="h-auto">
-                <div className="text-white text-center">
-                    <p className="font-bold text-3xl">Get In Touch</p>
-                </div>
-                <div className="flex flex-row justify-around pb-12">
-                    <div className="flex flex-col text-black">
-                        <p>LinkedIn</p>
-                        <p>Github</p>
-                        <p>Medium</p>
-                        <p>Resume</p>
-                    </div>
-                    <div className="flex flex-col">
-                        <form ref={form} onSubmit={sendEmail} className="space-y-8">
-                    <div>
-                        <label htmlFor="fname" className="block mb-2 text-sm font-medium text-white">Name</label>
-                        <input className="shadow-sm bg-transparent border border-gray-300 text-white text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 "
-                            type="text" 
-                            name="user_name"
-                            id="fname" 
-                            placeholder="John Smith" 
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            required/>
-                    </div>
-                    <div>
-                        <label htmlFor="email" className="block mb-2 text-sm font-medium text-white">Your email</label>
-                        <input className="shadow-sm bg-transparent border border-gray-300 text-white text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 "
-                            type="email" 
-                            name="user_email" 
-                            id="email"  
-                            placeholder="name@brandon.com" 
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required/>
-                    </div>
-                    <div className="sm:col-span-2">
-                        <label htmlFor="message" className="block mb-2 text-sm font-medium text-white">Your message</label>
-                        <textarea className="block p-2.5 w-full text-sm text-white bg-transparent rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 "
-                            id="message" 
-                            name="message"  
-                            placeholder="Leave a comment..."
-                            value={message}
-                            onChange={(e) => setMessage(e.target.value)} 
-                            > 
-                            </textarea>
-                    </div>
-                    <button type="submit" className="py-3 px-5 text-sm font-medium text-center text-white rounded-lg border-black border">Send message</button>
-                </form>
-                    </div>
+        <main id="Contact" className="relative min-h-screen overflow-hidden">
+            {/* Background Image */}
+            <div className="absolute inset-0 z-0">
+                <Image
+                    src={image_247}
+                    alt="Contact background"
+                    fill
+                    className="object-cover"
+                    priority
+                />
+                {/* Dark overlay for better text readability */}
+                <div className="absolute inset-0 bg-black/60"></div>
+            </div>
 
+            {/* Content */}
+            <div className="relative z-10 min-h-screen flex items-center justify-center px-6 py-20">
+                <div className="w-full max-w-7xl mx-auto">
+                    <div className="grid lg:grid-cols-2 gap-16 items-center">
+                        
+                        {/* Left Side - Get In Touch */}
+                        <div className="text-white space-y-8">
+                            <div>
+                                <h2 className="text-6xl lg:text-7xl font-black mb-6" style={{
+                                    textShadow: '0 0 20px rgba(246, 132, 47, 0.5)'
+                                }}>
+                                    GET IN
+                                </h2>
+                                <h2 className="text-6xl lg:text-7xl font-black" style={{
+                                    color: '#f6842f',
+                                    textShadow: '0 0 30px rgba(246, 132, 47, 0.8)'
+                                }}>
+                                    TOUCH
+                                </h2>
+                            </div>
+                            <p className="text-xl lg:text-2xl text-gray-300 leading-relaxed max-w-lg">
+                                Let&apos;s build community.
+                            </p>
+                        </div>
+
+                        {/* Right Side - Contact Form */}
+                        <div className="w-full max-w-lg mx-auto lg:mx-0">
+                            <div className="backdrop-blur-md bg-white/10 rounded-2xl border border-white/20 p-8 shadow-2xl">
+                                <form ref={form} onSubmit={sendEmail} className="space-y-6">
+                                    <div className="space-y-2">
+                                        <label htmlFor="fname" className="block text-sm font-semibold text-white/90">
+                                            Name
+                                        </label>
+                                        <input 
+                                            className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/30 text-white placeholder-white/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all duration-300 hover:bg-white/15"
+                                            type="text" 
+                                            name="user_name"
+                                            id="fname" 
+                                            placeholder="Your full name" 
+                                            value={name}
+                                            onChange={(e) => setName(e.target.value)}
+                                            required
+                                        />
+                                    </div>
+                                    
+                                    <div className="space-y-2">
+                                        <label htmlFor="email" className="block text-sm font-semibold text-white/90">
+                                            Email
+                                        </label>
+                                        <input 
+                                            className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/30 text-white placeholder-white/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all duration-300 hover:bg-white/15"
+                                            type="email" 
+                                            name="user_email" 
+                                            id="email"  
+                                            placeholder="your.email@example.com" 
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            required
+                                        />
+                                    </div>
+                                    
+                                    <div className="space-y-2">
+                                        <label htmlFor="message" className="block text-sm font-semibold text-white/90">
+                                            Message
+                                        </label>
+                                        <textarea 
+                                            className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/30 text-white placeholder-white/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all duration-300 hover:bg-white/15 resize-none h-32"
+                                            id="message" 
+                                            name="message"  
+                                            placeholder="Tell me about your project or just say hello..."
+                                            value={message}
+                                            onChange={(e) => setMessage(e.target.value)}
+                                            required
+                                        />
+                                    </div>
+                                    
+                                    <button 
+                                        type="submit" 
+                                        className="w-full py-4 px-6 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus:ring-offset-transparent"
+                                        style={{
+                                            boxShadow: '0 0 20px rgba(246, 132, 47, 0.3)'
+                                        }}
+                                    >
+                                        Send Message
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>

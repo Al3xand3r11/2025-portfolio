@@ -10,6 +10,7 @@ import Footer from "./footer";
 import Preloader from "./preloader/preloader";
 import { AnimatePresence } from "framer-motion";
 import Engineer from "./engineer/engineer";
+import Community from "./community/community";
 
 export default function Home(){
 
@@ -53,15 +54,13 @@ useEffect( () => {
         {isLoading && <Preloader />}
       </AnimatePresence>
       <Landing/>
-      <div className="h-20vh] text-center">
-        <p className="text-white font-bold text-[64px] md:text-[128px]">What is a Creative Engineer?</p>
-      </div>
+      <Experience/>
+      <ProjectsNew/>
+      <Community/>
+      <div className="h-[50vh]"></div>
       <Header/>
       <Engineer/>
-      <ProjectsNew/>
-      <div className="h-[50vh]"></div>
-      <Experience/>
-      <div className="h-20vh]"></div>
+      <div className="h-[20vh]"></div>
       <Footer/>
       
       

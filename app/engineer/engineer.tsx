@@ -11,7 +11,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 
 
-const phrase = "A creative engineer pulls from imagination, collective ideas and the world around them to cultivate stories, realize visions and solve real world problems through the medium of modern technology.";
+const phrase = "While just beginning in my career, I have had so many life changing experiences and connections that have shaped the goals I have today. I want to take my technical expertise to continue to build community and help others achieve their goals in person.";
 
 
 

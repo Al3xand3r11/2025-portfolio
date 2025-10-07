@@ -1,17 +1,15 @@
-import HikeCrew from "./hikecrew/hikecrew";
-import SundayRunday from "./sundayrunday/sundayrunday";
-import Tminus from "./tminus/tminus";
-import WTP from "./whatstheplay/whatstheplay";
-import Text from "./text";
 
+import Text from "./text"; 
+import SaturdayHikeCrew from "./components/saturdayhikecrew";
+import SeenByLiz from "./components/seenbyliz";
+import TMinusTalent from "./components/tminustalent";
 export default function ProjectsNew() {
     return(
         <main className="h-auto" id="Projects">
             <Text/>
-            <SundayRunday/>
-            <HikeCrew/>
-            <Tminus/>
-            <WTP/>
+            <SaturdayHikeCrew/>
+            <SeenByLiz/>
+            <TMinusTalent/>
         </main>
     )
 }

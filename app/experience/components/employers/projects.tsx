@@ -35,7 +35,13 @@ export default function Employers() {
             trigger: imageContainer.current,
             pin: true,
             start: "top-=100px",
-            end: document.body.offsetHeight - window.innerHeight - 50,
+            end: () => {
+                const el = container.current as HTMLElement | null;
+                if (el) {
+                    return el.offsetTop + el.offsetHeight - window.innerHeight;
+                }
+                return 0;
+            },
         })
     }, [])
 
@@ -51,10 +57,10 @@ export default function Employers() {
                     />
                 </div>
                 <div className={styles.column}>
-                    <p>When not behind a computer screen, I am a community ambassador for nike and have worked in customer service roles for Towson University and Apple helping me stay well rounded.</p>
+                    <p>In 2022, I graduated from Towson University with a degree in computer science and moved to Los Angeles the subsequent fall.</p>
                 </div>
                 <div className={styles.column}>
-                    <p>My technical skills within software engineering have continuously progressed. From a degree in computer science to multiple personal projects and 3 years of experience with Paramount. My language of choice is typescript.</p>
+                    <p>In college, I was a Resident Assistant for Towson. Additionally, I worked at the Apple Store as an on point specialist. Today, I work on Paramount&apos;s live streaming technology, and work with Nike running clubs in LA focused on marathon training.</p>
                 </div>
             </div>
 

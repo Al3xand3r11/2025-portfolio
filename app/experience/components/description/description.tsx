@@ -3,7 +3,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import gsap from 'gsap';
 import styles from './style.module.css';
 
-const phrases = ["My wide ranging professional experience,", "not only in a technical sense,", "but also in a customer service sense,", "has allowed me to address consumers need effectively", "and solve them technically simultaneously."]
+const phrases = ["Currently, I am a software engineer at Paramount", "with experience building a products from 0 to 1", "In addition, in my free time I work with Nike", "and various clubs within the running community", "and I am Lagree certified"]
 
 export default function ExpDescription() {
     
