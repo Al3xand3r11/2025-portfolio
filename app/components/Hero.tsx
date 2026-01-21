@@ -72,9 +72,8 @@ export default function Hero() {
               className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl leading-[0.9] tracking-tight"
               style={{ fontFamily: "var(--font-serif)" }}
             >
-              <span className="block text-[var(--color-foreground)]">Building</span>
-              <span className="block text-[var(--color-accent)] italic">community</span>
-              <span className="block text-[var(--color-foreground)]">through code</span>
+              <span className="block text-[var(--color-foreground)]">Brandon</span>
+              <span className="block text-[var(--color-accent)] italic">Nance</span>
             </motion.h1>
 
             {/* Decorative line */}
