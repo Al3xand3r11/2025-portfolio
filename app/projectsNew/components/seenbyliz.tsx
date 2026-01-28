@@ -7,8 +7,8 @@ import sblabout from '../../../public/images/sblabout.webp';
 
 export default function SeenByLiz() {
     return (
-        <div className="text-white h-auto mt-10" id="SeenByLiz">
-            <div className="flex flex-col items-center justify-center mb-10">
+        <div className="text-white h-auto mt-48 lg:mt-64 pb-32 lg:pb-48" id="SeenByLiz">
+            <div className="flex flex-col items-center justify-center mb-16 lg:mb-24">
             <h1 className="text-6xl font-bold">
                 Seen By Liz
             </h1>
