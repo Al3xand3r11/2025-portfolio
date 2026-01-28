@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Header from "./components/Header";
+import PreloaderWrapper from "./components/PreloaderWrapper";
 
 export const metadata: Metadata = {
   title: "Brandon Nance | Software Engineer",
@@ -40,6 +41,7 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <PreloaderWrapper />
         <Header />
         {children}
       </body>

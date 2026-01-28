@@ -34,7 +34,7 @@ export default function Work() {
       </motion.div>
 
       {/* Projects */}
-      <div className="space-y-40 lg:space-y-56 pb-32 lg:pb-48">
+      <div className="pb-32 lg:pb-48">
         {projects.map((project, index) => (
           <ProjectBento key={project.slug} project={project} index={index} />
         ))}
@@ -68,6 +68,7 @@ function ProjectBento({ project, index }: ProjectBentoProps) {
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.8, delay: index * 0.1 }}
       className="container"
+      style={{ paddingTop: index > 0 ? '250px' : '0' }}
     >
       {/* Project Title */}
       <motion.h2
@@ -75,14 +76,14 @@ function ProjectBento({ project, index }: ProjectBentoProps) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal tracking-tight text-[var(--color-foreground)] mb-8 lg:mb-12"
+        className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal tracking-tight text-[var(--color-foreground)] mb-12 lg:mb-16"
         style={{ fontFamily: "var(--font-serif)" }}
       >
         {project.title}
       </motion.h2>
 
       {/* Bento Grid */}
-      <div className="flex flex-col gap-5 lg:gap-6">
+      <div className="flex flex-col gap-8 lg:gap-10">
         {/* Hero Image - Full Width */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -110,9 +111,9 @@ function ProjectBento({ project, index }: ProjectBentoProps) {
         </motion.div>
 
         {/* Middle Row - 2 vertical images on left, description on right */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
           {/* Left Half - Two vertical images side by side */}
-          <div className="grid grid-cols-2 gap-5 lg:gap-6">
+          <div className="grid grid-cols-2 gap-8 lg:gap-10">
             {/* Image 2 - Vertical */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}

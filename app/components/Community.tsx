@@ -5,31 +5,31 @@ import Image from "next/image";
 
 const communities = [
   {
-    title: "Sunday Run Day",
+    title: "Sunday Run Day LA",
     description:
       "Weekly running community in Los Angeles focused on building connections through movement. From casual jogs to marathon training, bringing runners of all levels together.",
     image: "/images/sdrdhero1.webp",
-    role: "Organizer & Participant",
+    role: "Crew Captain",
   },
   {
     title: "Nike Running Club",
     description:
       "Part of Nike's LA running community, participating in coached runs and marathon training programs. Building endurance and community one mile at a time.",
-    image: "/images/IMG_0231.webp",
-    role: "Ambassador",
+    image: "/images/afterdark1.webp",
+    role: "Community Ambassador",
   },
   {
     title: "The Saturday Hike Crew",
     description:
-      "Beyond building the website, I'm an active member of this hiking community. Weekly adventures exploring LA's trails and connecting with fellow outdoor enthusiasts.",
+      "Beyond building the website, I'm an active member of this hiking community. Monthly adventures exploring LA's trails and connecting first time hikers with the outdoors.",
     image: "/images/shcgroup.webp",
-    role: "Member & Developer",
+    role: "Crew Captain & Developer",
   },
 ];
 
 export default function Community() {
   return (
-    <section id="community" className="py-32 lg:py-48">
+    <section id="community" className="pb-32 lg:pb-48" style={{ paddingTop: '250px' }}>
       <div className="container">
         {/* Section header */}
         <motion.div
@@ -37,7 +37,7 @@ export default function Community() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-24 lg:mb-32"
         >
           <div className="flex flex-wrap items-baseline gap-4 mb-6">
             <h2 className="text-4xl md:text-5xl lg:text-6xl text-[var(--color-foreground)]">
@@ -57,7 +57,7 @@ export default function Community() {
         </motion.div>
 
         {/* Community cards - editorial layout */}
-        <div className="space-y-24">
+        <div className="space-y-32 lg:space-y-40">
           {communities.map((community, index) => (
             <motion.article
               key={community.title}

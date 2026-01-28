@@ -111,7 +111,6 @@ export default function Header() {
                   href="#contact"
                   className="hidden sm:block relative px-4 py-2 text-sm font-medium text-[var(--color-foreground)] group"
                 >
-                  <span className="relative z-10">Schedule a call</span>
                   {/* Corner brackets */}
                   <span className="absolute top-0 left-0 w-2 h-2 border-t border-l border-[var(--color-accent)] transition-all duration-300 group-hover:w-3 group-hover:h-3" />
                   <span className="absolute top-0 right-0 w-2 h-2 border-t border-r border-[var(--color-accent)] transition-all duration-300 group-hover:w-3 group-hover:h-3" />

@@ -8,8 +8,8 @@ import Link from "next/link";
 
 export default function SaturdayHikeCrew() {
     return (
-        <div className="text-white h-auto" id="SaturdayHikeCrew">
-            <div className="flex flex-col items-center justify-center mb-10">
+        <div className="text-white h-auto pb-32 lg:pb-48" id="SaturdayHikeCrew">
+            <div className="flex flex-col items-center justify-center mb-16 lg:mb-24">
             <h1 className="text-6xl font-bold text-center">
                 The Saturday Hike Crew
             </h1>

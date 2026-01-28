@@ -41,7 +41,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-32 lg:py-48 border-t border-[var(--color-border)]">
+    <section id="contact" className="pb-32 lg:pb-48 border-t border-[var(--color-border)]" style={{ paddingTop: '250px' }}>
       <div className="container">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
           {/* Left side - CTA */}
@@ -77,10 +77,10 @@ export default function Contact() {
                   Email
                 </span>
                 <a
-                  href="mailto:hello@brandonnance.com"
+                  href="mailto:alexander.nance11@gmail.com"
                   className="text-[var(--color-foreground)] hover:text-[var(--color-accent)] transition-colors"
                 >
-                  hello@brandonnance.com
+                  alexander.nance11@gmail.com
                 </a>
               </div>
 
@@ -93,7 +93,7 @@ export default function Contact() {
                 </span>
                 <div className="flex gap-4">
                   <a
-                    href="https://github.com/brandonnance"
+                    href="https://github.com/al3xand3r11"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[var(--color-muted-foreground)] hover:text-[var(--color-foreground)] transition-colors"
@@ -101,20 +101,12 @@ export default function Contact() {
                     GitHub
                   </a>
                   <a
-                    href="https://linkedin.com/in/brandonnance"
+                    href="https://linkedin.com/in/bnance1"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[var(--color-muted-foreground)] hover:text-[var(--color-foreground)] transition-colors"
                   >
                     LinkedIn
-                  </a>
-                  <a
-                    href="https://instagram.com/brandonnance"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[var(--color-muted-foreground)] hover:text-[var(--color-foreground)] transition-colors"
-                  >
-                    Instagram
                   </a>
                 </div>
               </div>
