@@ -41,7 +41,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-[var(--section-padding)] border-t border-[var(--color-border)]">
+    <section id="contact" className="py-32 lg:py-48 border-t border-[var(--color-border)]">
       <div className="container">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
           {/* Left side - CTA */}

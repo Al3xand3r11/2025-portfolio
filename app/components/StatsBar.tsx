@@ -16,7 +16,7 @@ export default function StatsBar() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="py-12 border-y border-[var(--color-border)] bg-[var(--color-card)]"
+      className="py-16 lg:py-20 border-y border-[var(--color-border)] bg-[var(--color-card)]"
     >
       <div className="container">
         <div

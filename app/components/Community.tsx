@@ -29,7 +29,7 @@ const communities = [
 
 export default function Community() {
   return (
-    <section id="community" className="py-[var(--section-padding)]">
+    <section id="community" className="py-32 lg:py-48">
       <div className="container">
         {/* Section header */}
         <motion.div
@@ -116,7 +116,7 @@ export default function Community() {
           ))}
         </div>
 
-        {/* Photo grid */}
+        {/* Photo grid 
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -142,6 +142,7 @@ export default function Community() {
             </motion.div>
           ))}
         </motion.div>
+        */}
       </div>
     </section>
   );
