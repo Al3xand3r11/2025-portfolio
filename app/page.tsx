@@ -1,4 +1,5 @@
 import Hero from "./components/Hero";
+import About from "./components/About";
 import Work from "./components/Work";
 import StatsBar from "./components/StatsBar";
 import Community from "./components/Community";
@@ -9,6 +10,7 @@ export default function Home() {
     <main>
       <Hero />
       <StatsBar />
+      <About />
       <Work />
       <Community />
       <Contact />
