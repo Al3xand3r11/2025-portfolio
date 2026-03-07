@@ -28,21 +28,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "tminus-talent",
-    title: "T-Minus Talent",
-    description:
-      "A personalized recruiting platform connecting professionals with experienced recruiters. Features resume uploading and a founder dashboard for managing inquiries.",
-    url: "https://tminustalent.com",
-    tags: ["Next.js", "TypeScript", "Dashboard"],
-    year: "2024",
-    images: [
-      "/images/tmthero.webp",
-      "/images/tmtservices.webp",
-      "/images/tmtcontact.webp",
-      "/images/tmtquotes.webp",
-    ],
-  },
-  {
     slug: "seen-by-liz",
     title: "Seen By Liz",
     description:

@@ -87,6 +87,7 @@
   --font-serif: "JetBrains Mono", monospace;
   --font-sans: "JetBrains Mono", monospace;
   --font-mono: "JetBrains Mono", monospace;
+  --font-display: var(--font-display, "Space Grotesk", sans-serif);
   
   /* Spacing */
   --header-height: 80px;

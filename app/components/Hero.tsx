@@ -71,10 +71,10 @@ export default function Hero() {
         {/* Main content area - pushed to bottom */}
         <div className="flex-1" />
 
-        {/* Bottom section with large typography */}
+        {/* Bottom section with large typography 
         <div className="container pb-24">
           <div className="flex justify-between items-end">
-            {/* Left side - Name and title */}
+            {/* Left side - Name and title 
             <motion.div variants={itemVariants} className="flex flex-col gap-2">
               <span
                 className="text-xs text-[var(--color-muted-foreground)] uppercase tracking-widest"
@@ -91,7 +91,7 @@ export default function Hero() {
               </h1>
             </motion.div>
 
-            {/* Right side - Secondary title */}
+            {/* Right side - Secondary title 
             <motion.div
               variants={itemVariants}
               className="hidden md:flex flex-col gap-2 text-right"
@@ -112,6 +112,7 @@ export default function Hero() {
             </motion.div>
           </div>
         </div>
+        */}
 
         {/* Scroll indicator - centered at bottom */}
         <motion.div
