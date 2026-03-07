@@ -23,22 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Preconnect to font services */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="anonymous" />
-        
-        {/* Google Fonts - Instrument Serif & JetBrains Mono */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap"
-          rel="stylesheet"
-        />
-        
-        {/* Fontshare - Satoshi */}
-        <link
-          href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap"
-          rel="stylesheet"
-        />
+        {/* Fonts are self-hosted via @font-face in globals.css */}
       </head>
       <body>
         <PreloaderWrapper />

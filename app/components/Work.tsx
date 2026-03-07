@@ -1,74 +1,46 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useCallback } from "react";
 import Image from "next/image";
-import { projects } from "../lib/projects";
+import { projects, type Project } from "../lib/projects";
+
+const hoverLabels: Record<string, string> = {
+  "saturday-hike-crew": "SHC",
+  "tminus-talent": "TMT",
+  "seen-by-liz": "LIZ",
+  "itscleoplus": "CLEO+",
+};
 
 export default function Work() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "start start"],
-  });
-
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
-
   return (
-    <section id="work" ref={sectionRef} className="relative">
-      {/* Subtle section indicator */}
-      <motion.div
-        style={{ opacity }}
-        className="container py-16 lg:py-24"
-      >
-        <div className="flex items-center gap-4">
-          <span className="w-12 h-px bg-[var(--color-border)]" />
-          <span
-            className="text-xs uppercase tracking-[0.3em] text-[var(--color-muted-foreground)]"
-            style={{ fontFamily: "var(--font-mono)" }}
-          >
-            Selected Work
-          </span>
-        </div>
-      </motion.div>
-
-      {/* Projects */}
-      <div className="pb-32 lg:pb-48">
+    <section id="work" className="relative">
+      <div className="container pt-16 lg:pt-24 pb-32 lg:pb-48">
         {projects.map((project, index) => (
-          <ProjectBento key={project.slug} project={project} index={index} />
+          <ProjectCarousel key={project.slug} project={project} index={index} />
         ))}
       </div>
     </section>
   );
 }
 
-interface ProjectBentoProps {
-  project: (typeof projects)[0];
-  index: number;
-}
-
-function ProjectBento({ project, index }: ProjectBentoProps) {
-  const bentoRef = useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: bentoRef,
-    offset: ["start end", "end start"],
-  });
-
-  const heroY = useTransform(scrollYProgress, [0, 1], [40, -40]);
-
+function ProjectCarousel({ project, index }: { project: Project; index: number }) {
+  const [currentSlide, setCurrentSlide] = useState(0);
   const images = project.images || [];
+  const totalSlides = 3;
+  const label = hoverLabels[project.slug] || project.title;
+
+  const nextSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev + 1) % totalSlides);
+  }, []);
 
   return (
     <motion.div
-      ref={bentoRef}
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.1 }}
-      transition={{ duration: 0.8, delay: index * 0.1 }}
-      className="container"
-      style={{ paddingTop: index > 0 ? '250px' : '0' }}
+      transition={{ duration: 0.8, delay: index * 0.05 }}
+      style={{ paddingTop: index > 0 ? "clamp(8rem, 16vw, 14rem)" : "0" }}
     >
       {/* Project Title */}
       <motion.h2
@@ -76,194 +48,134 @@ function ProjectBento({ project, index }: ProjectBentoProps) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal tracking-tight text-[var(--color-foreground)] mb-12 lg:mb-16"
-        style={{ fontFamily: "var(--font-serif)" }}
+        className="text-5xl md:text-6xl lg:text-7xl xl:text-[6.5rem] font-normal tracking-tight text-[var(--color-foreground)] mb-8 lg:mb-12 uppercase"
+        style={{ fontFamily: "var(--font-serif)", lineHeight: 0.95 }}
       >
         {project.title}
       </motion.h2>
 
-      {/* Bento Grid */}
-      <div className="flex flex-col gap-8 lg:gap-10">
-        {/* Hero Image - Full Width */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.8 }}
-          className="relative aspect-[16/9] overflow-hidden bg-[var(--color-card)] rounded-2xl lg:rounded-3xl border border-[var(--color-border)]"
-        >
-          <motion.div style={{ y: heroY }} className="absolute inset-0 scale-110">
-            {images[0] ? (
-              <Image
-                src={images[0]}
-                alt={`${project.title} hero`}
-                fill
-                className="object-cover"
-              />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center">
-                <span className="text-[var(--color-muted)]" style={{ fontFamily: "var(--font-mono)" }}>
-                  Hero Image
-                </span>
-              </div>
-            )}
-          </motion.div>
-        </motion.div>
-
-        {/* Middle Row - 2 vertical images on left, description on right */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-          {/* Left Half - Two vertical images side by side */}
-          <div className="grid grid-cols-2 gap-8 lg:gap-10">
-            {/* Image 2 - Vertical */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="relative aspect-[9/16] overflow-hidden bg-[var(--color-card)] rounded-2xl lg:rounded-3xl border border-[var(--color-border)]"
-            >
-              {images[1] ? (
-                <Image
-                  src={images[1]}
-                  alt={`${project.title} detail 1`}
-                  fill
-                  className="object-cover"
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center">
-                  <span className="text-[var(--color-muted)] text-sm" style={{ fontFamily: "var(--font-mono)" }}>
-                    Image 2
-                  </span>
-                </div>
-              )}
-            </motion.div>
-
-            {/* Image 3 - Vertical */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative aspect-[9/16] overflow-hidden bg-[var(--color-card)] rounded-2xl lg:rounded-3xl border border-[var(--color-border)]"
-            >
-              {images[2] ? (
-                <Image
-                  src={images[2]}
-                  alt={`${project.title} detail 2`}
-                  fill
-                  className="object-cover"
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center">
-                  <span className="text-[var(--color-muted)] text-sm" style={{ fontFamily: "var(--font-mono)" }}>
-                    Image 3
-                  </span>
-                </div>
-              )}
-            </motion.div>
-          </div>
-
-          {/* Right Half - Project Description */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex flex-col justify-between py-2"
-          >
-            {/* Description - Top Left */}
-            <p className="text-lg md:text-xl lg:text-2xl text-[var(--color-muted-foreground)] leading-relaxed">
-              {project.description}
-            </p>
-
-            {/* Metadata - Bottom Left */}
-            <div className="space-y-4 mt-8">
-              {/* Stack */}
-              <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-6 pb-4 border-b border-[var(--color-border)]">
-                <span
-                  className="text-xs uppercase tracking-widest text-[var(--color-muted)] min-w-[60px]"
-                  style={{ fontFamily: "var(--font-mono)" }}
-                >
-                  Stack
-                </span>
-                <span
-                  className="text-sm text-[var(--color-muted-foreground)]"
-                  style={{ fontFamily: "var(--font-mono)" }}
-                >
-                  {project.tags.join(", ")}
-                </span>
-              </div>
-
-              {/* Year */}
-              <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-6 pb-4 border-b border-[var(--color-border)]">
-                <span
-                  className="text-xs uppercase tracking-widest text-[var(--color-muted)] min-w-[60px]"
-                  style={{ fontFamily: "var(--font-mono)" }}
-                >
-                  Year
-                </span>
-                <span
-                  className="text-sm text-[var(--color-muted-foreground)]"
-                  style={{ fontFamily: "var(--font-mono)" }}
-                >
-                  {project.year}
-                </span>
-              </div>
-
-              {/* View Project Link */}
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 pt-2 text-[var(--color-foreground)] hover:text-[var(--color-accent)] transition-colors group"
+      {/* Carousel */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8">
+        {/* Image area */}
+        <div className="md:col-span-8 relative">
+          <AnimatePresence mode="wait">
+            {currentSlide < 2 ? (
+              <motion.div
+                key={currentSlide}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.4 }}
+                className="relative aspect-[4/3] overflow-hidden border border-[var(--color-border)]"
               >
-                <span
-                  className="text-sm uppercase tracking-wider"
-                  style={{ fontFamily: "var(--font-mono)" }}
-                >
-                  View Live Site
-                </span>
-                <svg
-                  className="w-4 h-4 transform -rotate-45 group-hover:rotate-0 transition-transform duration-300"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                {images[currentSlide] ? (
+                  <Image
+                    src={images[currentSlide]}
+                    alt={`${project.title} – slide ${currentSlide + 1}`}
+                    fill
+                    className="object-cover"
                   />
-                </svg>
-              </a>
-            </div>
-          </motion.div>
+                ) : (
+                  <div className="w-full h-full bg-[var(--color-card)] flex items-center justify-center">
+                    <span className="text-[var(--color-muted)]" style={{ fontFamily: "var(--font-mono)" }}>
+                      Image
+                    </span>
+                  </div>
+                )}
+              </motion.div>
+            ) : (
+              <motion.div
+                key="double"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.4 }}
+                className="grid grid-cols-2 gap-4"
+              >
+                {[images[2], images[3]].map((img, i) => (
+                  <div
+                    key={i}
+                    className="relative aspect-[3/4] overflow-hidden border border-[var(--color-border)] group cursor-pointer"
+                  >
+                    {img ? (
+                      <>
+                        <Image
+                          src={img}
+                          alt={`${project.title} – detail ${i + 1}`}
+                          fill
+                          className="object-cover transition-all duration-500 group-hover:brightness-[0.25]"
+                        />
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                          <span
+                            className="text-white text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight"
+                            style={{ fontFamily: "var(--font-serif)" }}
+                          >
+                            {label}
+                          </span>
+                        </div>
+                      </>
+                    ) : (
+                      <div className="w-full h-full bg-[var(--color-card)]" />
+                    )}
+                  </div>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
-        {/* Image 4 - Full Width Landscape */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="relative aspect-[16/9] overflow-hidden bg-[var(--color-card)] rounded-2xl lg:rounded-3xl border border-[var(--color-border)]"
-        >
-          {images[3] ? (
-            <Image
-              src={images[3]}
-              alt={`${project.title} detail 3`}
-              fill
-              className="object-cover"
+        {/* Right side – description + Next */}
+        <div className="md:col-span-4 flex flex-col justify-between py-2">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-sm lg:text-base text-[var(--color-muted-foreground)] leading-relaxed"
+          >
+            {project.description}
+          </motion.p>
+
+          {/* Next button */}
+          <button
+            onClick={nextSlide}
+            className="self-end mt-12 md:mt-0 group flex items-center gap-3 hover:text-[var(--color-accent)] transition-colors"
+          >
+            <span
+              className="text-base text-[var(--color-muted-foreground)] group-hover:text-[var(--color-accent)] transition-colors tracking-wider"
+              style={{
+                fontFamily: "var(--font-serif)",
+                writingMode: "vertical-rl",
+              }}
+            >
+              Next
+            </span>
+          </button>
+        </div>
+      </div>
+
+      {/* Bottom bar: dots + project name */}
+      <div className="flex items-center justify-between mt-6">
+        <div className="flex gap-2">
+          {Array.from({ length: totalSlides }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentSlide(i)}
+              className={`w-2.5 h-2.5 rounded-sm transition-colors duration-300 ${
+                i === currentSlide
+                  ? "bg-[var(--color-foreground)]"
+                  : "bg-[var(--color-border)]"
+              }`}
+              aria-label={`Go to slide ${i + 1}`}
             />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center">
-              <span className="text-[var(--color-muted)]" style={{ fontFamily: "var(--font-mono)" }}>
-                Image 4
-              </span>
-            </div>
-          )}
-        </motion.div>
+          ))}
+        </div>
+        <span
+          className="text-sm text-[var(--color-muted-foreground)] tracking-wide"
+          style={{ fontFamily: "var(--font-mono)" }}
+        >
+          {project.title}
+        </span>
       </div>
     </motion.div>
   );
