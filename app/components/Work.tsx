@@ -45,6 +45,7 @@ export default function Work() {
       {filteredProjects.map((project, index) => (
         <ProjectBlock key={project.slug} project={project} index={index} total={filteredProjects.length} />
       ))}
+
     </section>
   );
 }
