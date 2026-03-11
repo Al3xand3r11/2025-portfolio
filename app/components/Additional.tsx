@@ -3,10 +3,10 @@
 import { motion } from "framer-motion";
 
 const additionalProjects = [
-  { title: "Lorem Ipsum Dolor", href: "#" },
-  { title: "Consectetur Adipiscing", href: "#" },
-  { title: "Sed Do Eiusmod", href: "#" },
-  { title: "Tempor Incididunt", href: "#" },
+  { title: "TMinus Talent", href: "https://tminustalent.com" },
+  { title: "Python Image Converter", href: "https://github.com/Al3xand3r11/python-image-converter/tree/main" },
+  { title: "Sunday Runday LA", href: "https://www.sundayrundayla.com/" },
+  { title: "Food Desert Finder", href: "https://github.com/Al3xand3r11/food-desert-fixer" },
 ];
 
 export default function Additional() {

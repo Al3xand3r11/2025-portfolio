@@ -21,7 +21,7 @@ export const projects: Project[] = [
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Dashboard"],
     year: "2024",
     images: [
-      "/images/shc1.webp",
+      "/images/shchero.webp",
       "/images/shc2.webp",
       "/images/shc3.webp",
       "/images/shc4.webp",
@@ -36,7 +36,7 @@ export const projects: Project[] = [
     tags: ["Next.js", "Photography", "Portfolio"],
     year: "2024",
     images: [
-      "/images/sblhero.webp",
+      "/images/caro1.webp",
       "/images/sbl2.webp",
       "/images/sbl3.webp",
       "/images/sbl4.webp",
@@ -51,7 +51,7 @@ export const projects: Project[] = [
     tags: ["Next.js", "WebGL", "Entertainment"],
     year: "2025",
     images: [
-      "/images/metanoia.webp",
+      "/images/Mia2.webp",
       "/images/mm2.webp",
       "/images/mm3.webp",
       "/images/mm4.webp",

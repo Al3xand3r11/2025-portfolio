@@ -35,10 +35,6 @@ export default function Work() {
         <span className="text-xs tracking-[0.2em] uppercase text-[var(--color-foreground)]">
           Selected Projects
         </span>
-        <span className="w-2.5 h-2.5 rounded-full bg-[var(--color-foreground)] inline-block" />
-        <span className="text-xs tracking-[0.2em] uppercase text-[var(--color-foreground)]">
-          WO-01
-        </span>
       </div>
 
       {/* Projects */}

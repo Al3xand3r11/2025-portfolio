@@ -5,25 +5,25 @@ import Image from "next/image";
 
 const communities = [
   {
-    title: "Sunday Run Day LA",
+    title: "Sunday Runday LA",
     description:
-      "Weekly running community in Los Angeles focused on building connections through movement. From casual jogs to marathon training, bringing runners of all levels together.",
-    image: "/images/sdrdhero1.webp",
+      "DTLA based running club hosting weekly runs, race prep and community building events. What started small has grown into a Nike sponsored running club. From welcoming new runners in DTLA to preparing for the LA Marathon, all the way to cultivatingnroutes and running from LA to Vegas, we have built a community for all levels.",
+      image: "/images/sdrdhero1.webp",
     role: "Crew Captain",
   },
   {
-    title: "Nike Running Club",
+    title: "Nike: After Dark LA 2025",
     description:
-      "Part of Nike's LA running community, participating in coached runs and marathon training programs. Building endurance and community one mile at a time.",
+      "Stretched, paced and curated music for the Nike After Dark LA track night events leading up to the half marathon. A twice weekly cadence often hosting over 300 runners a night. We cultivated a community of runners, many first timers to track workouts, prepared them for their race and introduced them to lifelong friends in the process.",
     image: "/images/afterdark1.webp",
     role: "Community Ambassador",
   },
   {
     title: "The Saturday Hike Crew",
     description:
-      "Beyond building the website, I'm an active member of this hiking community. Monthly adventures exploring LA's trails and connecting first time hikers with the outdoors.",
+      "Beyond building the website, I'm an active member of this hiking community. Often at the back of hikes, ensuring everyone finishes safely. What started as a small group of friends quickly ballooned into a community of over 100 runners with each monthly hike.",
     image: "/images/shcgroup.webp",
-    role: "Crew Captain & Developer",
+    role: "Crew Captain & Engineer",
   },
 ];
 
@@ -41,18 +41,17 @@ export default function Community() {
         >
           <div className="flex flex-wrap items-baseline gap-4 mb-6">
             <h2 className="text-4xl md:text-5xl lg:text-6xl text-[var(--color-foreground)]">
-              Building
+              The
             </h2>
             <h2
               className="text-4xl md:text-5xl lg:text-6xl italic text-[var(--color-accent)]"
               style={{ fontFamily: "var(--font-serif)" }}
             >
-              Community
+              Outdoors
             </h2>
           </div>
           <p className="text-[var(--color-muted-foreground)] max-w-xl">
-            Technology is just a tool. What matters is the connections we build. 
-            Here&apos;s how I bring people together beyond the screen.
+            I have only become a better engineer by touching grass consistently. The communal work below are examples of the beginning of the intertwining I plan to incorporate into my work after graduation.
           </p>
         </motion.div>
 

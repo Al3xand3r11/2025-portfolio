@@ -50,8 +50,8 @@ export default function About() {
               className="text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] font-bold leading-[0.95] tracking-tight text-[var(--color-foreground)]"
               style={{ fontFamily: "var(--font-serif)" }}
             >
-              <span className="block">THIS</span>
-              <span className="block">A TEST</span>
+              <span className="block">BRANDON</span>
+              <span className="block">NANCE</span>
             </h2>
           </motion.div>
         </div>
@@ -90,13 +90,10 @@ export default function About() {
               style={{ paddingTop: "clamp(2rem, 12vw, 10rem)" }}
             >
               <p className="text-base lg:text-lg text-[var(--color-muted-foreground)] leading-relaxed">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Praesent vehicula magna at libero fermentum, non tincidunt
-                nisi posuere. Sed ac urna in lectus cursus sagittis vel
-                id nulla. Cras suscipit, velit id auctor pharetra, arcu
-                magna volutpat ligula, at laoreet sapien lacus vel nunc.
-                Fusce dictum risus nec augue gravida, sit amet volutpat
-                erat ultricies.
+                I moved to Los Angeles in 2022 to work as a software engineer at Paramount,
+                3 months after graduating from Towson University with a degree in computer science.
+                I grew up with a love for computers and video games and now with 5 years of experience in engineering,
+                and  10 years of experience in customer service. 
               </p>
             </motion.div>
 
@@ -110,26 +107,21 @@ export default function About() {
               style={{ paddingTop: "clamp(4rem, 22vw, 20rem)" }}
             >
               <p className="text-base lg:text-lg text-[var(--color-muted-foreground)] leading-relaxed">
-                Vivamus consequat velit non lacus tempor, eget
-                faucibus nisl vehicula. Nulla facilisi. Integer
-                efficitur eros at urna blandit, non scelerisque
-                sapien tincidunt. Donec at metus sit amet arcu
-                pellentesque consequat a nec enim. Vestibulum
-                ante ipsum primis in faucibus orci luctus et
-                ultrices posuere cubilia curae.
+                Today, I continue to work on Paramount&apos;s live streaming technology, mainly in typescript.
+                I also work as a community ambassador at Blue Ribbon Sports, the first Nike store ever. And I am Lagree
+                certified, teaching on nights and weekends in DTLA.
               </p>
               <p className="text-base lg:text-lg text-[var(--color-muted-foreground)] leading-relaxed">
-                Maecenas at odio ac nisi pellentesque
-                fermentum. Ut eget sapien vel ex bibendum
-                tincidunt. Aliquam erat volutpat. Suspendisse
-                potenti, sed dignissim libero ultrices vel
-                consequat metus blandit.
+                In the upcoming fall, I will be attending USC as an MBA student.
+                My goal is to begin to intertwine my technical and communal passions together.
+                Ultimately using those skills to educate,
+                inform, and inspire others in whatever discipline they are in.
               </p>
             </motion.div>
           </div>
         </div>
 
-        {/* Bottom label */}
+        {/* Bottom label 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -151,6 +143,7 @@ export default function About() {
             worked with
           </span>
         </motion.div>
+        */}
       </div>
     </section>
   );
