@@ -1,269 +1,177 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
-import { projects } from "../lib/projects";
+import { projects, type Project } from "../lib/projects";
+
+const projectMeta: Record<string, { category: string; industry: string; deliverables: string[] }> = {
+  "saturday-hike-crew": {
+    category: "COMMUNITY PLATFORM",
+    industry: "OUTDOOR & WELLNESS",
+    deliverables: ["WEB DEVELOPMENT", "DASHBOARD DESIGN", "BRAND IDENTITY"],
+  },
+  "seen-by-liz": {
+    category: "PORTFOLIO WEBSITE",
+    industry: "PHOTOGRAPHY",
+    deliverables: ["VISUAL IDENTITY", "WEB DEVELOPMENT", "ART DIRECTION"],
+  },
+  itscleoplus: {
+    category: "ARTIST WEBSITE",
+    industry: "MUSIC & ENTERTAINMENT",
+    deliverables: ["BRAND STRATEGY", "VISUAL IDENTITY", "WEB DEVELOPMENT"],
+  },
+};
 
 export default function Work() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "start start"],
-  });
-
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
+  const filteredProjects = projects.filter((p) => p.slug !== "tminus-talent");
 
   return (
-    <section id="work" ref={sectionRef} className="relative">
-      {/* Subtle section indicator */}
-      <motion.div
-        style={{ opacity }}
-        className="container py-16 lg:py-24"
+    <section id="work" className="relative">
+      {/* Top bar */}
+      <div
+        className="border-y border-[var(--color-border)] py-4 px-6 md:px-10 flex items-center justify-between"
+        style={{ fontFamily: "var(--font-mono)" }}
       >
-        <div className="flex items-center gap-4">
-          <span className="w-12 h-px bg-[var(--color-border)]" />
-          <span
-            className="text-xs uppercase tracking-[0.3em] text-[var(--color-muted-foreground)]"
-            style={{ fontFamily: "var(--font-mono)" }}
-          >
-            Selected Work
-          </span>
-        </div>
-      </motion.div>
+        <span className="text-xs tracking-[0.2em] uppercase text-[var(--color-foreground)]">
+          Selected Projects
+        </span>
+      </div>
 
       {/* Projects */}
-      <div className="pb-32 lg:pb-48">
-        {projects.map((project, index) => (
-          <ProjectBento key={project.slug} project={project} index={index} />
-        ))}
-      </div>
+      {filteredProjects.map((project, index) => (
+        <ProjectBlock key={project.slug} project={project} index={index} total={filteredProjects.length} />
+      ))}
+
     </section>
   );
 }
 
-interface ProjectBentoProps {
-  project: (typeof projects)[0];
+function ProjectBlock({
+  project,
+  index,
+  total,
+}: {
+  project: Project;
   index: number;
-}
-
-function ProjectBento({ project, index }: ProjectBentoProps) {
-  const bentoRef = useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: bentoRef,
-    offset: ["start end", "end start"],
-  });
-
-  const heroY = useTransform(scrollYProgress, [0, 1], [40, -40]);
-
-  const images = project.images || [];
+  total: number;
+}) {
+  const image = project.images?.[0];
+  const meta = projectMeta[project.slug] || {
+    category: "WEB PROJECT",
+    industry: "TECHNOLOGY",
+    deliverables: ["WEB DEVELOPMENT"],
+  };
 
   return (
     <motion.div
-      ref={bentoRef}
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      viewport={{ once: true, amount: 0.1 }}
-      transition={{ duration: 0.8, delay: index * 0.1 }}
-      className="container"
-      style={{ paddingTop: index > 0 ? '250px' : '0' }}
+      viewport={{ once: true, amount: 0.05 }}
+      transition={{ duration: 0.8 }}
+      className={`grid grid-cols-1 md:grid-cols-12 ${index < total - 1 ? "border-b border-[var(--color-border)]" : ""}`}
     >
-      {/* Project Title */}
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-normal tracking-tight text-[var(--color-foreground)] mb-12 lg:mb-16"
-        style={{ fontFamily: "var(--font-serif)" }}
-      >
-        {project.title}
-      </motion.h2>
-
-      {/* Bento Grid */}
-      <div className="flex flex-col gap-8 lg:gap-10">
-        {/* Hero Image - Full Width */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.8 }}
-          className="relative aspect-[16/9] overflow-hidden bg-[var(--color-card)] rounded-2xl lg:rounded-3xl border border-[var(--color-border)]"
-        >
-          <motion.div style={{ y: heroY }} className="absolute inset-0 scale-110">
-            {images[0] ? (
-              <Image
-                src={images[0]}
-                alt={`${project.title} hero`}
-                fill
-                className="object-cover"
-              />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center">
-                <span className="text-[var(--color-muted)]" style={{ fontFamily: "var(--font-mono)" }}>
-                  Hero Image
-                </span>
-              </div>
-            )}
-          </motion.div>
-        </motion.div>
-
-        {/* Middle Row - 2 vertical images on left, description on right */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-          {/* Left Half - Two vertical images side by side */}
-          <div className="grid grid-cols-2 gap-8 lg:gap-10">
-            {/* Image 2 - Vertical */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="relative aspect-[9/16] overflow-hidden bg-[var(--color-card)] rounded-2xl lg:rounded-3xl border border-[var(--color-border)]"
-            >
-              {images[1] ? (
-                <Image
-                  src={images[1]}
-                  alt={`${project.title} detail 1`}
-                  fill
-                  className="object-cover"
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center">
-                  <span className="text-[var(--color-muted)] text-sm" style={{ fontFamily: "var(--font-mono)" }}>
-                    Image 2
-                  </span>
-                </div>
-              )}
-            </motion.div>
-
-            {/* Image 3 - Vertical */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative aspect-[9/16] overflow-hidden bg-[var(--color-card)] rounded-2xl lg:rounded-3xl border border-[var(--color-border)]"
-            >
-              {images[2] ? (
-                <Image
-                  src={images[2]}
-                  alt={`${project.title} detail 2`}
-                  fill
-                  className="object-cover"
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center">
-                  <span className="text-[var(--color-muted)] text-sm" style={{ fontFamily: "var(--font-mono)" }}>
-                    Image 3
-                  </span>
-                </div>
-              )}
-            </motion.div>
-          </div>
-
-          {/* Right Half - Project Description */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex flex-col justify-between py-2"
+      {/* Left column — project info */}
+      <div className="md:col-span-5 lg:col-span-4 px-6 md:px-10 py-12 md:py-16 flex flex-col justify-between md:border-r border-[var(--color-border)]">
+        <div>
+          {/* Title */}
+          <h3
+            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[var(--color-foreground)] uppercase leading-[0.95] mb-4"
+            style={{ fontFamily: "var(--font-display)" }}
           >
-            {/* Description - Top Left */}
-            <p className="text-lg md:text-xl lg:text-2xl text-[var(--color-muted-foreground)] leading-relaxed">
-              {project.description}
-            </p>
+            {project.title}
+          </h3>
 
-            {/* Metadata - Bottom Left */}
-            <div className="space-y-4 mt-8">
-              {/* Stack */}
-              <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-6 pb-4 border-b border-[var(--color-border)]">
-                <span
-                  className="text-xs uppercase tracking-widest text-[var(--color-muted)] min-w-[60px]"
-                  style={{ fontFamily: "var(--font-mono)" }}
-                >
-                  Stack
-                </span>
-                <span
-                  className="text-sm text-[var(--color-muted-foreground)]"
-                  style={{ fontFamily: "var(--font-mono)" }}
-                >
-                  {project.tags.join(", ")}
-                </span>
-              </div>
+          {/* Category */}
+          <p
+            className="text-xs tracking-[0.15em] uppercase text-[var(--color-foreground)] font-medium mb-8"
+            style={{ fontFamily: "var(--font-mono)" }}
+          >
+            {meta.category}
+          </p>
 
-              {/* Year */}
-              <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-6 pb-4 border-b border-[var(--color-border)]">
-                <span
-                  className="text-xs uppercase tracking-widest text-[var(--color-muted)] min-w-[60px]"
-                  style={{ fontFamily: "var(--font-mono)" }}
-                >
-                  Year
-                </span>
-                <span
-                  className="text-sm text-[var(--color-muted-foreground)]"
-                  style={{ fontFamily: "var(--font-mono)" }}
-                >
-                  {project.year}
-                </span>
-              </div>
-
-              {/* View Project Link */}
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 pt-2 text-[var(--color-foreground)] hover:text-[var(--color-accent)] transition-colors group"
-              >
-                <span
-                  className="text-sm uppercase tracking-wider"
-                  style={{ fontFamily: "var(--font-mono)" }}
-                >
-                  View Live Site
-                </span>
-                <svg
-                  className="w-4 h-4 transform -rotate-45 group-hover:rotate-0 transition-transform duration-300"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M14 5l7 7m0 0l-7 7m7-7H3"
-                  />
-                </svg>
-              </a>
-            </div>
-          </motion.div>
+          {/* View Project link */}
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 text-xs tracking-[0.15em] uppercase text-[var(--color-foreground)] hover:text-[var(--color-accent-warm)] transition-colors mb-14"
+            style={{ fontFamily: "var(--font-mono)" }}
+          >
+            View Project
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M3 8h10M9 4l4 4-4 4" />
+            </svg>
+          </a>
         </div>
 
-        {/* Image 4 - Full Width Landscape */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="relative aspect-[16/9] overflow-hidden bg-[var(--color-card)] rounded-2xl lg:rounded-3xl border border-[var(--color-border)]"
-        >
-          {images[3] ? (
+        {/* Metadata */}
+        <div className="space-y-6">
+          <div>
+            <span
+              className="block text-[10px] tracking-[0.2em] uppercase text-[var(--color-muted)] mb-1"
+              style={{ fontFamily: "var(--font-mono)" }}
+            >
+              Industry
+            </span>
+            <span
+              className="block text-xs tracking-[0.1em] uppercase text-[var(--color-foreground)] font-medium"
+              style={{ fontFamily: "var(--font-mono)" }}
+            >
+              {meta.industry}
+            </span>
+          </div>
+
+          <div>
+            <span
+              className="block text-[10px] tracking-[0.2em] uppercase text-[var(--color-muted)] mb-1"
+              style={{ fontFamily: "var(--font-mono)" }}
+            >
+              Year
+            </span>
+            <span
+              className="block text-xs tracking-[0.1em] uppercase text-[var(--color-foreground)] font-medium"
+              style={{ fontFamily: "var(--font-mono)" }}
+            >
+              {project.year}
+            </span>
+          </div>
+
+          <div>
+            <span
+              className="block text-[10px] tracking-[0.2em] uppercase text-[var(--color-muted)] mb-1"
+              style={{ fontFamily: "var(--font-mono)" }}
+            >
+              Deliverables
+            </span>
+            <div style={{ fontFamily: "var(--font-mono)" }}>
+              {meta.deliverables.map((d) => (
+                <span
+                  key={d}
+                  className="block text-xs tracking-[0.1em] uppercase text-[var(--color-foreground)] font-medium leading-relaxed"
+                >
+                  {d}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Right column — image */}
+      <div className="md:col-span-7 lg:col-span-8 relative">
+        <div className="relative w-full h-full min-h-[50vh] md:min-h-[70vh]">
+          {image ? (
             <Image
-              src={images[3]}
-              alt={`${project.title} detail 3`}
+              src={image}
+              alt={project.title}
               fill
               className="object-cover"
+              sizes="(max-width: 768px) 100vw, 66vw"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center">
-              <span className="text-[var(--color-muted)]" style={{ fontFamily: "var(--font-mono)" }}>
-                Image 4
-              </span>
-            </div>
+            <div className="w-full h-full bg-[var(--color-card)]" />
           )}
-        </motion.div>
+        </div>
       </div>
     </motion.div>
   );

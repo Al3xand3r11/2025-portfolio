@@ -4,11 +4,30 @@ import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 
+const subjectOptions = [
+  "Web Development",
+  "Mobile App",
+  "UI/UX Design",
+  "Consulting",
+  "Collaboration",
+  "Other",
+];
+
+const budgetOptions = [
+  "Community",
+  "0-1500",
+  "1500-5000",
+  "No Budget",
+];
+
 export default function Contact() {
-  const [name, setName] = useState("");
+  const [subject, setSubject] = useState("");
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const [name, setName] = useState("");
+  const [budget, setBudget] = useState("");
+  const [thoughts, setThoughts] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [isHovered, setIsHovered] = useState(false);
   const form = useRef<HTMLFormElement>(null);
 
   const sendEmail = async (e: React.FormEvent) => {
@@ -23,15 +42,17 @@ export default function Contact() {
       from_name: name,
       email: email,
       to_name: "Brandon",
-      message: message,
+      message: `[${subject}] [Budget: ${budget}] ${thoughts}`,
     };
 
     try {
       await emailjs.send(serviceID, templateID, templateParams, publicKey);
       setStatus("sent");
-      setName("");
+      setSubject("");
       setEmail("");
-      setMessage("");
+      setName("");
+      setBudget("");
+      setThoughts("");
       setTimeout(() => setStatus("idle"), 3000);
     } catch (error) {
       console.error("Error sending email", error);
@@ -41,185 +62,257 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="pb-32 lg:pb-48 border-t border-[var(--color-border)]" style={{ paddingTop: '250px' }}>
-      <div className="container">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
-          {/* Left side - CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+    <section id="contact" className="relative pb-32 lg:pb-48 overflow-hidden" style={{ paddingTop: "250px" }}>
+      {/* Large background heading */}
+      <div className="absolute top-20 right-0 pointer-events-none select-none overflow-hidden">
+        <motion.h2
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 0.08, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-[12rem] md:text-[18rem] lg:text-[22rem] font-extrabold leading-none tracking-tighter text-[var(--color-foreground)]"
+          style={{ fontFamily: "var(--font-serif)" }}
+        >
+          @brandon
+        </motion.h2>
+      </div>
+
+      <div className="container relative z-10">
+        {/* Section heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-20"
+        >
+          <h2
+            className="text-5xl md:text-6xl lg:text-8xl font-extrabold uppercase tracking-tight text-[var(--color-foreground)]"
+            style={{ fontFamily: "var(--font-serif)" }}
           >
-            <h2
-              className="text-5xl md:text-6xl lg:text-7xl leading-tight mb-8"
-              style={{ fontFamily: "var(--font-serif)" }}
-            >
-              Let&apos;s build
-              <br />
-              <span className="italic text-[var(--color-accent)]">something</span>
-              <br />
-              together
-            </h2>
+            Work With{" "}
+            <span className="text-[var(--color-accent-warm)]">Me</span>
+          </h2>
+        </motion.div>
 
-            <p className="text-[var(--color-muted-foreground)] text-lg mb-12 max-w-md">
-              Have a project in mind? Looking for a developer who understands community? 
-              I&apos;d love to hear from you.
-            </p>
-
-            {/* Contact info */}
-            <div className="space-y-6">
-              <div>
-                <span
-                  className="text-xs text-[var(--color-muted)] uppercase tracking-widest block mb-2"
-                  style={{ fontFamily: "var(--font-mono)" }}
+        {/* Form */}
+        <motion.form
+          ref={form}
+          onSubmit={sendEmail}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="flex flex-col"
+          style={{ gap: "10vh" }}
+        >
+          {/* Row 1: Subject + Email */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 lg:gap-x-28 gap-y-14">
+            {/* Subject */}
+            <div className="flex items-start gap-8">
+              <label
+                htmlFor="subject"
+                className="text-base md:text-lg lg:text-xl font-bold uppercase tracking-wider text-[var(--color-foreground)] whitespace-nowrap pt-4 shrink-0"
+              >
+                Subject<span className="text-[var(--color-accent-warm)] align-super text-xs ml-0.5">*</span>
+              </label>
+              <div className="relative w-full">
+                <select
+                  id="subject"
+                  name="subject"
+                  value={subject}
+                  onChange={(e) => setSubject(e.target.value)}
+                  required
+                  className="w-full appearance-none bg-transparent border-0 border-b border-[var(--color-border)] text-[var(--color-muted)] text-lg lg:text-xl py-4 pr-8 focus:outline-none focus:border-[var(--color-accent-warm)] transition-colors cursor-pointer"
+                  style={{ fontFamily: "var(--font-sans)" }}
                 >
-                  Email
-                </span>
-                <a
-                  href="mailto:alexander.nance11@gmail.com"
-                  className="text-[var(--color-foreground)] hover:text-[var(--color-accent)] transition-colors"
+                  <option value="" disabled>SELECT</option>
+                  {subjectOptions.map((opt) => (
+                    <option key={opt} value={opt} className="bg-[var(--color-background)] text-[var(--color-foreground)]">
+                      {opt}
+                    </option>
+                  ))}
+                </select>
+                <svg
+                  className="absolute right-0 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--color-muted)] pointer-events-none"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
                 >
-                  alexander.nance11@gmail.com
-                </a>
-              </div>
-
-              <div>
-                <span
-                  className="text-xs text-[var(--color-muted)] uppercase tracking-widest block mb-2"
-                  style={{ fontFamily: "var(--font-mono)" }}
-                >
-                  Social
-                </span>
-                <div className="flex gap-4">
-                  <a
-                    href="https://github.com/al3xand3r11"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[var(--color-muted-foreground)] hover:text-[var(--color-foreground)] transition-colors"
-                  >
-                    GitHub
-                  </a>
-                  <a
-                    href="https://linkedin.com/in/bnance1"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[var(--color-muted-foreground)] hover:text-[var(--color-foreground)] transition-colors"
-                  >
-                    LinkedIn
-                  </a>
-                </div>
-              </div>
-
-              <div>
-                <span
-                  className="text-xs text-[var(--color-muted)] uppercase tracking-widest block mb-2"
-                  style={{ fontFamily: "var(--font-mono)" }}
-                >
-                  Resume
-                </span>
-                <a
-                  href="/BrandonNance2024Resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-[var(--color-foreground)] hover:text-[var(--color-accent)] transition-colors"
-                >
-                  <span>Download PDF</span>
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                  </svg>
-                </a>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
               </div>
             </div>
-          </motion.div>
 
-          {/* Right side - Form */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
-            <form ref={form} onSubmit={sendEmail} className="space-y-6">
-              <div>
-                <label
-                  htmlFor="name"
-                  className="text-xs text-[var(--color-muted)] uppercase tracking-widest block mb-3"
-                  style={{ fontFamily: "var(--font-mono)" }}
-                >
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="user_name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  required
-                  className="w-full px-0 py-3 bg-transparent border-0 border-b border-[var(--color-border)] text-[var(--color-foreground)] placeholder-[var(--color-muted)] focus:outline-none focus:border-[var(--color-accent)] transition-colors"
-                  placeholder="Your name"
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="email"
-                  className="text-xs text-[var(--color-muted)] uppercase tracking-widest block mb-3"
-                  style={{ fontFamily: "var(--font-mono)" }}
-                >
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="user_email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  className="w-full px-0 py-3 bg-transparent border-0 border-b border-[var(--color-border)] text-[var(--color-foreground)] placeholder-[var(--color-muted)] focus:outline-none focus:border-[var(--color-accent)] transition-colors"
-                  placeholder="your@email.com"
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="message"
-                  className="text-xs text-[var(--color-muted)] uppercase tracking-widest block mb-3"
-                  style={{ fontFamily: "var(--font-mono)" }}
-                >
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  required
-                  rows={5}
-                  className="w-full px-0 py-3 bg-transparent border-0 border-b border-[var(--color-border)] text-[var(--color-foreground)] placeholder-[var(--color-muted)] focus:outline-none focus:border-[var(--color-accent)] transition-colors resize-none"
-                  placeholder="Tell me about your project..."
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={status === "sending"}
-                className="relative group w-full py-4 mt-4 bg-[var(--color-foreground)] text-[var(--color-background)] font-medium transition-all hover:bg-[var(--color-accent)] disabled:opacity-50 disabled:cursor-not-allowed"
+            {/* Email */}
+            <div className="flex items-start gap-8">
+              <label
+                htmlFor="email"
+                className="text-base md:text-lg lg:text-xl font-bold uppercase tracking-wider text-[var(--color-foreground)] whitespace-nowrap pt-4 shrink-0"
               >
-                {/* Corner brackets */}
-                <span className="absolute top-0 left-0 w-3 h-3 border-t border-l border-[var(--color-background)] opacity-0 group-hover:opacity-100 transition-opacity" />
-                <span className="absolute top-0 right-0 w-3 h-3 border-t border-r border-[var(--color-background)] opacity-0 group-hover:opacity-100 transition-opacity" />
-                <span className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-[var(--color-background)] opacity-0 group-hover:opacity-100 transition-opacity" />
-                <span className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-[var(--color-background)] opacity-0 group-hover:opacity-100 transition-opacity" />
+                Email<span className="text-[var(--color-accent-warm)] align-super text-xs ml-0.5">*</span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="user_email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="w-full bg-transparent border-0 border-b border-[var(--color-border)] text-[var(--color-foreground)] placeholder-[var(--color-muted)] text-lg lg:text-xl py-4 focus:outline-none focus:border-[var(--color-accent-warm)] transition-colors"
+                placeholder="Enter Your Email"
+              />
+            </div>
+          </div>
 
-                {status === "idle" && "Send Message"}
-                {status === "sending" && "Sending..."}
-                {status === "sent" && "Message Sent!"}
-                {status === "error" && "Error - Try Again"}
-              </button>
-            </form>
-          </motion.div>
-        </div>
+          {/* Row 2: Name + Budget */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 lg:gap-x-28 gap-y-14">
+            {/* Name */}
+            <div className="flex items-start gap-8">
+              <label
+                htmlFor="name"
+                className="text-base md:text-lg lg:text-xl font-bold uppercase tracking-wider text-[var(--color-foreground)] whitespace-nowrap pt-4 shrink-0"
+              >
+                Name<span className="text-[var(--color-accent-warm)] align-super text-xs ml-0.5">*</span>
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+                className="w-full bg-transparent border-0 border-b border-[var(--color-border)] text-[var(--color-foreground)] placeholder-[var(--color-muted)] text-lg lg:text-xl py-4 focus:outline-none focus:border-[var(--color-accent-warm)] transition-colors"
+                placeholder="Enter Your Name"
+              />
+            </div>
+
+            {/* Budget */}
+            <div className="flex items-start gap-8">
+              <label
+                htmlFor="budget"
+                className="text-base md:text-lg lg:text-xl font-bold uppercase tracking-wider text-[var(--color-foreground)] whitespace-nowrap pt-4 shrink-0"
+              >
+                Budget<span className="text-[var(--color-accent-warm)] align-super text-xs ml-0.5">*</span>
+              </label>
+              <div className="relative w-full">
+                <select
+                  id="budget"
+                  name="budget"
+                  value={budget}
+                  onChange={(e) => setBudget(e.target.value)}
+                  required
+                  className="w-full appearance-none bg-transparent border-0 border-b border-[var(--color-border)] text-[var(--color-muted)] text-lg lg:text-xl py-4 pr-8 focus:outline-none focus:border-[var(--color-accent-warm)] transition-colors cursor-pointer"
+                  style={{ fontFamily: "var(--font-sans)" }}
+                >
+                  <option value="" disabled>SELECT</option>
+                  {budgetOptions.map((opt) => (
+                    <option key={opt} value={opt} className="bg-[var(--color-background)] text-[var(--color-foreground)]">
+                      {opt}
+                    </option>
+                  ))}
+                </select>
+                <svg
+                  className="absolute right-0 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--color-muted)] pointer-events-none"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          {/* Row 3: Thoughts */}
+          <div className="flex items-start gap-8">
+            <label
+              htmlFor="thoughts"
+              className="text-base md:text-lg lg:text-xl font-bold uppercase tracking-wider text-[var(--color-foreground)] whitespace-nowrap pt-4 shrink-0"
+            >
+              Thoughts<span className="text-[var(--color-accent-warm)] align-super text-xs ml-0.5">*</span>
+            </label>
+            <textarea
+              id="thoughts"
+              name="message"
+              value={thoughts}
+              onChange={(e) => setThoughts(e.target.value)}
+              required
+              rows={1}
+              className="w-full bg-transparent border-0 border-b border-[var(--color-border)] text-[var(--color-foreground)] placeholder-[var(--color-muted)] text-lg lg:text-xl py-4 focus:outline-none focus:border-[var(--color-accent-warm)] transition-colors resize-none"
+              placeholder="We are excited to hear your idea!"
+            />
+          </div>
+
+          {/* Submit button area */}
+          <div className="flex items-center justify-center gap-6 pt-8">
+            
+
+            {/* Orbital button */}
+            <button
+              type="submit"
+              disabled={status === "sending"}
+              className="relative group disabled:opacity-50 disabled:cursor-not-allowed"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              <div className="relative flex items-center justify-center w-40 h-40">
+                {/* Orbital rings */}
+                <svg
+                  className="absolute inset-0 w-full h-full animate-spin"
+                  style={{
+                    animationDuration: "8s",
+                    animationPlayState: isHovered ? "paused" : "running",
+                  }}
+                  viewBox="0 0 160 160"
+                  fill="none"
+                >
+                  <g transform="rotate(-20 80 80)">
+                    <motion.ellipse
+                      cx={80}
+                      cy={80}
+                      rx={70}
+                      animate={{ ry: isHovered ? 70 : 30 }}
+                      transition={{ duration: 0.5, ease: "easeInOut" }}
+                      stroke="#d4573a"
+                      strokeWidth={1.5}
+                    />
+                  </g>
+                  <g transform="rotate(40 80 80)">
+                    <motion.ellipse
+                      cx={80}
+                      cy={80}
+                      rx={70}
+                      animate={{ ry: isHovered ? 70 : 30 }}
+                      transition={{ duration: 0.5, ease: "easeInOut", delay: 0.05 }}
+                      stroke="#d4573a"
+                      strokeWidth={1.5}
+                    />
+                  </g>
+                  <g transform="rotate(-70 80 80)">
+                    <motion.ellipse
+                      cx={80}
+                      cy={80}
+                      rx={70}
+                      animate={{ ry: isHovered ? 70 : 30 }}
+                      transition={{ duration: 0.5, ease: "easeInOut", delay: 0.1 }}
+                      stroke="#d4573a"
+                      strokeWidth={1.5}
+                    />
+                  </g>
+                </svg>
+
+                {/* Button text */}
+                <span className="relative z-10 text-xs font-bold uppercase tracking-widest text-[var(--color-foreground)] group-hover:text-[var(--color-accent-warm)] transition-colors">
+                  {status === "idle" && "GET IN TOUCH"}
+                  {status === "sending" && "SENDING..."}
+                  {status === "sent" && "SENT!"}
+                  {status === "error" && "ERROR"}
+                </span>
+              </div>
+            </button>
+          </div>
+        </motion.form>
 
         {/* Footer */}
         <motion.footer
@@ -230,7 +323,7 @@ export default function Contact() {
           className="mt-24 pt-8 border-t border-[var(--color-border)] flex flex-col md:flex-row justify-between items-center gap-4"
         >
           <p className="text-sm text-[var(--color-muted)]">
-            © {new Date().getFullYear()} Brandon Nance. Built with Next.js.
+            © {new Date().getFullYear()} @brandon
           </p>
           <p
             className="text-xs text-[var(--color-muted)]"
@@ -243,4 +336,3 @@ export default function Contact() {
     </section>
   );
 }
-
