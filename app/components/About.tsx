@@ -50,8 +50,8 @@ export default function About() {
               className="text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] font-bold leading-[0.95] tracking-tight text-[var(--color-foreground)]"
               style={{ fontFamily: "var(--font-serif)" }}
             >
-              <span className="block">BRANDON</span>
-              <span className="block">NANCE</span>
+              <span className="block">SOFTWARE</span>
+              <span className="block">ENGINEER</span>
             </h2>
           </motion.div>
         </div>
@@ -112,10 +112,7 @@ export default function About() {
                 certified, teaching on nights and weekends in DTLA.
               </p>
               <p className="text-base lg:text-lg text-[var(--color-muted-foreground)] leading-relaxed">
-                In the upcoming fall, I will be attending USC as an MBA student.
-                My goal is to begin to intertwine my technical and communal passions together.
-                Ultimately using those skills to educate,
-                inform, and inspire others in whatever discipline they are in.
+                I will be attending USC in the fall to pursue my masters.
               </p>
             </motion.div>
           </div>

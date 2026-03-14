@@ -1,18 +1,14 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { navItems, resolveHref } from "@/app/lib/navigation";
 
 interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
 }
-
-const navItems = [
-  { label: "Work", href: "#work" },
-  { label: "Community", href: "#community" },
-  { label: "Contact", href: "#contact" },
-];
 
 const menuVariants = {
   closed: {
@@ -47,6 +43,8 @@ const itemVariants = {
 };
 
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
+  const pathname = usePathname();
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -92,7 +90,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                   animate="open"
                 >
                   <Link
-                    href={item.href}
+                    href={resolveHref(item, pathname)}
                     onClick={onClose}
                     className="block py-4 text-3xl font-medium text-[var(--color-foreground)] hover:text-[var(--color-accent)] transition-colors"
                     style={{ fontFamily: "var(--font-serif)" }}
@@ -103,17 +101,20 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               ))}
             </div>
 
-            {/* Footer info */}
+            {/* Home link */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
               className="p-8 border-t border-[var(--color-border)]"
             >
-              <p className="text-sm text-[var(--color-muted)] mb-2">Brandon Nance</p>
-              <p className="text-xs text-[var(--color-muted)]" style={{ fontFamily: "var(--font-mono)" }}>
-                Los Angeles, CA
-              </p>
+              <Link
+                href="/"
+                onClick={onClose}
+                className="text-lg font-medium text-[var(--color-foreground)] hover:text-[var(--color-accent)] transition-colors"
+              >
+                + Home
+              </Link>
             </motion.div>
           </motion.nav>
         </>
