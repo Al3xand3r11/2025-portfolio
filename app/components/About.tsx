@@ -50,8 +50,8 @@ export default function About() {
               className="text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] font-bold leading-[0.95] tracking-tight text-[var(--color-foreground)]"
               style={{ fontFamily: "var(--font-serif)" }}
             >
-              <span className="block">BRANDON</span>
-              <span className="block">NANCE</span>
+              <span className="block">SOFTWARE</span>
+              <span className="block">ENGINEER</span>
             </h2>
           </motion.div>
         </div>

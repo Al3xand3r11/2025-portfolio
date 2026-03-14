@@ -13,18 +13,11 @@ const subjectOptions = [
   "Other",
 ];
 
-const budgetOptions = [
-  "Community",
-  "0-1500",
-  "1500-5000",
-  "No Budget",
-];
 
 export default function Contact() {
   const [subject, setSubject] = useState("");
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
-  const [budget, setBudget] = useState("");
   const [thoughts, setThoughts] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [isHovered, setIsHovered] = useState(false);
@@ -42,7 +35,7 @@ export default function Contact() {
       from_name: name,
       email: email,
       to_name: "Brandon",
-      message: `[${subject}] [Budget: ${budget}] ${thoughts}`,
+      message: `[${subject}] ${thoughts}`,
     };
 
     try {
@@ -51,7 +44,7 @@ export default function Contact() {
       setSubject("");
       setEmail("");
       setName("");
-      setBudget("");
+
       setThoughts("");
       setTimeout(() => setStatus("idle"), 3000);
     } catch (error) {
@@ -165,7 +158,7 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Row 2: Name + Budget */}
+          {/* Row 2: Name */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 lg:gap-x-28 gap-y-14">
             {/* Name */}
             <div className="flex items-start gap-8">
@@ -186,42 +179,6 @@ export default function Contact() {
                 placeholder="Enter Your Name"
               />
             </div>
-
-            {/* Budget */}
-            <div className="flex items-start gap-8">
-              <label
-                htmlFor="budget"
-                className="text-base md:text-lg lg:text-xl font-bold uppercase tracking-wider text-[var(--color-foreground)] whitespace-nowrap pt-4 shrink-0"
-              >
-                Budget<span className="text-[var(--color-accent-warm)] align-super text-xs ml-0.5">*</span>
-              </label>
-              <div className="relative w-full">
-                <select
-                  id="budget"
-                  name="budget"
-                  value={budget}
-                  onChange={(e) => setBudget(e.target.value)}
-                  required
-                  className="w-full appearance-none bg-transparent border-0 border-b border-[var(--color-border)] text-[var(--color-muted)] text-lg lg:text-xl py-4 pr-8 focus:outline-none focus:border-[var(--color-accent-warm)] transition-colors cursor-pointer"
-                  style={{ fontFamily: "var(--font-sans)" }}
-                >
-                  <option value="" disabled>SELECT</option>
-                  {budgetOptions.map((opt) => (
-                    <option key={opt} value={opt} className="bg-[var(--color-background)] text-[var(--color-foreground)]">
-                      {opt}
-                    </option>
-                  ))}
-                </select>
-                <svg
-                  className="absolute right-0 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--color-muted)] pointer-events-none"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </div>
-            </div>
           </div>
 
           {/* Row 3: Thoughts */}
@@ -240,7 +197,7 @@ export default function Contact() {
               required
               rows={1}
               className="w-full bg-transparent border-0 border-b border-[var(--color-border)] text-[var(--color-foreground)] placeholder-[var(--color-muted)] text-lg lg:text-xl py-4 focus:outline-none focus:border-[var(--color-accent-warm)] transition-colors resize-none"
-              placeholder="We are excited to hear your idea!"
+              placeholder="Let's Build"
             />
           </div>
 
