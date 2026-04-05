@@ -13,11 +13,11 @@ const tabs: { id: Tab; label: string }[] = [
 
 const playlists: Record<Tab, { title: string; url: string }[]> = {
   lagree: [
-    { title: "Playlist 1", url: "https://embed.music.apple.com/us/playlist/2-6-a%24a/pl.u-aZb04W7CPGp69jd" },
-    { title: "Playlist 2", url: "https://embed.music.apple.com/us/playlist/toxic-love-2-9-6-30/pl.u-d2b0LXYuM7aVpqR" },
-    { title: "Playlist 3", url: "https://embed.music.apple.com/us/playlist/10-30-2-15/pl.u-9N9LeAyTxZlP2pr" },
-    { title: "Playlist 4", url: "https://embed.music.apple.com/us/playlist/830-2-16/pl.u-9N9LZ2LFxZlP2pr" },
-    { title: "Playlist 5", url: "https://embed.music.apple.com/us/playlist/2-22-430/pl.u-V9D7yyaiB8GXqxd" },
+    { title: "Playlist 1", url: "https://embed.music.apple.com/us/playlist/3-1-3-30/pl.u-JPAZyg9sD6NoXyp" },
+    { title: "Playlist 2", url: "https://embed.music.apple.com/us/playlist/3-9-12/pl.u-d2b0do2uM7aVpqR" },
+    { title: "Playlist 3", url: "https://embed.music.apple.com/us/playlist/3-15-5-30/pl.u-DdANlN5Fa7PvyG9" },
+    { title: "Playlist 4", url: "https://embed.music.apple.com/us/playlist/3-23-630/pl.u-76oNr4BTWRd64Dp" },
+    { title: "Playlist 5", url: "https://embed.music.apple.com/us/playlist/330-530/pl.u-11zBzkmt836dxrJ"},
   ],
   archives: [
     { title: "Playlist 1", url: "https://embed.music.apple.com/us/playlist/random-25-tunes/pl.u-V9D7ovaHB8GXqxd" },
