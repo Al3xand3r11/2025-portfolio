@@ -92,28 +92,6 @@ const schedule: Record<Tab, LagreeClass[]> = {
     },
   ],
   sub: [
-    {
-      day: "Thursday",
-      date: "4/9",
-      ...HISTORIC_CORE,
-      times: [
-        { time: "3:00 PM" },
-        { time: "4:00 PM" },
-        { time: "5:00 PM" },
-        { time: "6:00 PM" },
-      ],
-    },
-    {
-      day: "Tuesday",
-      date: "4/14",
-      ...HISTORIC_CORE,
-      times: [
-        { time: "3:00 PM" },
-        { time: "4:00 PM" },
-        { time: "5:00 PM" },
-        { time: "6:00 PM" },
-      ],
-    },
   ],
 };
 
@@ -332,23 +310,42 @@ export default function LagreeContent() {
         style={{ paddingLeft: 64, paddingRight: 64, paddingBottom: 40 }}
       >
         <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTab}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className={`grid w-full ${gridClass}`}
-            style={{ gap: 24 }}
-          >
-            {classes.map((cls, i) => (
-              <ClassCard
-                key={`${cls.day}-${cls.date || ""}-${i}`}
-                cls={cls}
-                index={i}
-              />
-            ))}
-          </motion.div>
+        {classes.length === 0 ? (
+            <motion.div
+              key={`${activeTab}-empty`}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="flex flex-col items-center justify-center text-center"
+              style={{ paddingTop: 40, paddingBottom: 40 }}
+            >
+              <p
+                className="text-white/30 uppercase tracking-widest"
+                style={{ fontSize: 13, letterSpacing: "0.15em" }}
+              >
+                Currently not subbing
+              </p>
+            </motion.div>
+          ) : (
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className={`grid w-full ${gridClass}`}
+              style={{ gap: 24 }}
+            >
+              {classes.map((cls, i) => (
+                <ClassCard
+                  key={`${cls.day}-${cls.date || ""}-${i}`}
+                  cls={cls}
+                  index={i}
+                />
+              ))}
+            </motion.div>
+          )}
         </AnimatePresence>
       </div>
     </div>
