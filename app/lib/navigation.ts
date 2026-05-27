@@ -1,21 +1,17 @@
 export type NavItem = {
   label: string;
   href: string;
-  type: "section" | "page";
+  type?: "section" | "page";
 };
 
 export const navItems: NavItem[] = [
-  { label: "Projects", href: "#work", type: "section" },
-  { label: "Community", href: "#community", type: "section" },
+  { label: "About", href: "/about", type: "page" },
+  { label: "Community", href: "/community", type: "page" },
+  { label: "Engineering", href: "/engineering", type: "page" },
   { label: "Lagree", href: "/lagree", type: "page" },
-  { label: "Music", href: "/music", type: "page" },
-  { label: "Contact", href: "#contact", type: "section" },
+  { label: "Contact", href: "/contact", type: "page" },
 ];
 
-/**
- * For section links, prepend "/" when navigating from a sub-page
- * so the link resolves to the home page section (e.g. "/#work").
- */
 export function resolveHref(item: NavItem, pathname: string): string {
   if (item.type === "section" && pathname !== "/") {
     return `/${item.href}`;
