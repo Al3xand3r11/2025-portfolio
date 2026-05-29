@@ -33,14 +33,14 @@ export default function LocationMap({ lat, lng }: LocationMapProps) {
     >
       {ready && (
         <>
-          <TileLayer url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png" />
+          <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" />
           <CircleMarker
             center={[lat, lng]}
             radius={5}
             pathOptions={{
-              fillColor: "#ffffff",
+              fillColor: "#000000",
               fillOpacity: 0.9,
-              color: "#ffffff",
+              color: "#000000",
               weight: 2,
               opacity: 0.4,
             }}

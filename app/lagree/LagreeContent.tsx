@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 const LocationMap = dynamic(() => import("./LocationMap"), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-full rounded-2xl bg-white/[0.03] animate-pulse" />
+    <div className="w-full h-full bg-neutral-100 animate-pulse" />
   ),
 });
 
@@ -130,65 +130,116 @@ function ClassCard({ cls, index }: { cls: LagreeClass; index: number }) {
         duration: 0.45,
         ease: [0.25, 0.1, 0.25, 1],
       }}
-      className="rounded-[28px] border border-white/[0.1] bg-white/[0.07] backdrop-blur-2xl flex flex-col"
-      style={{ padding: 24 }}
+      style={{
+        border: "1px solid #000",
+        padding: 24,
+        display: "flex",
+        flexDirection: "column",
+      }}
     >
       <a
         href={cls.mapUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="block relative rounded-2xl overflow-hidden cursor-pointer group"
-        style={{ height: 240 }}
+        style={{
+          display: "block",
+          position: "relative",
+          height: 200,
+          overflow: "hidden",
+          backgroundColor: "#f0f0f0",
+        }}
       >
         <LocationMap lat={cls.lat} lng={cls.lng} />
-        <div className="absolute inset-0 z-10 group-hover:bg-white/[0.03] transition-colors" />
       </a>
 
       <div style={{ marginTop: 20 }}>
-        <p className="font-medium text-white/80" style={{ fontSize: 16 }}>
+        <p
+          style={{
+            fontSize: 12,
+            fontWeight: 500,
+            textTransform: "uppercase",
+            letterSpacing: "0.1em",
+            fontFamily: "var(--font-mono)",
+          }}
+        >
           {cls.locationName}
         </p>
-        <p className="text-white/35" style={{ fontSize: 13, marginTop: 3 }}>
+        <p
+          style={{
+            fontSize: 11,
+            color: "#666",
+            marginTop: 4,
+            fontFamily: "var(--font-mono)",
+          }}
+        >
           {cls.address}
         </p>
       </div>
 
-      <div
-        className="bg-white/[0.06]"
-        style={{ height: 1, marginTop: 20, marginBottom: 20 }}
+      <hr
+        style={{
+          border: "none",
+          borderTop: "1px solid #e0e0e0",
+          margin: "20px 0",
+        }}
       />
 
       <div>
-        <h3 className="font-medium text-white" style={{ fontSize: 22 }}>
+        <h3
+          style={{
+            fontSize: 20,
+            fontWeight: 900,
+            textTransform: "uppercase",
+            fontFamily: "var(--font-display)",
+            letterSpacing: "-0.01em",
+          }}
+        >
           {cls.day}
         </h3>
         {cls.date && (
           <span
-            className="text-white/40 block"
-            style={{ fontSize: 15, marginTop: 3 }}
+            style={{
+              fontSize: 11,
+              color: "#666",
+              display: "block",
+              marginTop: 4,
+              fontFamily: "var(--font-mono)",
+            }}
           >
             {cls.date}
           </span>
         )}
       </div>
 
-      <div className="flex-1" style={{ marginTop: 20 }}>
+      <div style={{ marginTop: 20, flex: 1 }}>
         {cls.times.map((t, j) => (
           <div
             key={j}
-            className="flex items-center justify-between"
-            style={{ marginBottom: j < cls.times.length - 1 ? 12 : 0 }}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              marginBottom: j < cls.times.length - 1 ? 12 : 0,
+            }}
           >
             <span
-              className="text-white/60"
-              style={{ fontSize: 16, fontFamily: "var(--font-mono)" }}
+              style={{
+                fontSize: 13,
+                fontFamily: "var(--font-mono)",
+                color: "#000",
+              }}
             >
               {t.time}
             </span>
             {t.label && (
               <span
-                className="text-white/25 uppercase tracking-widest"
-                style={{ fontSize: 11 }}
+                style={{
+                  fontSize: 10,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.1em",
+                  color: "#999",
+                  fontFamily: "var(--font-mono)",
+                }}
               >
                 {t.label}
               </span>
@@ -197,24 +248,29 @@ function ClassCard({ cls, index }: { cls: LagreeClass; index: number }) {
         ))}
       </div>
 
-      <div
-        className="bg-white/[0.06]"
-        style={{ height: 1, marginTop: 20, marginBottom: 20 }}
+      <hr
+        style={{
+          border: "none",
+          borderTop: "1px solid #e0e0e0",
+          margin: "20px 0",
+        }}
       />
 
-      <div className="flex items-center" style={{ gap: 10 }}>
+      <div style={{ display: "flex", gap: 10 }}>
         <a
           href={MINDBODY_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="rounded-full border border-white/[0.08] bg-white/[0.04] uppercase text-white/35 hover:text-white/80 hover:bg-white/[0.1] hover:border-white/[0.15] hover:shadow-[0_0_16px_rgba(255,255,255,0.06)] transition-all duration-300"
           style={{
-            paddingLeft: 16,
-            paddingRight: 16,
-            paddingTop: 8,
-            paddingBottom: 8,
-            fontSize: 11,
-            letterSpacing: "0.1em",
+            padding: "8px 16px",
+            fontSize: 10,
+            letterSpacing: "0.15em",
+            textTransform: "uppercase",
+            fontFamily: "var(--font-mono)",
+            border: "1px solid #000",
+            color: "#000",
+            textDecoration: "none",
+            transition: "all 0.2s",
           }}
         >
           Mindbody
@@ -223,14 +279,16 @@ function ClassCard({ cls, index }: { cls: LagreeClass; index: number }) {
           href={CLASSPASS_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="rounded-full border border-white/[0.08] bg-white/[0.04] uppercase text-white/35 hover:text-white/80 hover:bg-white/[0.1] hover:border-white/[0.15] hover:shadow-[0_0_16px_rgba(255,255,255,0.06)] transition-all duration-300"
           style={{
-            paddingLeft: 16,
-            paddingRight: 16,
-            paddingTop: 8,
-            paddingBottom: 8,
-            fontSize: 11,
-            letterSpacing: "0.1em",
+            padding: "8px 16px",
+            fontSize: 10,
+            letterSpacing: "0.15em",
+            textTransform: "uppercase",
+            fontFamily: "var(--font-mono)",
+            border: "1px solid #000",
+            color: "#000",
+            textDecoration: "none",
+            transition: "all 0.2s",
           }}
         >
           ClassPass
@@ -244,93 +302,71 @@ export default function LagreeContent() {
   const [activeTab, setActiveTab] = useState<Tab>("megaburn");
   const classes = schedule[activeTab];
 
-  const gridClass =
+  const gridStyle: React.CSSProperties =
     classes.length === 1
-      ? "grid-cols-1 max-w-md mx-auto"
+      ? { gridTemplateColumns: "1fr", maxWidth: 400, margin: "0 auto" }
       : classes.length <= 3
-        ? "grid-cols-1 sm:grid-cols-3 mx-auto"
-        : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mx-auto";
+        ? { gridTemplateColumns: "repeat(3, 1fr)" }
+        : { gridTemplateColumns: "repeat(4, 1fr)" };
 
   return (
-    <div
-      className="relative z-10 flex flex-col h-screen overflow-y-auto"
-      style={{ paddingTop: "calc(var(--header-height) + 2rem)" }}
-    >
-      {/* Header & Tabs */}
-      <div
-        style={{
-          paddingLeft: 64,
-          paddingRight: 64,
-          marginBottom: 40,
-          flexShrink: 0,
-        }}
-      >
+    <div style={{ padding: "48px 24px 24px" }}>
+      <section>
         <h1
           style={{
-            fontSize: 24,
-            fontWeight: 500,
-            color: "rgba(255,255,255,0.9)",
-            marginBottom: 20,
+            fontSize: "clamp(48px, 8vw, 96px)",
+            fontWeight: 900,
+            lineHeight: 0.95,
+            letterSpacing: "-0.02em",
+            textTransform: "uppercase",
+            fontFamily: "var(--font-display)",
+            maxWidth: 900,
           }}
         >
           Weekly Lagree Schedule
         </h1>
-
-        <div style={{ display: "flex", gap: 10 }}>
-          {tabs.map((tab) => {
-            const isActive = activeTab === tab.id;
-            return (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                style={{
-                  paddingLeft: 20,
-                  paddingRight: 20,
-                  paddingTop: 9,
-                  paddingBottom: 9,
-                  borderRadius: 9999,
-                  border: isActive
-                    ? "1px solid rgba(255,255,255,0.2)"
-                    : "1px solid rgba(255,255,255,0.08)",
-                  background: isActive
-                    ? "rgba(255,255,255,0.1)"
-                    : "rgba(255,255,255,0.04)",
-                  color: isActive
-                    ? "rgba(255,255,255,0.9)"
-                    : "rgba(255,255,255,0.35)",
-                  fontSize: 12,
-                  fontWeight: 500,
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase" as const,
-                  cursor: "pointer",
-                  transition: "all 0.3s ease",
-                  boxShadow: isActive
-                    ? "0 0 16px rgba(255,255,255,0.08), 0 0 4px rgba(255,255,255,0.04)"
-                    : "none",
-                }}
-              >
-                {tab.label}
-              </button>
-            );
-          })}
-        </div>
-
         <p
           style={{
-            marginTop: 14,
-            fontSize: 13,
-            color: "rgba(255,255,255,0.3)",
+            fontSize: 11,
+            textTransform: "uppercase",
+            letterSpacing: "0.15em",
+            marginTop: 24,
+            fontFamily: "var(--font-mono)",
+            color: "#666",
           }}
         >
           {tabDescriptions[activeTab]}
         </p>
+      </section>
+
+      <div style={{ display: "flex", gap: 10, marginTop: 32 }}>
+        {tabs.map((tab) => {
+          const isActive = activeTab === tab.id;
+          return (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              style={{
+                padding: "8px 20px",
+                fontSize: 10,
+                fontWeight: 500,
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+                fontFamily: "var(--font-mono)",
+                cursor: "pointer",
+                border: "1px solid #000",
+                backgroundColor: isActive ? "#000" : "#fff",
+                color: isActive ? "#fff" : "#000",
+                transition: "all 0.2s",
+              }}
+            >
+              {tab.label}
+            </button>
+          );
+        })}
       </div>
 
-      {/* Cards */}
-      <div
-        className="flex-1 flex items-center justify-center"
-        style={{ paddingLeft: 64, paddingRight: 64, paddingBottom: 40 }}
-      >
+      <div style={{ marginTop: 48 }}>
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
@@ -338,8 +374,11 @@ export default function LagreeContent() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className={`grid w-full ${gridClass}`}
-            style={{ gap: 24 }}
+            style={{
+              display: "grid",
+              gap: 16,
+              ...gridStyle,
+            }}
           >
             {classes.map((cls, i) => (
               <ClassCard
