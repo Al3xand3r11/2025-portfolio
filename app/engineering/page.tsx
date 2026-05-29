@@ -1,5 +1,7 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 
 const NAV_ITEMS = [
   { label: "About", href: "/about" },
@@ -12,28 +14,39 @@ const NAV_ITEMS = [
 const PROJECTS = [
   {
     title: "The Saturday Hike Crew",
+    slug: "saturday-hike-crew",
     tags: "Next.js · TypeScript · Tailwind CSS",
-    image: "/images/shchero.webp",
+    image: "/images/shc-full.png",
     url: "https://thesaturdayhikecrew.com",
   },
   {
     title: "Seen By Liz",
+    slug: "seen-by-liz",
     tags: "Next.js · Photography · Portfolio",
-    image: "/images/caro1.webp",
+    image: "/images/sbl-full.png",
     url: "https://seenbyliz.com",
   },
   {
     title: "Moments of Metanoia",
+    slug: "moments-of-metanoia",
     tags: "Next.js · WebGL · Entertainment",
-    image: "/images/Mia2.webp",
+    image: "/images/metanoia-full.png",
     url: "https://itscleoplus.com",
   },
   {
-    title: "T-Minus Talent",
-    tags: "Next.js · TypeScript · Dashboard",
-    image: "/images/lagree1.webp",
-    url: "#",
+    title: "Bowie Forward",
+    slug: "bowie-forward",
+    tags: "Next.js · TypeScript · Community",
+    image: "/images/bowie-full.png",
+    url: "https://bowieforward.com",
   },
+];
+
+const ADDITIONAL_PROJECTS = [
+  { title: "TMinus Talent", href: "https://tminustalent.com" },
+  { title: "Python Image Converter", href: "https://github.com/Al3xand3r11/python-image-converter/tree/main" },
+  { title: "Sunday Runday LA", href: "https://www.sundayrundayla.com/" },
+  { title: "Food Desert Finder", href: "https://github.com/Al3xand3r11/food-desert-fixer" },
 ];
 
 export default function EngineeringPage() {
@@ -146,66 +159,69 @@ export default function EngineeringPage() {
         }}
       >
         {PROJECTS.map((project, i) => (
-          <a
-            key={project.title}
-            href={project.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              textDecoration: "none",
-              color: "#000",
-              paddingLeft: i % 2 === 1 ? 24 : 0,
-              borderLeft: i % 2 === 1 ? "1px solid #000" : "none",
-              marginTop: i < 2 ? 24 : 0,
-            }}
-          >
-            <div
+          <ProjectCard key={project.title} project={project} index={i} />
+        ))}
+      </section>
+
+      <section style={{ padding: "0 24px 80px" }}>
+        <h2
+          style={{
+            fontSize: 11,
+            textTransform: "uppercase",
+            letterSpacing: "0.2em",
+            fontFamily: "var(--font-mono)",
+            marginBottom: 24,
+          }}
+        >
+          Additional Projects
+        </h2>
+
+        {ADDITIONAL_PROJECTS.map((project, i) => (
+          <div key={project.title}>
+            <div style={{ borderTop: "1px solid #000" }} />
+            <a
+              href={project.href}
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
-                borderTop: i >= 2 ? "1px solid #000" : "none",
-                paddingTop: i >= 2 ? 24 : 0,
-                paddingBottom: 24,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                padding: "20px 0",
+                textDecoration: "none",
+                color: "#000",
+                fontFamily: "var(--font-display)",
+                transition: "opacity 0.2s",
               }}
+              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.4")}
+              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
             >
-              <div
+              <span
                 style={{
-                  position: "relative",
-                  aspectRatio: "4 / 3",
-                  overflow: "hidden",
-                  backgroundColor: "#f0f0f0",
-                }}
-              >
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
-              <p
-                style={{
-                  fontSize: 10,
+                  fontSize: "clamp(20px, 3vw, 32px)",
+                  fontWeight: 300,
                   textTransform: "uppercase",
-                  letterSpacing: "0.1em",
-                  marginTop: 16,
-                  color: "#666",
-                  fontFamily: "var(--font-mono)",
-                }}
-              >
-                {project.tags}
-              </p>
-              <p
-                style={{
-                  fontSize: 14,
-                  fontWeight: 500,
-                  marginTop: 4,
-                  fontFamily: "var(--font-mono)",
-                  textTransform: "uppercase",
+                  letterSpacing: "-0.01em",
                 }}
               >
                 {project.title}
-              </p>
-            </div>
-          </a>
+              </span>
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                style={{ flexShrink: 0, marginLeft: 24, transform: "rotate(-45deg)" }}
+              >
+                <path d="M5 12h14M13 5l6 7-6 7" />
+              </svg>
+            </a>
+            {i === ADDITIONAL_PROJECTS.length - 1 && (
+              <div style={{ borderTop: "1px solid #000" }} />
+            )}
+          </div>
         ))}
       </section>
 
@@ -229,5 +245,112 @@ export default function EngineeringPage() {
         </span>
       </footer>
     </main>
+  );
+}
+
+function ProjectCard({
+  project,
+  index,
+}: {
+  project: (typeof PROJECTS)[number];
+  index: number;
+}) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <div
+      style={{
+        paddingLeft: index % 2 === 1 ? 24 : 0,
+        borderLeft: index % 2 === 1 ? "1px solid #000" : "none",
+        marginTop: index < 2 ? 24 : 0,
+      }}
+    >
+      <div
+        style={{
+          borderTop: index >= 2 ? "1px solid #000" : "none",
+          paddingTop: index >= 2 ? 24 : 0,
+          paddingBottom: 24,
+        }}
+      >
+        <div
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+          style={{
+            position: "relative",
+            aspectRatio: "4 / 3",
+            overflow: "hidden",
+            backgroundColor: "#f0f0f0",
+            cursor: "pointer",
+          }}
+        >
+          <Link href={`/engineering/${project.slug}`} style={{ display: "block", position: "absolute", inset: 0 }}>
+            <div
+              style={{
+                width: "100%",
+                height: "100%",
+                backgroundImage: `url(${project.image})`,
+                backgroundSize: "cover",
+                backgroundPosition: hovered ? "center bottom" : "center top",
+                backgroundRepeat: "no-repeat",
+                transition: "background-position 5s ease-in-out",
+              }}
+            />
+          </Link>
+        </div>
+        <p
+          style={{
+            fontSize: 10,
+            textTransform: "uppercase",
+            letterSpacing: "0.1em",
+            marginTop: 16,
+            color: "#666",
+            fontFamily: "var(--font-mono)",
+          }}
+        >
+          {project.tags}
+        </p>
+        <p
+          style={{
+            fontSize: 14,
+            fontWeight: 500,
+            marginTop: 4,
+            fontFamily: "var(--font-mono)",
+            textTransform: "uppercase",
+          }}
+        >
+          {project.title}
+        </p>
+        <Link
+          href={`/engineering/${project.slug}`}
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 6,
+            fontSize: 11,
+            textTransform: "uppercase",
+            letterSpacing: "0.15em",
+            color: "#000",
+            textDecoration: "none",
+            marginTop: 8,
+            fontFamily: "var(--font-mono)",
+            transition: "opacity 0.2s",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.4")}
+          onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+        >
+          View Case Study
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+          >
+            <path d="M3 8h10M9 4l4 4-4 4" />
+          </svg>
+        </Link>
+      </div>
+    </div>
   );
 }
