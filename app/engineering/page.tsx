@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 
 const NAV_ITEMS = [
@@ -16,28 +16,32 @@ const PROJECTS = [
     title: "The Saturday Hike Crew",
     slug: "saturday-hike-crew",
     tags: "Next.js · TypeScript · Tailwind CSS",
-    image: "/images/shc-full.png",
+    video: "/videos/shcvid.mp4",
+    poster: "/studyimages/shc1.webp",
     url: "https://thesaturdayhikecrew.com",
   },
   {
     title: "Seen By Liz",
     slug: "seen-by-liz",
     tags: "Next.js · Photography · Portfolio",
-    image: "/images/sbl-full.png",
+    video: "/videos/sblvid.mp4",
+    poster: "/studyimages/sbl1.webp",
     url: "https://seenbyliz.com",
   },
   {
     title: "Moments of Metanoia",
     slug: "moments-of-metanoia",
     tags: "Next.js · WebGL · Entertainment",
-    image: "/images/metanoia-full.png",
+    video: "/videos/mmvid.mp4",
+    poster: "/studyimages/mm1.webp",
     url: "https://itscleoplus.com",
   },
   {
     title: "Bowie Forward",
     slug: "bowie-forward",
     tags: "Next.js · TypeScript · Community",
-    image: "/images/bowie-full.png",
+    video: "/videos/bfvid.mp4",
+    poster: "/studyimages/bf1.webp",
     url: "https://bowieforward.com",
   },
 ];
@@ -255,7 +259,26 @@ function ProjectCard({
   project: (typeof PROJECTS)[number];
   index: number;
 }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [hovered, setHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setHovered(true);
+    const video = videoRef.current;
+    if (video) {
+      video.currentTime = 0;
+      video.play();
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setHovered(false);
+    const video = videoRef.current;
+    if (video) {
+      video.pause();
+      video.currentTime = 0;
+    }
+  };
 
   return (
     <div
@@ -273,8 +296,8 @@ function ProjectCard({
         }}
       >
         <div
-          onMouseEnter={() => setHovered(true)}
-          onMouseLeave={() => setHovered(false)}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
           style={{
             position: "relative",
             aspectRatio: "4 / 3",
@@ -284,15 +307,32 @@ function ProjectCard({
           }}
         >
           <Link href={`/engineering/${project.slug}`} style={{ display: "block", position: "absolute", inset: 0 }}>
-            <div
+            <video
+              ref={videoRef}
+              src={project.video}
+              muted
+              playsInline
+              loop
               style={{
+                position: "absolute",
+                inset: 0,
                 width: "100%",
                 height: "100%",
-                backgroundImage: `url(${project.image})`,
-                backgroundSize: "cover",
-                backgroundPosition: hovered ? "center bottom" : "center top",
-                backgroundRepeat: "no-repeat",
-                transition: "background-position 5s ease-in-out",
+                objectFit: "cover",
+              }}
+            />
+            <img
+              src={project.poster}
+              alt={project.title}
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                opacity: hovered ? 0 : 1,
+                transition: "opacity 0.3s",
+                zIndex: 1,
               }}
             />
           </Link>

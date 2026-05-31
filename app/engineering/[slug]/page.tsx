@@ -27,7 +27,7 @@ const CASE_STUDIES: Record<string, CaseStudy> = {
     title: "The Saturday Hike Crew",
     year: "2024",
     category: "Community Platform",
-    readTime: "4 min read",
+    readTime: "1 min read",
     deliverables: [
       "Web Development",
       "Dashboard Design",
@@ -36,7 +36,7 @@ const CASE_STUDIES: Record<string, CaseStudy> = {
       "TypeScript",
     ],
     hero: "/images/shc-full.png",
-    images: ["/images/shc1.webp", "/images/shc4.webp"],
+    images: [ "/studyimages/shc2.webp", "/studyimages/shc3.webp", "/studyimages/shc4.webp", "/studyimages/shc5.webp"],
     url: "https://thesaturdayhikecrew.com",
     body: [
       "The Saturday Hike started in late 2022 in Los Angeles as a group of friends, many new and black to the area looking for a way to get active through hiking and invite others as well. After about 6 months and a few more hikes, there were over 100 people regularly in attendance for a Saturday hike ranging from locations in Pasadena to Malibu and all in between.",
@@ -57,7 +57,7 @@ const CASE_STUDIES: Record<string, CaseStudy> = {
       "Next.js",
     ],
     hero: "/images/sbl-full.png",
-    images: ["/images/caro1.webp", "/images/sbl4.webp"],
+    images: ["/studyimages/sbl1.webp", "/studyimages/sbl2.webp", "/studyimages/sbl3.webp", "/studyimages/sbl4.webp"],
     url: "https://seenbyliz.com",
     body: [
       "Seen By Liz is a personal portfolio for a Los Angeles based photographer, focusing on events, landscape and portrait photography. Liz wanted to showcase her work and accept new clients. Utilizing images from various events showcasing her malleability when it comes to capturing moments and we wanted the site to reflect that.",
@@ -69,7 +69,7 @@ const CASE_STUDIES: Record<string, CaseStudy> = {
     title: "Moments of Metanoia",
     year: "2025",
     category: "Artist Website",
-    readTime: "3 min read",
+    readTime: "4 min read",
     deliverables: [
       "Brand Strategy",
       "Visual Identity",
@@ -78,7 +78,7 @@ const CASE_STUDIES: Record<string, CaseStudy> = {
       "Entertainment",
     ],
     hero: "/images/metanoia-full.png",
-    images: ["/images/Mia2.webp", "/images/mm4.webp"],
+    images: ["/studyimages/mm2.webp", "/studyimages/mm3.webp"],
     url: "https://itscleoplus.com",
     body: [
       "Metanoia is a web application built for the release of a music video from artist Cleo Plus to begin the 2026 year. The inspiration of the Metanoia site, song and video came from a place of cultivating community and driving conversations about transformative points in life leading to breakthroughs, whether through the creative process or just life in general.",
@@ -100,7 +100,7 @@ const CASE_STUDIES: Record<string, CaseStudy> = {
       "Tailwind CSS",
     ],
     hero: "/images/bowie-full.png",
-    images: ["/images/bowie-full.png"],
+    images: ["/studyimages/bf1.webp", "/studyimages/bf2.webp", "/studyimages/bf3.webp"],
     url: "https://bowieforward.com",
     body: [
       "Bowie Forward is a community initiative and engagement application, database and dashboard for a city within Prince George\u2019s County, Maryland.",
