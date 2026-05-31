@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
@@ -9,6 +10,15 @@ const playlists = [
 ];
 
 export default function MusicContent() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
   return (
     <>
       <div style={{ padding: "24px 24px 0" }}>
@@ -69,7 +79,7 @@ export default function MusicContent() {
             marginTop: 48,
             display: "grid",
             gap: 16,
-            gridTemplateColumns: "repeat(2, 1fr)",
+            gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)",
           }}
         >
           {playlists.map((playlist) => (

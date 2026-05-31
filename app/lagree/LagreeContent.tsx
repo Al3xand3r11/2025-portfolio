@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -299,10 +299,20 @@ function ClassCard({ cls, index }: { cls: LagreeClass; index: number }) {
 
 export default function LagreeContent() {
   const [activeTab, setActiveTab] = useState<Tab>("megaburn");
+  const [isMobile, setIsMobile] = useState(false);
   const classes = schedule[activeTab];
 
-  const gridStyle: React.CSSProperties =
-    classes.length === 1
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
+  const gridStyle: React.CSSProperties = isMobile
+    ? { gridTemplateColumns: "1fr" }
+    : classes.length === 1
       ? { gridTemplateColumns: "1fr", maxWidth: 400, margin: "0 auto" }
       : classes.length <= 3
         ? { gridTemplateColumns: "repeat(3, 1fr)" }
@@ -342,8 +352,8 @@ export default function LagreeContent() {
         </p>
       </motion.section>
 
-      <div style={{ display: "flex", gap: 10, marginTop: 32, alignItems: "center", justifyContent: "space-between" }}>
-        <div style={{ display: "flex", gap: 10 }}>
+      <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: isMobile ? 16 : 10, marginTop: 32, alignItems: isMobile ? "flex-start" : "center", justifyContent: "space-between" }}>
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
           {tabs.map((tab) => {
             const isActive = activeTab === tab.id;
             return (

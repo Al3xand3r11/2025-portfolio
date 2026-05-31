@@ -59,9 +59,7 @@ export default function Community() {
             maxWidth: 600,
           }}
         >
-          I have only become a better engineer by touching grass consistently.
-          The communal work below are examples of the beginning of the
-          intertwining I plan to incorporate into my work after graduation.
+          
         </p>
       </motion.div>
 
