@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const NAV_ITEMS = [
   { label: "About", href: "/about" },
@@ -85,17 +88,21 @@ export default function AboutPage() {
       <section
         style={{
           display: "grid",
-          gridTemplateColumns: "5fr 7fr",
+          gridTemplateColumns: "4fr 7fr",
           gap: 64,
           padding: "48px 24px 80px",
           width: "100%",
         }}
       >
-        <div
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
           style={{
             position: "relative",
             aspectRatio: "3 / 4",
-            maxHeight: "70vh",
+            maxHeight: "60vh",
+            overflow: "hidden",
           }}
         >
           <Image
@@ -103,11 +110,14 @@ export default function AboutPage() {
             alt="Brandon Nance"
             fill
             priority
-            style={{ objectFit: "cover" }}
+            style={{ objectFit: "cover", filter: "brightness(0.75)" }}
           />
-        </div>
+        </motion.div>
 
-        <div
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
           style={{
             display: "flex",
             flexDirection: "column",
@@ -138,7 +148,7 @@ export default function AboutPage() {
             ever), and teaches Lagree fitness on nights and weekends in DTLA. He will be
             attending USC in the fall to pursue his masters.
           </p>
-        </div>
+        </motion.div>
       </section>
 
       <footer
@@ -148,17 +158,19 @@ export default function AboutPage() {
           padding: 24,
         }}
       >
-        <span
+        <Link
+          href="/"
           style={{
             color: "#000",
             fontSize: 11,
             textTransform: "uppercase",
             letterSpacing: "0.2em",
             fontFamily: "var(--font-mono)",
+            textDecoration: "none",
           }}
         >
           Brandon Alexander
-        </span>
+        </Link>
       </footer>
     </main>
   );

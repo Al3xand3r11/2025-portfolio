@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const NAV_ITEMS = [
   { label: "About", href: "/about" },
@@ -127,7 +128,12 @@ export default function EngineeringPage() {
         }}
       />
 
-      <section style={{ padding: "64px 24px 24px" }}>
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        style={{ padding: "64px 24px 24px" }}
+      >
         <h1
           style={{
             fontSize: "clamp(48px, 8vw, 96px)",
@@ -152,9 +158,12 @@ export default function EngineeringPage() {
         >
           Written in TypeScript
         </p>
-      </section>
+      </motion.section>
 
-      <section
+      <motion.section
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
@@ -165,9 +174,15 @@ export default function EngineeringPage() {
         {PROJECTS.map((project, i) => (
           <ProjectCard key={project.title} project={project} index={i} />
         ))}
-      </section>
+      </motion.section>
 
-      <section style={{ padding: "0 24px 80px" }}>
+      <motion.section
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
+        style={{ padding: "0 24px 80px" }}
+      >
         <h2
           style={{
             fontSize: 11,
@@ -227,7 +242,7 @@ export default function EngineeringPage() {
             )}
           </div>
         ))}
-      </section>
+      </motion.section>
 
       <footer
         style={{
@@ -236,17 +251,19 @@ export default function EngineeringPage() {
           padding: 24,
         }}
       >
-        <span
+        <Link
+          href="/"
           style={{
             color: "#000",
             fontSize: 11,
             textTransform: "uppercase",
             letterSpacing: "0.2em",
             fontFamily: "var(--font-mono)",
+            textDecoration: "none",
           }}
         >
           Brandon Alexander
-        </span>
+        </Link>
       </footer>
     </main>
   );

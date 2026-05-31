@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useRef, useState } from "react";
+import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 
 const NAV_ITEMS = [
@@ -141,7 +142,10 @@ export default function ContactPage() {
         }}
       >
         {/* Left label */}
-        <span
+        <motion.span
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
           style={{
             position: "absolute",
             top: 40,
@@ -153,10 +157,13 @@ export default function ContactPage() {
           }}
         >
           Contact
-        </span>
+        </motion.span>
 
         {/* Center content column */}
-        <div
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
           style={{
             width: "100%",
             maxWidth: 560,
@@ -179,7 +186,7 @@ export default function ContactPage() {
               marginBottom: 24,
             }}
           >
-            Let&apos;s build what comes next.
+            Connect.
           </h1>
 
           <p
@@ -347,7 +354,7 @@ export default function ContactPage() {
               </svg>
             </button>
           </form>
-        </div>
+        </motion.div>
 
       </div>
     </main>

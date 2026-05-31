@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { FadeIn, FadeInView } from "../../components/MotionWrapper";
 
 const NAV_ITEMS = [
   { label: "About", href: "/about" },
@@ -197,6 +198,7 @@ export default async function CaseStudyPage({
       <hr style={{ border: "none", borderTop: "1px solid #000", margin: "0 24px" }} />
 
       {/* Three-column title section */}
+      <FadeIn y={20}>
       <section
         style={{
           display: "grid",
@@ -318,8 +320,10 @@ export default async function CaseStudyPage({
           ))}
         </div>
       </section>
+      </FadeIn>
 
       {/* Hero image */}
+      <FadeIn delay={0.2} y={40}>
       <div
         style={{
           maxWidth: 800,
@@ -346,9 +350,11 @@ export default async function CaseStudyPage({
           />
         </div>
       </div>
+      </FadeIn>
 
       {/* Project images */}
       {study.images.length > 1 && (
+        <FadeInView>
         <div
           style={{
             maxWidth: 800,
@@ -381,9 +387,11 @@ export default async function CaseStudyPage({
             </div>
           ))}
         </div>
+        </FadeInView>
       )}
 
       {/* Body text */}
+      <FadeInView>
       <section
         style={{
           maxWidth: 720,
@@ -405,11 +413,13 @@ export default async function CaseStudyPage({
           </p>
         ))}
       </section>
+      </FadeInView>
 
       {/* Divider */}
       <hr style={{ border: "none", borderTop: "1px solid #000", margin: "0 24px" }} />
 
       {/* More case studies */}
+      <FadeInView>
       <section style={{ padding: "64px 24px 80px" }}>
         <h2
           style={{
@@ -489,6 +499,7 @@ export default async function CaseStudyPage({
           ))}
         </div>
       </section>
+      </FadeInView>
 
       {/* Footer */}
       <footer
@@ -498,17 +509,19 @@ export default async function CaseStudyPage({
           padding: 24,
         }}
       >
-        <span
+        <Link
+          href="/"
           style={{
             color: "#000",
             fontSize: 11,
             textTransform: "uppercase",
             letterSpacing: "0.2em",
             fontFamily: "var(--font-mono)",
+            textDecoration: "none",
           }}
         >
           Brandon Alexander
-        </span>
+        </Link>
       </footer>
     </main>
   );

@@ -310,7 +310,11 @@ export default function LagreeContent() {
 
   return (
     <div style={{ padding: "48px 24px 24px" }}>
-      <section>
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
         <h1
           style={{
             fontSize: "clamp(48px, 8vw, 96px)",
@@ -336,7 +340,7 @@ export default function LagreeContent() {
         >
           {tabDescriptions[activeTab]}
         </p>
-      </section>
+      </motion.section>
 
       <div style={{ display: "flex", gap: 10, marginTop: 32, alignItems: "center", justifyContent: "space-between" }}>
         <div style={{ display: "flex", gap: 10 }}>

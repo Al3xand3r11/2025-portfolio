@@ -98,17 +98,19 @@ export default function LagreePage() {
           padding: 24,
         }}
       >
-        <span
+        <Link
+          href="/"
           style={{
             color: "#000",
             fontSize: 11,
             textTransform: "uppercase",
             letterSpacing: "0.2em",
             fontFamily: "var(--font-mono)",
+            textDecoration: "none",
           }}
         >
           Brandon Alexander
-        </span>
+        </Link>
       </footer>
     </main>
   );
