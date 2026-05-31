@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import dynamic from "next/dynamic";
 
 const LocationMap = dynamic(() => import("./LocationMap"), {
@@ -337,31 +338,47 @@ export default function LagreeContent() {
         </p>
       </section>
 
-      <div style={{ display: "flex", gap: 10, marginTop: 32 }}>
-        {tabs.map((tab) => {
-          const isActive = activeTab === tab.id;
-          return (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              style={{
-                padding: "8px 20px",
-                fontSize: 10,
-                fontWeight: 500,
-                letterSpacing: "0.15em",
-                textTransform: "uppercase",
-                fontFamily: "var(--font-mono)",
-                cursor: "pointer",
-                border: "1px solid #000",
-                backgroundColor: isActive ? "#000" : "#fff",
-                color: isActive ? "#fff" : "#000",
-                transition: "all 0.2s",
-              }}
-            >
-              {tab.label}
-            </button>
-          );
-        })}
+      <div style={{ display: "flex", gap: 10, marginTop: 32, alignItems: "center", justifyContent: "space-between" }}>
+        <div style={{ display: "flex", gap: 10 }}>
+          {tabs.map((tab) => {
+            const isActive = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                style={{
+                  padding: "8px 20px",
+                  fontSize: 10,
+                  fontWeight: 500,
+                  letterSpacing: "0.15em",
+                  textTransform: "uppercase",
+                  fontFamily: "var(--font-mono)",
+                  cursor: "pointer",
+                  border: "1px solid #000",
+                  backgroundColor: isActive ? "#000" : "#fff",
+                  color: isActive ? "#fff" : "#000",
+                  transition: "all 0.2s",
+                }}
+              >
+                {tab.label}
+              </button>
+            );
+          })}
+        </div>
+        <Link
+          href="/music"
+          style={{
+            fontSize: 11,
+            textTransform: "uppercase",
+            letterSpacing: "0.15em",
+            fontFamily: "var(--font-mono)",
+            color: "#000",
+            textDecoration: "underline",
+            textUnderlineOffset: "4px",
+          }}
+        >
+          See my music for class
+        </Link>
       </div>
 
       <div style={{ marginTop: 48 }}>
