@@ -104,6 +104,8 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: #ffffff;
+  overscroll-behavior: none;
 }
 
 body {
@@ -217,3 +219,4 @@ img {
 html {
   scroll-padding-top: var(--header-height);
 }
+

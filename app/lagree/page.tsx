@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import Link from "next/link";
 import LagreeContent from "./LagreeContent";
+import PageHeader from "../components/PageHeader";
 
 export const metadata: Metadata = {
   title: "Lagree | Brandon Nance",
@@ -9,18 +10,47 @@ export const metadata: Metadata = {
 
 export default function LagreePage() {
   return (
-    <main className="relative h-screen overflow-hidden">
-      <Image
-        src="/images/lagree4.webp"
-        alt="Lagree studio"
-        fill
-        priority
-        className="object-cover"
+    <main
+      style={{
+        minHeight: "100svh",
+        backgroundColor: "#fff",
+        color: "#000",
+        fontFamily: "var(--font-mono)",
+      }}
+    >
+      <PageHeader activeLabel="Lagree" />
+
+      <hr
+        style={{
+          border: "none",
+          borderTop: "1px solid #000",
+          margin: "0 24px",
+        }}
       />
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20" />
-
       <LagreeContent />
+
+      <footer
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          padding: 24,
+        }}
+      >
+        <Link
+          href="/"
+          style={{
+            color: "#000",
+            fontSize: 11,
+            textTransform: "uppercase",
+            letterSpacing: "0.2em",
+            fontFamily: "var(--font-mono)",
+            textDecoration: "none",
+          }}
+        >
+          Brandon Alexander
+        </Link>
+      </footer>
     </main>
   );
 }
