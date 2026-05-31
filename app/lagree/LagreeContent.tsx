@@ -93,8 +93,8 @@ const schedule: Record<Tab, LagreeClass[]> = {
   ],
   sub: [
     {
-      day: "Thursday",
-      date: "4/9",
+      day: "Tuesday",
+      date: "6/23",
       ...HISTORIC_CORE,
       times: [
         { time: "3:00 PM" },
@@ -104,14 +104,12 @@ const schedule: Record<Tab, LagreeClass[]> = {
       ],
     },
     {
-      day: "Tuesday",
-      date: "4/14",
+      day: "Friday",
+      date: "6/26",
       ...HISTORIC_CORE,
       times: [
-        { time: "3:00 PM" },
-        { time: "4:00 PM" },
-        { time: "5:00 PM" },
-        { time: "6:00 PM" },
+        { time: "6:00 AM" },
+        { time: "7:00 AM" },
       ],
     },
   ],
