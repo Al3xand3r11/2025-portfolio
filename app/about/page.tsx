@@ -142,25 +142,21 @@ export default function AboutPage() {
             }}
           >
             <p>
-              Brandon Nance is a software engineer and community builder in Los Angeles.
-              Throughout his career, he has focused on building performant, scalable systems
-              while fostering connection in the communities around him. He has led engineering
-              work at <strong>PARAMOUNT</strong>, contributed to live streaming infrastructure
-              serving millions, and continues to push the boundaries of web technology.
+            My name is Brandon Nance. I am a Software Engineer, Lagree instructor and community ambassador in Los Angeles. Approaching 5 years
+              of experience leading engineering work at <strong>PARAMOUNT</strong>, contributing to live streaming infrastructure
+              serving millions, and continuing to build personal projects to accelerate growth for members of my community.
             </p>
 
             <p>
-              He moved to Los Angeles in 2022, three months after graduating from Towson
-              University with a degree in computer science. With 5 years of engineering
-              experience and 10 years in customer service, he brings a unique blend of
+            I graduated from Towson University in 2022 with a degree in computer science. With 5 years of engineering
+              experience and 10 years in customer service, I bring a unique blend of
               technical depth and human-centered thinking to every project.
             </p>
 
             <p>
-              Today, Brandon works on Paramount&apos;s live streaming technology in TypeScript,
-              serves as a community ambassador at Blue Ribbon Sports (the first Nike store
-              ever), and teaches Lagree fitness on nights and weekends in DTLA. He will be
-              attending USC in the fall to pursue his masters.
+            In the fall of 2026, I will be attending USC Marshall School of business in the fall
+              with the goal of intertwining my technical knowledge and customer service experience on
+              top of the foundational business concepts I will learn in school to continue to connect communities in need to vital resources.
             </p>
           </motion.div>
         </section>
