@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 
-export const alt = "Brandon Nance — Software Engineer in Los Angeles";
+export const alt = "Brandon - LA SWE";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -63,7 +63,7 @@ export default function Image() {
               fontFamily: "monospace",
             }}
           >
-            Software Engineer
+            SWE
           </span>
 
           <h1
@@ -115,7 +115,7 @@ export default function Image() {
             fontFamily: "monospace",
           }}
         >
-          Los Angeles, CA
+          LA
         </span>
       </div>
     ),
