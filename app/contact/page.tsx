@@ -1,9 +1,7 @@
 "use client";
 
-import Link from "next/link";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import emailjs from "@emailjs/browser";
 import PageHeader from "../components/PageHeader";
 
 const subjectOptions = [
@@ -23,25 +21,22 @@ export default function ContactPage() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
     "idle"
   );
-  const form = useRef<HTMLFormElement>(null);
 
-  const sendEmail = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("sending");
 
-    const serviceID = "service_pma3dql";
-    const templateID = "template_08llu1i";
-    const publicKey = "7rv-9u7Zg-84Mkoh-";
-
-    const templateParams = {
-      from_name: name,
-      email: email,
-      to_name: "Brandon",
-      message: `[${subject}] ${thoughts}`,
-    };
-
     try {
-      await emailjs.send(serviceID, templateID, templateParams, publicKey);
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, subject, message: thoughts }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Submission failed");
+      }
+
       setStatus("sent");
       setSubject("");
       setEmail("");
@@ -49,7 +44,7 @@ export default function ContactPage() {
       setThoughts("");
       setTimeout(() => setStatus("idle"), 3000);
     } catch (error) {
-      console.error("Error sending email", error);
+      console.error("Contact form error:", error);
       setStatus("error");
       setTimeout(() => setStatus("idle"), 3000);
     }
@@ -142,8 +137,7 @@ export default function ContactPage() {
           </p>
 
           <form
-            ref={form}
-            onSubmit={sendEmail}
+            onSubmit={handleSubmit}
             style={{
               display: "flex",
               flexDirection: "column",
