@@ -1,19 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import styles from "./fitness.module.css";
+import { useLagreePathname } from "./useLagreePathname";
 
 /* the three-column grid keeps the wordmark centred, so the order here is the
    order of the columns: left link, centred home, right link */
 const links = [
-  { href: "/fitness/music", label: "Music", className: styles.navLink },
-  { href: "/fitness", label: "Lagree", className: styles.navHome },
-  { href: "/fitness/about", label: "About", className: styles.navMuted },
+  { href: "/music", label: "Music", className: styles.navLink },
+  { href: "/", label: "Lagree", className: styles.navHome },
+  { href: "/about", label: "About", className: styles.navMuted },
 ];
 
 export default function FitnessNav() {
-  const pathname = usePathname();
+  const pathname = useLagreePathname();
 
   return (
     <nav className={styles.nav}>

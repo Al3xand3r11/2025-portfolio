@@ -9,6 +9,25 @@
   font-family: var(--font-mono);
 }
 
+/* ------------------------------------------------------------- transition */
+
+/* Sits above everything, including the fixed nav, and never takes a click.
+   The two layers travel together with a small offset so the sweep reads as
+   depth rather than one flat block of colour. */
+.curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.curtainLayer {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
 /* -------------------------------------------------------------------- nav */
 
 /* three columns so the wordmark stays centred no matter the link widths */
@@ -95,6 +114,20 @@
   background-color: #0d1b1a;
   background-size: cover;
   background-position: center;
+}
+
+/* the photo is scaled on load, so it needs a box of its own to be scaled
+   inside of rather than inheriting the hero's own sizing */
+.heroFrame {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+.heroFrame picture {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .heroImage {
@@ -337,6 +370,14 @@
 
 /* ------------------------------------------------------------------ music */
 
+/* takes the flex slot the player used to hold directly, so scaling the player
+   on scroll does not change how the band is laid out */
+.playerSettle {
+  width: 100%;
+  max-width: 680px;
+  will-change: transform;
+}
+
 /* the player carries its own artwork, controls and corner radius, so it gets
    no frame of ours — 680px is the widest Apple's 450px player is drawn for */
 .playerFrame {
@@ -370,13 +411,21 @@
 }
 
 /* the cutout is transparent, so it needs no frame to sit on the white; it is
-   bottom-aligned with no padding beneath it so the crop meets the screen edge */
-.aboutImage {
+   bottom-aligned with no padding beneath it so the crop meets the screen edge.
+   The column holds the size so the picture can be slid in without the layout
+   shifting underneath it */
+.aboutImageFrame {
+  display: flex;
   flex: 0 0 auto;
   align-self: flex-end;
-  width: auto;
   max-width: 52%;
   height: min(90svh, 940px);
+}
+
+.aboutImage {
+  width: auto;
+  max-width: 100%;
+  height: 100%;
   object-fit: contain;
   object-position: center bottom;
 }
@@ -433,6 +482,23 @@
 
 .aboutFooterLink:hover {
   color: #101010;
+}
+
+/* ---------------------------------------------------------------- 404 */
+
+.notFound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.notFoundText {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-soft);
 }
 
 .footNote {
@@ -498,7 +564,7 @@
     padding: 64px 6vw 40px;
   }
 
-  .aboutImage {
+  .aboutImageFrame {
     align-self: center;
     max-width: 100%;
     height: min(38svh, 380px);
@@ -528,5 +594,12 @@
   .mapLink,
   .aboutFooterLink {
     transition: none;
+  }
+
+  /* Hidden in CSS rather than unmounted in the component: the curtain is part
+     of the server-rendered markup, so removing it on the client would not
+     match during hydration. */
+  .curtain {
+    display: none;
   }
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Reveal, Settle } from "../Motion";
 import styles from "../fitness.module.css";
 import { ArrowIcon } from "../icons";
 
@@ -6,6 +7,7 @@ export const metadata: Metadata = {
   title: "Music for Class | Brandon Nance Lagree",
   description:
     "The Apple Music playlists behind Brandon Nance's Lagree classes in downtown Los Angeles.",
+  alternates: { canonical: "/music" },
 };
 
 type Playlist = {
@@ -39,11 +41,20 @@ function toListenUrl(embedUrl: string) {
 export default function MusicPage() {
   return (
     <main className={styles.page}>
-      <h1 className={styles.eyebrow}>Music for Class</h1>
+      <Reveal as="h1" className={styles.eyebrow} y={12} duration={0.6}>
+        Music for Class
+      </Reveal>
 
       <div className={styles.sections}>
         {playlists.map((playlist) => (
-          <section key={playlist.embedUrl} className={styles.section}>
+          <Reveal
+            as="section"
+            key={playlist.embedUrl}
+            className={styles.section}
+            inView
+            y={34}
+            duration={0.75}
+          >
             <div className={styles.sectionMeta}>
               <div className={styles.tags}>
                 {playlist.tags.map((tag) => (
@@ -70,23 +81,30 @@ export default function MusicPage() {
             </h2>
 
             <div className={styles.sectionBand}>
-              <iframe
-                title={playlist.title}
-                src={`${playlist.embedUrl}?theme=dark`}
-                height="450"
-                loading="lazy"
-                allow="autoplay *; encrypted-media *; clipboard-write"
-                sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
-                className={styles.playerFrame}
-              />
+              <Settle
+                className={styles.playerSettle}
+                inView
+                from={0.97}
+                duration={1.1}
+              >
+                <iframe
+                  title={playlist.title}
+                  src={`${playlist.embedUrl}?theme=dark`}
+                  height="450"
+                  loading="lazy"
+                  allow="autoplay *; encrypted-media *; clipboard-write"
+                  sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
+                  className={styles.playerFrame}
+                />
+              </Settle>
             </div>
-          </section>
+          </Reveal>
         ))}
       </div>
 
-      <p className={styles.footNote}>
+      <Reveal as="p" className={styles.footNote} inView y={16} duration={0.6}>
         Press play to hear the room before you book.
-      </p>
+      </Reveal>
     </main>
   );
 }

@@ -3,13 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-
-const NAV_ITEMS = [
-  { label: "About", href: "/about" },
-  { label: "Community", href: "/community" },
-  { label: "Engineering", href: "/engineering" },
-  { label: "Contact", href: "/contact" },
-];
+import NavLink from "./NavLink";
+import { navItems } from "../lib/navigation";
 
 export default function PageHeader({ activeLabel }: { activeLabel?: string }) {
   const [isMobile, setIsMobile] = useState(false);
@@ -58,10 +53,10 @@ export default function PageHeader({ activeLabel }: { activeLabel?: string }) {
           </button>
         ) : (
           <nav style={{ display: "flex", gap: 20, alignItems: "center" }}>
-            {NAV_ITEMS.map((item) => (
-              <Link
+            {navItems.map((item) => (
+              <NavLink
                 key={item.href}
-                href={item.href}
+                item={item}
                 style={{
                   color: "#000",
                   fontSize: 11,
@@ -72,9 +67,7 @@ export default function PageHeader({ activeLabel }: { activeLabel?: string }) {
                   textUnderlineOffset: "4px",
                   transition: "opacity 0.2s",
                 }}
-              >
-                {item.label}
-              </Link>
+              />
             ))}
           </nav>
         )}
@@ -156,10 +149,10 @@ export default function PageHeader({ activeLabel }: { activeLabel?: string }) {
               </div>
 
               <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", gap: 32 }}>
-                {NAV_ITEMS.map((item) => (
-                  <Link
+                {navItems.map((item) => (
+                  <NavLink
                     key={item.href}
-                    href={item.href}
+                    item={item}
                     onClick={() => setMenuOpen(false)}
                     style={{
                       fontSize: 14,
@@ -170,9 +163,7 @@ export default function PageHeader({ activeLabel }: { activeLabel?: string }) {
                       textDecoration: item.label === activeLabel ? "underline" : "none",
                       textUnderlineOffset: "4px",
                     }}
-                  >
-                    {item.label}
-                  </Link>
+                  />
                 ))}
               </div>
 
