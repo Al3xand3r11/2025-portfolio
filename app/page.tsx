@@ -1,15 +1,10 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Link from "next/link";
-
-const NAV_ITEMS = [
-  { label: "About", href: "/about" },
-  { label: "Community", href: "/community" },
-  { label: "Engineering", href: "/engineering" },
-  { label: "Lagree", href: "/lagree" },
-  { label: "Contact", href: "/contact" },
-];
+import JsonLd from "./components/JsonLd";
+import NavLink from "./components/NavLink";
+import { navItems } from "./lib/navigation";
+import { engineeringSchema } from "./lib/schema";
 
 function noise(x: number, y: number): number {
   const n = Math.sin(x * 127.1 + y * 311.7) * 43758.5453;
@@ -98,6 +93,8 @@ export default function Home() {
         backgroundColor: "#fff",
       }}
     >
+      <JsonLd data={engineeringSchema} />
+
       <canvas
         ref={canvasRef}
         style={{
@@ -119,10 +116,10 @@ export default function Home() {
           }}
         >
           <nav style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-            {NAV_ITEMS.map((item) => (
-              <Link
+            {navItems.map((item) => (
+              <NavLink
                 key={item.href}
-                href={item.href}
+                item={item}
                 style={{
                   color: "#000",
                   fontSize: 11,
@@ -134,9 +131,7 @@ export default function Home() {
                 }}
                 onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.4")}
                 onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-              >
-                {item.label}
-              </Link>
+              />
             ))}
           </nav>
 

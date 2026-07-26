@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  /* config options here */
-};
+/* Routing between alexandernance.com and lagree.alexandernance.com, including
+   the redirects for the Lagree pages' old paths, lives in proxy.ts. */
+const nextConfig: NextConfig = {};
 
 export default nextConfig;

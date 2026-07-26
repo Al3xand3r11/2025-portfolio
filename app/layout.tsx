@@ -57,56 +57,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={spaceGrotesk.variable}>
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@graph": [
-                {
-                  "@type": "WebSite",
-                  name: "Brandon Nance",
-                  url: "https://alexandernance.com",
-                  description:
-                    "Portfolio of Brandon Nance, a software engineer in Los Angeles.",
-                },
-                {
-                  "@type": "Person",
-                  name: "Brandon Nance",
-                  url: "https://alexandernance.com",
-                  jobTitle: "Software Engineer",
-                  worksFor: {
-                    "@type": "Organization",
-                    name: "Paramount",
-                  },
-                  knowsAbout: [
-                    "TypeScript",
-                    "React",
-                    "Next.js",
-                    "Software Engineering",
-                    "Lagree Fitness",
-                  ],
-                  alumniOf: {
-                    "@type": "CollegeOrUniversity",
-                    name: "Towson University",
-                  },
-                  address: {
-                    "@type": "PostalAddress",
-                    addressLocality: "Los Angeles",
-                    addressRegion: "CA",
-                    addressCountry: "US",
-                  },
-                  sameAs: [
-                    "https://www.linkedin.com/in/bnance1/",
-                    "https://github.com/Al3xand3r11",
-                  ],
-                },
-              ],
-            }),
-          }}
-        />
-      </head>
       <body>
         {children}
       </body>
