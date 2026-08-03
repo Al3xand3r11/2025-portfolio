@@ -45,9 +45,8 @@ export default function AboutPage() {
             style={{ fontSize: 13, lineHeight: 1.8 }}
           >
             <p>
-              My name is Brandon Nance. I am a Software Engineer, Lagree instructor and community ambassador in Los Angeles. Approaching 5 years
-              of experience leading engineering work at <strong>PARAMOUNT</strong>, contributing to live streaming infrastructure
-              serving millions, and continuing to build personal projects to accelerate growth for members of my community.
+            I am a software engineer, lagree instructor, and community ambassador in Los Angeles, California. Moving from Maryland in 2022, after graduating from Towson University with a degree in Computer Science, I have gained years of experience in multiple sectors focused on connecting communities and continued curiosity.
+
             </p>
           </motion.div>
 
@@ -70,32 +69,6 @@ export default function AboutPage() {
               priority
               style={{ objectFit: "cover", filter: "brightness(0.75)" }}
             />
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 32,
-              fontSize: 13,
-              lineHeight: 1.8,
-              marginTop: 32,
-            }}
-          >
-            <p>
-              I graduated from Towson University in 2022 with a degree in computer science. With 5 years of engineering
-              experience and 10 years in customer service, I bring a unique blend of
-              technical depth and human-centered thinking to every project.
-            </p>
-
-            <p>
-              In the fall of 2026, I will be attending USC Marshall School of business in the fall
-              with the goal of intertwining my technical knowledge and customer service experience on
-              top of the foundational business concepts I will learn in school to continue to connect communities in need to vital resources.
-            </p>
           </motion.div>
         </section>
       ) : (
@@ -135,29 +108,63 @@ export default function AboutPage() {
             style={{
               display: "flex",
               flexDirection: "column",
-              justifyContent: "center",
-              gap: 32,
-              fontSize: 13,
+              justifyContent: "flex-start",
+              paddingTop: "10vh",
+              gap: 40,
+              fontSize: 24,
               lineHeight: 1.8,
             }}
           >
-            <p>
-            My name is Brandon Nance. I am a Software Engineer, Lagree instructor and community ambassador in Los Angeles. Approaching 5 years
-              of experience leading engineering work at <strong>PARAMOUNT</strong>, contributing to live streaming infrastructure
-              serving millions, and continuing to build personal projects to accelerate growth for members of my community.
+            <p style={{ margin: 0 }}>
+              I am a software engineer, lagree instructor, and community ambassador in Los Angeles, California. Moving from Maryland in 2022, after graduating from Towson University with a degree in Computer Science, I have gained years of experience in multiple sectors focused on connecting communities and continued curiosity.
             </p>
-
-            <p>
-            I graduated from Towson University in 2022 with a degree in computer science. With 5 years of engineering
-              experience and 10 years in customer service, I bring a unique blend of
-              technical depth and human-centered thinking to every project.
-            </p>
-
-            <p>
-            In the fall of 2026, I will be attending USC Marshall School of business in the fall
-              with the goal of intertwining my technical knowledge and customer service experience on
-              top of the foundational business concepts I will learn in school to continue to connect communities in need to vital resources.
-            </p>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                gap: 40,
+                fontSize: 14,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+              }}
+            >
+              <a
+                href="/BrandonNance-Resume26pdf.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: "var(--page-fg)",
+                  textDecoration: "underline",
+                  textUnderlineOffset: 6,
+                }}
+              >
+                Resume
+              </a>
+              <a
+                href="https://github.com/Al3xand3r11"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: "var(--page-fg)",
+                  textDecoration: "underline",
+                  textUnderlineOffset: 6,
+                }}
+              >
+                GitHub
+              </a>
+              <a
+                href="https://www.linkedin.com/in/bnance1/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: "var(--page-fg)",
+                  textDecoration: "underline",
+                  textUnderlineOffset: 6,
+                }}
+              >
+                LinkedIn
+              </a>
+            </div>
           </motion.div>
         </section>
       )}

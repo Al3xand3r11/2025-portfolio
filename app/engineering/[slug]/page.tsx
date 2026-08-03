@@ -46,7 +46,7 @@ const CASE_STUDIES: Record<string, CaseStudy> = {
     ],
   },
   "tminus-talent": {
-    title: "TMinus Talent",
+    title: "T Minus Talent",
     year: "2025",
     category: "Talent Platform",
     readTime: "2 min read",
@@ -67,16 +67,15 @@ const CASE_STUDIES: Record<string, CaseStudy> = {
     ],
     url: "https://tminustalent.com",
     body: [
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      "Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris.",
+      "T minus was created to connect job seekers and employers with Founder Terra in the employment process. The focus for Terra was quick communication and connections to hiring resources.",
+      "Overall, the design stayed simple and intentional while the complexity lied on the backend. From database design to a working dashboard for Terra to parse through the numerous resumes received.",
     ],
   },
-  "moments-of-metanoia": {
-    title: "Moments of Metanoia",
+  "cleo-plus": {
+    title: "Cleo +",
     year: "2025",
     category: "Artist Website",
-    readTime: "4 min read",
+    readTime: "3 min read",
     deliverables: [
       "Brand Strategy",
       "Visual Identity",
@@ -89,17 +88,16 @@ const CASE_STUDIES: Record<string, CaseStudy> = {
     images: ["/studyimages/mm2.webp", "/studyimages/mm3.webp"],
     url: "https://itscleoplus.com",
     body: [
-      "Metanoia is a web application built for the release of a music video from artist Cleo Plus to begin the 2026 year. The inspiration of the Metanoia site, song and video came from a place of cultivating community and driving conversations about transformative points in life leading to breakthroughs, whether through the creative process or just life in general.",
-      "In theory, the system design and interactive elements within the application were not very extensive. The focus quickly became the design, sound and overall feeling a user will experience when accessing the application. The project\u2019s landing page itself underwent hundreds of rewrites to align with the artist on the design of the landing page, specifically on desktop. The goal became to segment the two experiences based on the viewing capacity of the user and the goal for us together became to serve those unique experiences in an efficient way so users are met with content quickly.",
-      "On desktop, massive inspiration from the website Hyperdreamz built by the company Naughtyduck that creates WebGL components and animations leading to the ripple effects through the landing page on scroll. Converting her image to a duo-tone hex canvas that broke each pixel down to a single particle that began to interact with the mouse. Alternatively, mobile users would not have that scrolling experience without a mouse and for those users a carousel of mini videos of the artist appeared before users could enter the screen, like a visualizer.",
-      "Overall, an insightful and challenging build focused on intentional design, the implementation of sound, physics and video integration. Building Moments of Metanoia created a space focused on visual excellence accompanied by an intentional design process. Around mock 20 or so, the thinking was that there was no way to improve the way images have been manipulated and videos have been integrated but the constant process of iteration allowed us to push past many blockers to make a beautiful application.",
+      "Cleo is a music artist that wanted an accompanying site that coincided with her recent releases. Offering an alternative way for her clients to interact with her content. An open creative design that lasted weeks driven by the feeling Cleo wanted her fans to feel when they landed on the page.",
+      "We settled on 2 different approaches based on the where we were meeting her fans. Optimizing for mobile and desktop independently, the mobile site offered a vertical loop of a portion of the video that she released with easy access to social links and the pulsating logo at the bottom inviting the user into the next page. On desktop we prioritized the power of the mouse and used a static image, diverging the image into 2 distinct colors, pixelating the two and allow the mouse to interact with the background.",
+      "The iteration of the desktop eventually brought us to a place of harmony within the colors offering distortion of the image as a fan used their mouse across the screen. Setting a foundation for tangible interaction with her fans, for now and in the future.",
     ],
   },
   "egle-zalpys": {
-    title: "Egle Zalpys Portfolio",
+    title: "Egle Zalpys",
     year: "2026",
     category: "Portfolio Website",
-    readTime: "2 min read",
+    readTime: "3 min read",
     deliverables: [
       "Web Development",
       "Visual Identity",
@@ -117,9 +115,9 @@ const CASE_STUDIES: Record<string, CaseStudy> = {
     ],
     url: "https://portfolio.eglezalpys.com",
     body: [
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-      "Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris.",
+      "Egle tells stories through the directing photoshoots, creating activations and presenting new products to the public. She wanted a hub to correctly depict her work and the impact from the work she has done. Searching for a quick and concise way to disperse her work for potential employers as well as her next clients.",
+      "Her extensive experience and trove of quality photos made this an exciting project to iterate on. We conducted many creative conversations and decided between dozens of mocks before we decided on the current site today.",
+      "Egle\u2019s focus is on the personal connection and tangible events she curates and organizes, therefore we decided to keep the site simple and focus on the imagery that was captured. Offering a conversation starter built on the efficiency of how the images are served, where the key points are positioned ultimately allowing her next client to visualize their project in the future even before working with Egle in mobile and desktop formats.",
     ],
   },
 };
@@ -271,32 +269,19 @@ export default async function CaseStudyPage({
             }}
           >
             {study.body.map((paragraph, i) => (
-              <div key={i}>
-                <h2
-                  style={{
-                    fontSize: 11,
-                    fontWeight: 500,
-                    textTransform: "uppercase",
-                    letterSpacing: "0.3em",
-                    color: "var(--page-muted-2)",
-                    margin: 0,
-                  }}
-                >
-                  Section {String(i + 1).padStart(2, "0")}
-                </h2>
-                <p
-                  style={{
-                    marginTop: 20,
-                    fontSize: "clamp(18px, 2.2vw, 24px)",
-                    lineHeight: 1.7,
-                    color: "var(--page-body)",
-                    maxWidth: "none",
-                    width: "100%",
-                  }}
-                >
-                  {paragraph}
-                </p>
-              </div>
+              <p
+                key={i}
+                style={{
+                  margin: 0,
+                  fontSize: "clamp(18px, 2.2vw, 24px)",
+                  lineHeight: 1.7,
+                  color: "var(--page-body)",
+                  maxWidth: "none",
+                  width: "100%",
+                }}
+              >
+                {paragraph}
+              </p>
             ))}
           </div>
         </section>

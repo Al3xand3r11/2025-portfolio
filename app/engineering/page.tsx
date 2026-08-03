@@ -15,7 +15,7 @@ const PROJECTS = [
     url: "https://thesaturdayhikecrew.com",
   },
   {
-    title: "TMinus Talent",
+    title: "T Minus Talent",
     slug: "tminus-talent",
     tags: "Next.js · Talent · Brand",
     video: "/videos/tmtvid.mp4",
@@ -23,15 +23,15 @@ const PROJECTS = [
     url: "https://tminustalent.com",
   },
   {
-    title: "Moments of Metanoia",
-    slug: "moments-of-metanoia",
+    title: "Cleo +",
+    slug: "cleo-plus",
     tags: "Next.js · WebGL · Entertainment",
     video: "/videos/mmvid.mp4",
     poster: "/studyimages/mm1.webp",
     url: "https://itscleoplus.com",
   },
   {
-    title: "Egle Zalpys Portfolio",
+    title: "Egle Zalpys",
     slug: "egle-zalpys",
     tags: "Next.js · Portfolio · Design",
     video: "/videos/ezvid.mp4",
@@ -85,7 +85,7 @@ export default function EngineeringPage() {
             maxWidth: "900px",
           }}
         >
-          Recent Engineering Projects
+         Projects
         </h1>
         <p
           style={{

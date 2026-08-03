@@ -44,9 +44,9 @@ export const projects: Project[] = [
   },
   {
     slug: "itscleoplus",
-    title: "Moments of Metanoia",
+    title: "Cleo +",
     description:
-      "An interactive website for a musical artist to showcase their work and connect with fans",
+      "An interactive website for music artist Cleo, with distinct mobile and desktop experiences built around her recent releases.",
     url: "https://itscleoplus.com",
     tags: ["Next.js", "WebGL", "Entertainment"],
     year: "2025",
