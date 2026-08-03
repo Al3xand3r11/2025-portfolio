@@ -3,6 +3,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { FadeIn, FadeInView } from "../../components/MotionWrapper";
 import PageHeader from "../../components/PageHeader";
+import CaseStudyHero from "./CaseStudyHero";
 
 type CaseStudy = {
   title: string;
@@ -115,15 +116,17 @@ const CASE_STUDIES: Record<string, CaseStudy> = {
     ],
     url: "https://portfolio.eglezalpys.com",
     body: [
-      "Egle tells stories through the directing photoshoots, creating activations and presenting new products to the public. She wanted a hub to correctly depict her work and the impact from the work she has done. Searching for a quick and concise way to disperse her work for potential employers as well as her next clients.",
+      "Egle tells stories through directing photoshoots, creating activations and presenting new products to the public. She wanted a hub to correctly depict her work and the impact from the work she has done. Searching for a quick and concise way to disperse her work for potential employers as well as her next clients.",
       "Her extensive experience and trove of quality photos made this an exciting project to iterate on. We conducted many creative conversations and decided between dozens of mocks before we decided on the current site today.",
       "Egle\u2019s focus is on the personal connection and tangible events she curates and organizes, therefore we decided to keep the site simple and focus on the imagery that was captured. Offering a conversation starter built on the efficiency of how the images are served, where the key points are positioned ultimately allowing her next client to visualize their project in the future even before working with Egle in mobile and desktop formats.",
     ],
   },
 };
 
+export const CASE_STUDY_SLUGS = Object.keys(CASE_STUDIES);
+
 export function generateStaticParams() {
-  return Object.keys(CASE_STUDIES).map((slug) => ({ slug }));
+  return CASE_STUDY_SLUGS.map((slug) => ({ slug }));
 }
 
 export default async function CaseStudyPage({
@@ -228,32 +231,11 @@ export default async function CaseStudyPage({
         </FadeIn>
 
         <FadeIn delay={0.15} y={24} style={{ flex: 1, display: "flex", minHeight: 0, padding: "24px 24px 0" }}>
-          <div
-            style={{
-              position: "relative",
-              flex: 1,
-              minHeight: "45vh",
-              overflow: "hidden",
-              borderRadius: 6,
-              backgroundColor: "var(--page-surface)",
-            }}
-          >
-            <video
-              src={study.video}
-              poster={study.hero}
-              autoPlay
-              muted
-              loop
-              playsInline
-              style={{
-                position: "absolute",
-                inset: 0,
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-              }}
-            />
-          </div>
+          <CaseStudyHero
+            video={study.video}
+            poster={study.hero}
+            title={study.title}
+          />
         </FadeIn>
       </section>
 

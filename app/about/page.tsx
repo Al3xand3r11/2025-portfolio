@@ -6,6 +6,47 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import PageHeader from "../components/PageHeader";
 
+const BIO =
+  "I am a software engineer, lagree instructor, and community ambassador in Los Angeles, California. Moving from Maryland in 2022, after graduating from Towson University with a degree in Computer Science, I have gained years of experience in multiple sectors focused on connecting communities and continued curiosity.";
+
+const LINKS = [
+  { label: "Resume", href: "/BrandonNance-Resume26pdf.pdf" },
+  { label: "GitHub", href: "https://github.com/Al3xand3r11" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/bnance1/" },
+];
+
+function BioLinks({ fontSize }: { fontSize: number }) {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        gap: 40,
+        fontSize,
+        letterSpacing: "0.12em",
+        textTransform: "uppercase",
+      }}
+    >
+      {LINKS.map((link) => (
+        <a
+          key={link.label}
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            color: "var(--page-fg)",
+            textDecoration: "underline",
+            textUnderlineOffset: 6,
+          }}
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+  );
+}
+
 export default function AboutPage() {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -42,12 +83,16 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            style={{ fontSize: 13, lineHeight: 1.8 }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 32,
+              fontSize: 13,
+              lineHeight: 1.8,
+            }}
           >
-            <p>
-            I am a software engineer, lagree instructor, and community ambassador in Los Angeles, California. Moving from Maryland in 2022, after graduating from Towson University with a degree in Computer Science, I have gained years of experience in multiple sectors focused on connecting communities and continued curiosity.
-
-            </p>
+            <p style={{ margin: 0 }}>{BIO}</p>
+            <BioLinks fontSize={12} />
           </motion.div>
 
           <motion.div
@@ -67,6 +112,7 @@ export default function AboutPage() {
               alt="Brandon Nance"
               fill
               priority
+              sizes="100vw"
               style={{ objectFit: "cover", filter: "brightness(0.75)" }}
             />
           </motion.div>
@@ -97,6 +143,7 @@ export default function AboutPage() {
               alt="Brandon Nance"
               fill
               priority
+              sizes="36vw"
               style={{ objectFit: "cover", filter: "brightness(0.75)" }}
             />
           </motion.div>
@@ -115,56 +162,8 @@ export default function AboutPage() {
               lineHeight: 1.8,
             }}
           >
-            <p style={{ margin: 0 }}>
-              I am a software engineer, lagree instructor, and community ambassador in Los Angeles, California. Moving from Maryland in 2022, after graduating from Towson University with a degree in Computer Science, I have gained years of experience in multiple sectors focused on connecting communities and continued curiosity.
-            </p>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                gap: 40,
-                fontSize: 14,
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-              }}
-            >
-              <a
-                href="/BrandonNance-Resume26pdf.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  color: "var(--page-fg)",
-                  textDecoration: "underline",
-                  textUnderlineOffset: 6,
-                }}
-              >
-                Resume
-              </a>
-              <a
-                href="https://github.com/Al3xand3r11"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  color: "var(--page-fg)",
-                  textDecoration: "underline",
-                  textUnderlineOffset: 6,
-                }}
-              >
-                GitHub
-              </a>
-              <a
-                href="https://www.linkedin.com/in/bnance1/"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  color: "var(--page-fg)",
-                  textDecoration: "underline",
-                  textUnderlineOffset: 6,
-                }}
-              >
-                LinkedIn
-              </a>
-            </div>
+            <p style={{ margin: 0 }}>{BIO}</p>
+            <BioLinks fontSize={14} />
           </motion.div>
         </section>
       )}

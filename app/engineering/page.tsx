@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import PageHeader from "../components/PageHeader";
 
@@ -217,19 +218,22 @@ function ProjectCard({
   index: number;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [hovered, setHovered] = useState(false);
+  /* Tracks real playback rather than hover, so the poster stays put until there
+     are actual frames to reveal. The video carries preload="none", so the first
+     hover has to fetch it. */
+  const [playing, setPlaying] = useState(false);
 
   const handleMouseEnter = () => {
-    setHovered(true);
     const video = videoRef.current;
     if (video) {
       video.currentTime = 0;
-      video.play();
+      /* Rejects if the pointer leaves before the fetch resolves. */
+      video.play().catch(() => {});
     }
   };
 
   const handleMouseLeave = () => {
-    setHovered(false);
+    setPlaying(false);
     const video = videoRef.current;
     if (video) {
       video.pause();
@@ -270,6 +274,8 @@ function ProjectCard({
               muted
               playsInline
               loop
+              preload="none"
+              onPlaying={() => setPlaying(true)}
               style={{
                 position: "absolute",
                 inset: 0,
@@ -278,16 +284,14 @@ function ProjectCard({
                 objectFit: "cover",
               }}
             />
-            <img
+            <Image
               src={project.poster}
               alt={project.title}
+              fill
+              sizes="(max-width: 767px) 100vw, 50vw"
               style={{
-                position: "absolute",
-                inset: 0,
-                width: "100%",
-                height: "100%",
                 objectFit: "cover",
-                opacity: hovered ? 0 : 1,
+                opacity: playing ? 0 : 1,
                 transition: "opacity 0.3s",
                 zIndex: 1,
               }}

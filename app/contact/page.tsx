@@ -127,7 +127,7 @@ export default function ContactPage() {
             style={{
               fontSize: 13,
               lineHeight: 1.6,
-              color: "#666",
+              color: "var(--page-muted)",
               fontFamily: "var(--font-mono)",
               marginBottom: 56,
               maxWidth: 380,
