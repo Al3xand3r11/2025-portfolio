@@ -3,6 +3,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { FadeIn, FadeInView } from "../../components/MotionWrapper";
 import PageHeader from "../../components/PageHeader";
+import CaseStudyHero from "./CaseStudyHero";
 
 type CaseStudy = {
   title: string;
@@ -11,6 +12,7 @@ type CaseStudy = {
   readTime: string;
   deliverables: string[];
   hero: string;
+  video: string;
   images: string[];
   url: string;
   body: string[];
@@ -30,7 +32,13 @@ const CASE_STUDIES: Record<string, CaseStudy> = {
       "TypeScript",
     ],
     hero: "/images/shc-full.png",
-    images: [ "/studyimages/shc2.webp", "/studyimages/shc3.webp", "/studyimages/shc4.webp", "/studyimages/shc5.webp"],
+    video: "/videos/shcvid.mp4",
+    images: [
+      "/studyimages/shc2.webp",
+      "/studyimages/shc3.webp",
+      "/studyimages/shc4.webp",
+      "/studyimages/shc5.webp",
+    ],
     url: "https://thesaturdayhikecrew.com",
     body: [
       "The Saturday Hike started in late 2022 in Los Angeles as a group of friends, many new and black to the area looking for a way to get active through hiking and invite others as well. After about 6 months and a few more hikes, there were over 100 people regularly in attendance for a Saturday hike ranging from locations in Pasadena to Malibu and all in between.",
@@ -38,32 +46,37 @@ const CASE_STUDIES: Record<string, CaseStudy> = {
       "Gathering insight, it was determined early that even with consistent attendance, most often they were first timers and hard to garner a returning audience to the hikes. The SHC site allowed us to gain more information on why that is, work in conjunction with Eventbrite, and build connections with other brands like Yeti looking to support the Saturday Hike Crew mission.",
     ],
   },
-  "seen-by-liz": {
-    title: "Seen By Liz",
+  "tminus-talent": {
+    title: "T Minus Talent",
     year: "2025",
-    category: "Portfolio Website",
-    readTime: "3 min read",
+    category: "Talent Platform",
+    readTime: "2 min read",
     deliverables: [
-      "Visual Identity",
       "Web Development",
-      "Art Direction",
-      "Photography",
+      "Brand Identity",
       "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
     ],
-    hero: "/images/sbl-full.png",
-    images: ["/studyimages/sbl1.webp", "/studyimages/sbl2.webp", "/studyimages/sbl3.webp", "/studyimages/sbl4.webp"],
-    url: "https://seenbyliz.com",
+    hero: "/studyimages/tmt1.webp",
+    video: "/videos/tmtvid.mp4",
+    images: [
+      "/studyimages/tmt1.webp",
+      "/studyimages/tmt2.webp",
+      "/studyimages/tmt3.webp",
+      "/studyimages/tmt4.webp",
+    ],
+    url: "https://tminustalent.com",
     body: [
-      "Seen By Liz is a personal portfolio for a Los Angeles based photographer, focusing on events, landscape and portrait photography. Liz wanted to showcase her work and accept new clients. Utilizing images from various events showcasing her malleability when it comes to capturing moments and we wanted the site to reflect that.",
-      "Intentional and concise on the wording, the focus was image presentation, enough to captivate her audience and lead to exploration of the rest of the site. Bento boxes of images highlighting different work areas showcased her versatility.",
-      "A simple stunning about section directly after the landing page draws you into meeting the creator behind the art users have been introduced to, and finally a contact form accompanied by a dashboard to connect her with prospective clients.",
+      "T minus was created to connect job seekers and employers with Founder Terra in the employment process. The focus for Terra was quick communication and connections to hiring resources.",
+      "Overall, the design stayed simple and intentional while the complexity lied on the backend. From database design to a working dashboard for Terra to parse through the numerous resumes received.",
     ],
   },
-  "moments-of-metanoia": {
-    title: "Moments of Metanoia",
+  "cleo-plus": {
+    title: "Cleo +",
     year: "2025",
     category: "Artist Website",
-    readTime: "4 min read",
+    readTime: "3 min read",
     deliverables: [
       "Brand Strategy",
       "Visual Identity",
@@ -72,41 +85,48 @@ const CASE_STUDIES: Record<string, CaseStudy> = {
       "Entertainment",
     ],
     hero: "/images/metanoia-full.png",
+    video: "/videos/mmvid.mp4",
     images: ["/studyimages/mm2.webp", "/studyimages/mm3.webp"],
     url: "https://itscleoplus.com",
     body: [
-      "Metanoia is a web application built for the release of a music video from artist Cleo Plus to begin the 2026 year. The inspiration of the Metanoia site, song and video came from a place of cultivating community and driving conversations about transformative points in life leading to breakthroughs, whether through the creative process or just life in general.",
-      "In theory, the system design and interactive elements within the application were not very extensive. The focus quickly became the design, sound and overall feeling a user will experience when accessing the application. The project\u2019s landing page itself underwent hundreds of rewrites to align with the artist on the design of the landing page, specifically on desktop. The goal became to segment the two experiences based on the viewing capacity of the user and the goal for us together became to serve those unique experiences in an efficient way so users are met with content quickly.",
-      "On desktop, massive inspiration from the website Hyperdreamz built by the company Naughtyduck that creates WebGL components and animations leading to the ripple effects through the landing page on scroll. Converting her image to a duo-tone hex canvas that broke each pixel down to a single particle that began to interact with the mouse. Alternatively, mobile users would not have that scrolling experience without a mouse and for those users a carousel of mini videos of the artist appeared before users could enter the screen, like a visualizer.",
-      "Overall, an insightful and challenging build focused on intentional design, the implementation of sound, physics and video integration. Building Moments of Metanoia created a space focused on visual excellence accompanied by an intentional design process. Around mock 20 or so, the thinking was that there was no way to improve the way images have been manipulated and videos have been integrated but the constant process of iteration allowed us to push past many blockers to make a beautiful application.",
+      "Cleo is a music artist that wanted an accompanying site that coincided with her recent releases. Offering an alternative way for her clients to interact with her content. An open creative design that lasted weeks driven by the feeling Cleo wanted her fans to feel when they landed on the page.",
+      "We settled on 2 different approaches based on the where we were meeting her fans. Optimizing for mobile and desktop independently, the mobile site offered a vertical loop of a portion of the video that she released with easy access to social links and the pulsating logo at the bottom inviting the user into the next page. On desktop we prioritized the power of the mouse and used a static image, diverging the image into 2 distinct colors, pixelating the two and allow the mouse to interact with the background.",
+      "The iteration of the desktop eventually brought us to a place of harmony within the colors offering distortion of the image as a fan used their mouse across the screen. Setting a foundation for tangible interaction with her fans, for now and in the future.",
     ],
   },
-  "bowie-forward": {
-    title: "Bowie Forward",
+  "egle-zalpys": {
+    title: "Egle Zalpys",
     year: "2026",
-    category: "Community Platform",
+    category: "Portfolio Website",
     readTime: "3 min read",
     deliverables: [
       "Web Development",
-      "TypeScript",
-      "Community",
+      "Visual Identity",
       "Next.js",
-      "Tailwind CSS",
+      "TypeScript",
+      "Motion",
     ],
-    hero: "/images/bowie-full.png",
-    images: ["/studyimages/bf1.webp", "/studyimages/bf2.webp", "/studyimages/bf3.webp"],
-    url: "https://bowieforward.com",
+    hero: "/studyimages/ez1.webp",
+    video: "/videos/ezvid.mp4",
+    images: [
+      "/studyimages/ez1.webp",
+      "/studyimages/ez2.webp",
+      "/studyimages/ez3.webp",
+      "/studyimages/ez4.webp",
+    ],
+    url: "https://portfolio.eglezalpys.com",
     body: [
-      "Bowie Forward is a community initiative and engagement application, database and dashboard for a city within Prince George\u2019s County, Maryland.",
-      "Originally, this application\u2019s intention was a mayoral campaign for a candidate within the special election for 2026 named Remington Tennessee. Working with Remington closely in the inception phases of the campaign, the brainstorming and iteration phases, and eventually the reflection stage in hindsight. Overall, the experience allowed us to gain a temperature within the community, discovering their needs, how they want to be informed and most importantly to them, ways to engage their local youth.",
-      "The transition of Bowie Forward is in a beta stage. Focusing on the insights we gathered to build out a communal hub for residents in the Bowie area and surrounding Prince George\u2019s County.",
-      "The initial intent was a warm and inviting experience on mobile and desktop. A clear and concise communication of mayoral policies, upcoming events communication and an interactive map to educate people on their local polling places. Those elements became the building blocks for the transition with a goal of offering perspectives and events held by local leaders and the city, upcoming events to engage the youth, and interactive elements to make the civic process easier to participate in.",
+      "Egle tells stories through directing photoshoots, creating activations and presenting new products to the public. She wanted a hub to correctly depict her work and the impact from the work she has done. Searching for a quick and concise way to disperse her work for potential employers as well as her next clients.",
+      "Her extensive experience and trove of quality photos made this an exciting project to iterate on. We conducted many creative conversations and decided between dozens of mocks before we decided on the current site today.",
+      "Egle\u2019s focus is on the personal connection and tangible events she curates and organizes, therefore we decided to keep the site simple and focus on the imagery that was captured. Offering a conversation starter built on the efficiency of how the images are served, where the key points are positioned ultimately allowing her next client to visualize their project in the future even before working with Egle in mobile and desktop formats.",
     ],
   },
 };
 
+export const CASE_STUDY_SLUGS = Object.keys(CASE_STUDIES);
+
 export function generateStaticParams() {
-  return Object.keys(CASE_STUDIES).map((slug) => ({ slug }));
+  return CASE_STUDY_SLUGS.map((slug) => ({ slug }));
 }
 
 export default async function CaseStudyPage({
@@ -118,6 +138,9 @@ export default async function CaseStudyPage({
   const study = CASE_STUDIES[slug];
   if (!study) notFound();
 
+  const index = Object.keys(CASE_STUDIES).indexOf(slug) + 1;
+  const paddedIndex = String(index).padStart(2, "0");
+
   const otherStudies = Object.entries(CASE_STUDIES)
     .filter(([key]) => key !== slug)
     .map(([key, val]) => ({ slug: key, ...val }));
@@ -126,320 +149,265 @@ export default async function CaseStudyPage({
     <main
       style={{
         minHeight: "100svh",
-        backgroundColor: "#fff",
-        color: "#000",
+        backgroundColor: "var(--page-bg)",
+        color: "var(--page-fg)",
         fontFamily: "var(--font-mono)",
       }}
     >
-      <PageHeader activeLabel="Engineering" />
-
-      <hr style={{ border: "none", borderTop: "1px solid #000", margin: "0 24px" }} />
-
-      {/* Three-column title section */}
-      <FadeIn y={20}>
+      {/* Hero: header + title/meta + video */}
       <section
         style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 3fr 1fr",
-          gap: 32,
-          padding: "48px 24px 56px",
-          alignItems: "start",
+          display: "flex",
+          flexDirection: "column",
+          minHeight: "100svh",
+          paddingBottom: 24,
         }}
       >
-        {/* Left — metadata */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-          <div>
-            <span
-              style={{
-                display: "block",
-                fontSize: 10,
-                textTransform: "uppercase",
-                letterSpacing: "0.2em",
-                color: "#999",
-                marginBottom: 4,
-              }}
-            >
-              Year
-            </span>
-            <span style={{ fontSize: 12, fontWeight: 500 }}>{study.year}</span>
-          </div>
-          <div>
-            <span
-              style={{
-                display: "block",
-                fontSize: 10,
-                textTransform: "uppercase",
-                letterSpacing: "0.2em",
-                color: "#999",
-                marginBottom: 4,
-              }}
-            >
-              Category
-            </span>
-            <span style={{ fontSize: 12, fontWeight: 500 }}>{study.category}</span>
-          </div>
-          <div>
-            <span style={{ fontSize: 11, color: "#666" }}>{study.readTime}</span>
-          </div>
-        </div>
+        <PageHeader activeLabel="Engineering" />
 
-        {/* Center — title */}
-        <div>
-          <h1
+        <FadeIn y={20}>
+          <div
             style={{
-              fontSize: "clamp(32px, 5vw, 64px)",
-              fontWeight: 400,
-              lineHeight: 1.1,
-              letterSpacing: "-0.02em",
-              fontFamily: "var(--font-display)",
-              textTransform: "uppercase",
-              margin: 0,
+              display: "flex",
+              flexDirection: "column",
+              gap: 24,
+              padding: "24px 24px 0",
             }}
           >
-            {study.title}
-          </h1>
-          <a
-            href={study.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 8,
-              fontSize: 11,
-              textTransform: "uppercase",
-              letterSpacing: "0.15em",
-              color: "#000",
-              textDecoration: "none",
-              marginTop: 20,
-              transition: "opacity 0.2s",
-            }}
-          >
-            Visit Site
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 16 16"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-            >
-              <path d="M3 8h10M9 4l4 4-4 4" />
-            </svg>
-          </a>
-        </div>
-
-        {/* Right — deliverables */}
-        <div>
-          <span
-            style={{
-              display: "block",
-              fontSize: 10,
-              textTransform: "uppercase",
-              letterSpacing: "0.2em",
-              color: "#999",
-              marginBottom: 8,
-            }}
-          >
-            Deliverables
-          </span>
-          {study.deliverables.map((d) => (
-            <span
-              key={d}
-              style={{
-                display: "block",
-                fontSize: 12,
-                lineHeight: 1.8,
-                fontWeight: 500,
-              }}
-            >
-              {d}
-            </span>
-          ))}
-        </div>
-      </section>
-      </FadeIn>
-
-      {/* Hero image */}
-      <FadeIn delay={0.2} y={40}>
-      <div
-        style={{
-          maxWidth: 800,
-          margin: "0 auto",
-          padding: "0 24px",
-        }}
-      >
-        <div
-          style={{
-            position: "relative",
-            width: "100%",
-            aspectRatio: "16 / 9",
-            overflow: "hidden",
-            backgroundColor: "#f0f0f0",
-          }}
-        >
-          <Image
-            src={study.hero}
-            alt={study.title}
-            fill
-            priority
-            style={{ objectFit: "cover", objectPosition: "top" }}
-            sizes="800px"
-          />
-        </div>
-      </div>
-      </FadeIn>
-
-      {/* Project images */}
-      {study.images.length > 1 && (
-        <FadeInView>
-        <div
-          style={{
-            maxWidth: 800,
-            margin: "0 auto",
-            padding: "0 24px",
-            display: "flex",
-            flexDirection: "column",
-            gap: 48,
-            marginTop: 48,
-          }}
-        >
-          {study.images.map((img, i) => (
             <div
-              key={i}
               style={{
-                position: "relative",
-                width: "100%",
-                aspectRatio: "16 / 9",
-                overflow: "hidden",
-                backgroundColor: "#f0f0f0",
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 24,
+                justifyContent: "space-between",
+                alignItems: "flex-end",
               }}
             >
-              <Image
-                src={img}
-                alt={`${study.title} detail ${i + 1}`}
-                fill
-                style={{ objectFit: "cover" }}
-                sizes="800px"
-              />
+              <div>
+                <span
+                  style={{
+                    fontSize: 11,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.3em",
+                    color: "var(--page-muted-2)",
+                  }}
+                >
+                  ({paddedIndex})
+                </span>
+                <h1
+                  style={{
+                    marginTop: 8,
+                    fontSize: "clamp(36px, 6vw, 80px)",
+                    fontWeight: 800,
+                    lineHeight: 0.95,
+                    letterSpacing: "-0.03em",
+                    fontFamily: "var(--font-display)",
+                    textTransform: "uppercase",
+                    margin: "8px 0 0",
+                  }}
+                >
+                  {study.title}
+                </h1>
+              </div>
+
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 4,
+                  fontSize: 11,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.3em",
+                  color: "var(--page-muted-2)",
+                  textAlign: "right",
+                }}
+              >
+                <span style={{ color: "var(--page-muted)" }}>{study.category}</span>
+                <span>{study.deliverables.slice(0, 3).join(" · ")}</span>
+                <span>{study.year}</span>
+              </div>
             </div>
-          ))}
-        </div>
+          </div>
+        </FadeIn>
+
+        <FadeIn delay={0.15} y={24} style={{ flex: 1, display: "flex", minHeight: 0, padding: "24px 24px 0" }}>
+          <CaseStudyHero
+            video={study.video}
+            poster={study.hero}
+            title={study.title}
+          />
+        </FadeIn>
+      </section>
+
+      {/* Description — full viewport width */}
+      <FadeInView>
+        <section style={{ padding: "72px 24px" }}>
+          <div
+            style={{
+              display: "grid",
+              gap: 48,
+              borderTop: "1px solid color-mix(in srgb, var(--page-fg) 20%, transparent)",
+              paddingTop: 40,
+            }}
+          >
+            {study.body.map((paragraph, i) => (
+              <p
+                key={i}
+                style={{
+                  margin: 0,
+                  fontSize: "clamp(18px, 2.2vw, 24px)",
+                  lineHeight: 1.7,
+                  color: "var(--page-body)",
+                  maxWidth: "none",
+                  width: "100%",
+                }}
+              >
+                {paragraph}
+              </p>
+            ))}
+          </div>
+        </section>
+      </FadeInView>
+
+      {/* Gallery */}
+      {study.images.length > 0 && (
+        <FadeInView>
+          <section style={{ padding: "0 24px 72px" }}>
+            <div
+              style={{
+                columns: 2,
+                columnGap: 16,
+              }}
+            >
+              {study.images.map((img, i) => (
+                <div
+                  key={i}
+                  style={{
+                    breakInside: "avoid",
+                    marginBottom: 16,
+                    position: "relative",
+                    width: "100%",
+                    aspectRatio: "16 / 10",
+                    overflow: "hidden",
+                    borderRadius: 6,
+                    backgroundColor: "var(--page-surface)",
+                  }}
+                >
+                  <Image
+                    src={img}
+                    alt={`${study.title} detail ${i + 1}`}
+                    fill
+                    style={{ objectFit: "cover" }}
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </div>
+              ))}
+            </div>
+          </section>
         </FadeInView>
       )}
 
-      {/* Body text */}
-      <FadeInView>
-      <section
+      {/* More */}
+      <hr
         style={{
-          maxWidth: 720,
-          margin: "0 auto",
-          padding: "72px 24px",
-          fontSize: 24,
-          lineHeight: 1.9,
-          color: "#222",
+          border: "none",
+          borderTop: "1px solid var(--page-fg)",
+          margin: "0 24px",
         }}
-      >
-        {study.body.map((paragraph, i) => (
-          <p
-            key={i}
+      />
+
+      <FadeInView>
+        <section style={{ padding: "64px 24px 80px" }}>
+          <div
             style={{
-              marginBottom: i < study.body.length - 1 ? 36 : 0,
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "baseline",
+              marginBottom: 48,
+              gap: 24,
             }}
           >
-            {paragraph}
-          </p>
-        ))}
-      </section>
-      </FadeInView>
-
-      {/* Divider */}
-      <hr style={{ border: "none", borderTop: "1px solid #000", margin: "0 24px" }} />
-
-      {/* More case studies */}
-      <FadeInView>
-      <section style={{ padding: "64px 24px 80px" }}>
-        <h2
-          style={{
-            fontSize: "clamp(36px, 5vw, 64px)",
-            fontWeight: 900,
-            fontFamily: "var(--font-display)",
-            textTransform: "uppercase",
-            marginBottom: 48,
-          }}
-        >
-          More
-        </h2>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 24,
-          }}
-        >
-          {otherStudies.map((other) => (
-            <Link
-              key={other.slug}
-              href={`/engineering/${other.slug}`}
-              style={{ textDecoration: "none", color: "#000" }}
+            <h2
+              style={{
+                fontSize: "clamp(36px, 5vw, 64px)",
+                fontWeight: 900,
+                fontFamily: "var(--font-display)",
+                textTransform: "uppercase",
+                margin: 0,
+              }}
             >
-              <div
-                style={{
-                  position: "relative",
-                  aspectRatio: "4 / 3",
-                  overflow: "hidden",
-                  backgroundColor: "#f0f0f0",
-                  marginBottom: 16,
-                }}
-              >
-                <Image
-                  src={other.hero}
-                  alt={other.title}
-                  fill
-                  style={{ objectFit: "cover", objectPosition: "top" }}
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
-              </div>
-              <p
-                style={{
-                  fontSize: 10,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.15em",
-                  color: "#999",
-                  marginBottom: 4,
-                }}
-              >
-                Project
-              </p>
-              <p
-                style={{
-                  fontSize: 14,
-                  fontWeight: 500,
-                  textTransform: "uppercase",
-                  lineHeight: 1.4,
-                }}
-              >
-                {other.title}
-              </p>
-              <p
-                style={{
-                  fontSize: 10,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.1em",
-                  color: "#666",
-                  marginTop: 8,
-                }}
-              >
-                {other.deliverables.slice(0, 3).join(", ")}
-              </p>
+              More
+            </h2>
+            <Link
+              href="/engineering"
+              style={{
+                fontSize: 12,
+                color: "var(--page-muted)",
+                textDecoration: "none",
+              }}
+            >
+              ← Back to all work
             </Link>
-          ))}
-        </div>
-      </section>
+          </div>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gap: 24,
+            }}
+          >
+            {otherStudies.map((other) => (
+              <Link
+                key={other.slug}
+                href={`/engineering/${other.slug}`}
+                style={{ textDecoration: "none", color: "var(--page-fg)" }}
+              >
+                <div
+                  style={{
+                    position: "relative",
+                    aspectRatio: "4 / 3",
+                    overflow: "hidden",
+                    backgroundColor: "var(--page-surface)",
+                    marginBottom: 16,
+                    borderRadius: 6,
+                  }}
+                >
+                  <Image
+                    src={other.hero}
+                    alt={other.title}
+                    fill
+                    style={{ objectFit: "cover", objectPosition: "top" }}
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                </div>
+                <p
+                  style={{
+                    fontSize: 10,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.15em",
+                    color: "var(--page-muted-2)",
+                    marginBottom: 4,
+                  }}
+                >
+                  Project
+                </p>
+                <p
+                  style={{
+                    fontSize: 14,
+                    fontWeight: 500,
+                    textTransform: "uppercase",
+                    lineHeight: 1.4,
+                  }}
+                >
+                  {other.title}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </section>
       </FadeInView>
 
-      {/* Footer */}
       <footer
         style={{
           display: "flex",
@@ -450,7 +418,7 @@ export default async function CaseStudyPage({
         <Link
           href="/"
           style={{
-            color: "#000",
+            color: "var(--page-fg)",
             fontSize: 11,
             textTransform: "uppercase",
             letterSpacing: "0.2em",

@@ -6,6 +6,47 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import PageHeader from "../components/PageHeader";
 
+const BIO =
+  "I am a software engineer, lagree instructor, and community ambassador in Los Angeles, California. Moving from Maryland in 2022, after graduating from Towson University with a degree in Computer Science, I have gained years of experience in multiple sectors focused on connecting communities and continued curiosity.";
+
+const LINKS = [
+  { label: "Resume", href: "/BrandonNance-Resume26pdf.pdf" },
+  { label: "GitHub", href: "https://github.com/Al3xand3r11" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/bnance1/" },
+];
+
+function BioLinks({ fontSize }: { fontSize: number }) {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        gap: 40,
+        fontSize,
+        letterSpacing: "0.12em",
+        textTransform: "uppercase",
+      }}
+    >
+      {LINKS.map((link) => (
+        <a
+          key={link.label}
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            color: "var(--page-fg)",
+            textDecoration: "underline",
+            textUnderlineOffset: 6,
+          }}
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+  );
+}
+
 export default function AboutPage() {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -21,8 +62,8 @@ export default function AboutPage() {
     <main
       style={{
         minHeight: "100svh",
-        backgroundColor: "#fff",
-        color: "#000",
+        backgroundColor: "var(--page-bg)",
+        color: "var(--page-fg)",
         fontFamily: "var(--font-mono)",
       }}
     >
@@ -31,7 +72,7 @@ export default function AboutPage() {
       <hr
         style={{
           border: "none",
-          borderTop: "1px solid #000",
+          borderTop: "1px solid var(--page-fg)",
           margin: "0 24px",
         }}
       />
@@ -42,13 +83,16 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            style={{ fontSize: 13, lineHeight: 1.8 }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 32,
+              fontSize: 13,
+              lineHeight: 1.8,
+            }}
           >
-            <p>
-              My name is Brandon Nance. I am a Software Engineer, Lagree instructor and community ambassador in Los Angeles. Approaching 5 years
-              of experience leading engineering work at <strong>PARAMOUNT</strong>, contributing to live streaming infrastructure
-              serving millions, and continuing to build personal projects to accelerate growth for members of my community.
-            </p>
+            <p style={{ margin: 0 }}>{BIO}</p>
+            <BioLinks fontSize={12} />
           </motion.div>
 
           <motion.div
@@ -68,34 +112,9 @@ export default function AboutPage() {
               alt="Brandon Nance"
               fill
               priority
+              sizes="100vw"
               style={{ objectFit: "cover", filter: "brightness(0.75)" }}
             />
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 32,
-              fontSize: 13,
-              lineHeight: 1.8,
-              marginTop: 32,
-            }}
-          >
-            <p>
-              I graduated from Towson University in 2022 with a degree in computer science. With 5 years of engineering
-              experience and 10 years in customer service, I bring a unique blend of
-              technical depth and human-centered thinking to every project.
-            </p>
-
-            <p>
-              In the fall of 2026, I will be attending USC Marshall School of business in the fall
-              with the goal of intertwining my technical knowledge and customer service experience on
-              top of the foundational business concepts I will learn in school to continue to connect communities in need to vital resources.
-            </p>
           </motion.div>
         </section>
       ) : (
@@ -124,6 +143,7 @@ export default function AboutPage() {
               alt="Brandon Nance"
               fill
               priority
+              sizes="36vw"
               style={{ objectFit: "cover", filter: "brightness(0.75)" }}
             />
           </motion.div>
@@ -135,29 +155,15 @@ export default function AboutPage() {
             style={{
               display: "flex",
               flexDirection: "column",
-              justifyContent: "center",
-              gap: 32,
-              fontSize: 13,
+              justifyContent: "flex-start",
+              paddingTop: "10vh",
+              gap: 40,
+              fontSize: 24,
               lineHeight: 1.8,
             }}
           >
-            <p>
-            My name is Brandon Nance. I am a Software Engineer, Lagree instructor and community ambassador in Los Angeles. Approaching 5 years
-              of experience leading engineering work at <strong>PARAMOUNT</strong>, contributing to live streaming infrastructure
-              serving millions, and continuing to build personal projects to accelerate growth for members of my community.
-            </p>
-
-            <p>
-            I graduated from Towson University in 2022 with a degree in computer science. With 5 years of engineering
-              experience and 10 years in customer service, I bring a unique blend of
-              technical depth and human-centered thinking to every project.
-            </p>
-
-            <p>
-            In the fall of 2026, I will be attending USC Marshall School of business in the fall
-              with the goal of intertwining my technical knowledge and customer service experience on
-              top of the foundational business concepts I will learn in school to continue to connect communities in need to vital resources.
-            </p>
+            <p style={{ margin: 0 }}>{BIO}</p>
+            <BioLinks fontSize={14} />
           </motion.div>
         </section>
       )}
@@ -172,7 +178,7 @@ export default function AboutPage() {
         <Link
           href="/"
           style={{
-            color: "#000",
+            color: "var(--page-fg)",
             fontSize: 11,
             textTransform: "uppercase",
             letterSpacing: "0.2em",

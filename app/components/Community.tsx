@@ -48,19 +48,6 @@ export default function Community() {
         >
           Community
         </h1>
-        <p
-          style={{
-            fontSize: 11,
-            textTransform: "uppercase",
-            letterSpacing: "0.15em",
-            marginTop: 24,
-            fontFamily: "var(--font-mono)",
-            color: "#666",
-            maxWidth: 600,
-          }}
-        >
-          
-        </p>
       </motion.div>
 
       <div style={{ marginTop: 64 }}>
@@ -75,7 +62,7 @@ export default function Community() {
               display: "grid",
               gridTemplateColumns: "1fr 1fr",
               gap: 0,
-              borderTop: "1px solid #000",
+              borderTop: "1px solid var(--page-fg)",
               paddingTop: 24,
               paddingBottom: 48,
             }}
@@ -83,7 +70,7 @@ export default function Community() {
             <div
               style={{
                 paddingRight: 24,
-                borderRight: "1px solid #000",
+                borderRight: "1px solid var(--page-fg)",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
@@ -94,7 +81,7 @@ export default function Community() {
                   fontSize: 10,
                   textTransform: "uppercase",
                   letterSpacing: "0.15em",
-                  color: "#666",
+                  color: "var(--page-muted)",
                   fontFamily: "var(--font-mono)",
                 }}
               >
@@ -118,7 +105,7 @@ export default function Community() {
                 style={{
                   fontSize: 13,
                   lineHeight: 1.8,
-                  color: "#333",
+                  color: "var(--page-body)",
                   marginTop: 16,
                   fontFamily: "var(--font-mono)",
                 }}
@@ -137,13 +124,14 @@ export default function Community() {
                   position: "relative",
                   aspectRatio: "4 / 3",
                   overflow: "hidden",
-                  backgroundColor: "#f0f0f0",
+                  backgroundColor: "var(--page-surface)",
                 }}
               >
                 <Image
                   src={community.image}
                   alt={community.title}
                   fill
+                  sizes="(max-width: 767px) 100vw, 50vw"
                   style={{ objectFit: "cover" }}
                 />
               </div>

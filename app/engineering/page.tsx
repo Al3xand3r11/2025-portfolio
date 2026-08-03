@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import PageHeader from "../components/PageHeader";
 
@@ -15,33 +16,34 @@ const PROJECTS = [
     url: "https://thesaturdayhikecrew.com",
   },
   {
-    title: "Seen By Liz",
-    slug: "seen-by-liz",
-    tags: "Next.js · Photography · Portfolio",
-    video: "/videos/sblvid.mp4",
-    poster: "/studyimages/sbl1.webp",
-    url: "https://seenbyliz.com",
+    title: "T Minus Talent",
+    slug: "tminus-talent",
+    tags: "Next.js · Talent · Brand",
+    video: "/videos/tmtvid.mp4",
+    poster: "/studyimages/tmt1.webp",
+    url: "https://tminustalent.com",
   },
   {
-    title: "Moments of Metanoia",
-    slug: "moments-of-metanoia",
+    title: "Cleo +",
+    slug: "cleo-plus",
     tags: "Next.js · WebGL · Entertainment",
     video: "/videos/mmvid.mp4",
     poster: "/studyimages/mm1.webp",
     url: "https://itscleoplus.com",
   },
   {
-    title: "Bowie Forward",
-    slug: "bowie-forward",
-    tags: "Next.js · TypeScript · Community",
-    video: "/videos/bfvid.mp4",
-    poster: "/studyimages/bf1.webp",
-    url: "https://bowieforward.com",
+    title: "Egle Zalpys",
+    slug: "egle-zalpys",
+    tags: "Next.js · Portfolio · Design",
+    video: "/videos/ezvid.mp4",
+    poster: "/studyimages/ez1.webp",
+    url: "https://portfolio.eglezalpys.com",
   },
 ];
 
 const ADDITIONAL_PROJECTS = [
-  { title: "TMinus Talent", href: "https://tminustalent.com" },
+  { title: "Seen By Liz", href: "https://seenbyliz.com" },
+  { title: "Bowie Forward", href: "https://bowieforward.com" },
   { title: "Python Image Converter", href: "https://github.com/Al3xand3r11/python-image-converter/tree/main" },
   { title: "Sunday Runday LA", href: "https://www.sundayrundayla.com/" },
   { title: "Food Desert Finder", href: "https://github.com/Al3xand3r11/food-desert-fixer" },
@@ -52,8 +54,8 @@ export default function EngineeringPage() {
     <main
       style={{
         minHeight: "100svh",
-        backgroundColor: "#fff",
-        color: "#000",
+        backgroundColor: "var(--page-bg)",
+        color: "var(--page-fg)",
         fontFamily: "var(--font-mono)",
       }}
     >
@@ -62,7 +64,7 @@ export default function EngineeringPage() {
       <hr
         style={{
           border: "none",
-          borderTop: "1px solid #000",
+          borderTop: "1px solid var(--page-fg)",
           margin: "0 24px",
         }}
       />
@@ -84,7 +86,7 @@ export default function EngineeringPage() {
             maxWidth: "900px",
           }}
         >
-          Recent Engineering Projects
+         Projects
         </h1>
         <p
           style={{
@@ -136,7 +138,7 @@ export default function EngineeringPage() {
 
         {ADDITIONAL_PROJECTS.map((project, i) => (
           <div key={project.title}>
-            <div style={{ borderTop: "1px solid #000" }} />
+            <div style={{ borderTop: "1px solid var(--page-fg)" }} />
             <a
               href={project.href}
               target="_blank"
@@ -147,7 +149,7 @@ export default function EngineeringPage() {
                 justifyContent: "space-between",
                 padding: "20px 0",
                 textDecoration: "none",
-                color: "#000",
+                color: "var(--page-fg)",
                 fontFamily: "var(--font-display)",
                 transition: "opacity 0.2s",
               }}
@@ -177,7 +179,7 @@ export default function EngineeringPage() {
               </svg>
             </a>
             {i === ADDITIONAL_PROJECTS.length - 1 && (
-              <div style={{ borderTop: "1px solid #000" }} />
+              <div style={{ borderTop: "1px solid var(--page-fg)" }} />
             )}
           </div>
         ))}
@@ -193,7 +195,7 @@ export default function EngineeringPage() {
         <Link
           href="/"
           style={{
-            color: "#000",
+            color: "var(--page-fg)",
             fontSize: 11,
             textTransform: "uppercase",
             letterSpacing: "0.2em",
@@ -216,19 +218,22 @@ function ProjectCard({
   index: number;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [hovered, setHovered] = useState(false);
+  /* Tracks real playback rather than hover, so the poster stays put until there
+     are actual frames to reveal. The video carries preload="none", so the first
+     hover has to fetch it. */
+  const [playing, setPlaying] = useState(false);
 
   const handleMouseEnter = () => {
-    setHovered(true);
     const video = videoRef.current;
     if (video) {
       video.currentTime = 0;
-      video.play();
+      /* Rejects if the pointer leaves before the fetch resolves. */
+      video.play().catch(() => {});
     }
   };
 
   const handleMouseLeave = () => {
-    setHovered(false);
+    setPlaying(false);
     const video = videoRef.current;
     if (video) {
       video.pause();
@@ -240,13 +245,13 @@ function ProjectCard({
     <div
       style={{
         paddingLeft: index % 2 === 1 ? 24 : 0,
-        borderLeft: index % 2 === 1 ? "1px solid #000" : "none",
+        borderLeft: index % 2 === 1 ? "1px solid var(--page-fg)" : "none",
         marginTop: index < 2 ? 24 : 0,
       }}
     >
       <div
         style={{
-          borderTop: index >= 2 ? "1px solid #000" : "none",
+          borderTop: index >= 2 ? "1px solid var(--page-fg)" : "none",
           paddingTop: index >= 2 ? 24 : 0,
           paddingBottom: 24,
         }}
@@ -258,7 +263,7 @@ function ProjectCard({
             position: "relative",
             aspectRatio: "4 / 3",
             overflow: "hidden",
-            backgroundColor: "#f0f0f0",
+            backgroundColor: "var(--page-surface)",
             cursor: "pointer",
           }}
         >
@@ -269,6 +274,8 @@ function ProjectCard({
               muted
               playsInline
               loop
+              preload="none"
+              onPlaying={() => setPlaying(true)}
               style={{
                 position: "absolute",
                 inset: 0,
@@ -277,16 +284,14 @@ function ProjectCard({
                 objectFit: "cover",
               }}
             />
-            <img
+            <Image
               src={project.poster}
               alt={project.title}
+              fill
+              sizes="(max-width: 767px) 100vw, 50vw"
               style={{
-                position: "absolute",
-                inset: 0,
-                width: "100%",
-                height: "100%",
                 objectFit: "cover",
-                opacity: hovered ? 0 : 1,
+                opacity: playing ? 0 : 1,
                 transition: "opacity 0.3s",
                 zIndex: 1,
               }}
@@ -299,7 +304,7 @@ function ProjectCard({
             textTransform: "uppercase",
             letterSpacing: "0.1em",
             marginTop: 16,
-            color: "#666",
+            color: "var(--page-muted)",
             fontFamily: "var(--font-mono)",
           }}
         >
@@ -325,7 +330,7 @@ function ProjectCard({
             fontSize: 11,
             textTransform: "uppercase",
             letterSpacing: "0.15em",
-            color: "#000",
+            color: "var(--page-fg)",
             textDecoration: "none",
             marginTop: 8,
             fontFamily: "var(--font-mono)",

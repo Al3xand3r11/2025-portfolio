@@ -54,8 +54,8 @@ export default function ContactPage() {
     <main
       style={{
         minHeight: "100svh",
-        backgroundColor: "#fff",
-        color: "#000",
+        backgroundColor: "var(--page-bg)",
+        color: "var(--page-fg)",
         fontFamily: "var(--font-mono)",
       }}
     >
@@ -64,7 +64,7 @@ export default function ContactPage() {
       <hr
         style={{
           border: "none",
-          borderTop: "1px solid #000",
+          borderTop: "1px solid var(--page-fg)",
           margin: 0,
         }}
       />
@@ -102,8 +102,8 @@ export default function ContactPage() {
             width: "100%",
             maxWidth: 560,
             margin: "0 auto",
-            borderLeft: "1px solid #000",
-            borderRight: "1px solid #000",
+            borderLeft: "1px solid var(--page-fg)",
+            borderRight: "1px solid var(--page-fg)",
             minHeight: "calc(100svh - 80px)",
             padding: "160px 48px 48px",
             display: "flex",
@@ -127,7 +127,7 @@ export default function ContactPage() {
             style={{
               fontSize: 13,
               lineHeight: 1.6,
-              color: "#666",
+              color: "var(--page-muted)",
               fontFamily: "var(--font-mono)",
               marginBottom: 56,
               maxWidth: 380,
@@ -145,7 +145,7 @@ export default function ContactPage() {
               flex: 1,
             }}
           >
-            <div style={{ borderBottom: "1px solid #000", padding: "16px 0" }}>
+            <div style={{ borderBottom: "1px solid var(--page-fg)", padding: "16px 0" }}>
               <input
                 type="text"
                 name="name"
@@ -162,12 +162,12 @@ export default function ContactPage() {
                   letterSpacing: "0.15em",
                   textTransform: "uppercase",
                   fontFamily: "var(--font-mono)",
-                  color: "#000",
+                  color: "var(--page-fg)",
                 }}
               />
             </div>
 
-            <div style={{ borderBottom: "1px solid #000", padding: "16px 0" }}>
+            <div style={{ borderBottom: "1px solid var(--page-fg)", padding: "16px 0" }}>
               <input
                 type="email"
                 name="user_email"
@@ -184,12 +184,12 @@ export default function ContactPage() {
                   letterSpacing: "0.15em",
                   textTransform: "uppercase",
                   fontFamily: "var(--font-mono)",
-                  color: "#000",
+                  color: "var(--page-fg)",
                 }}
               />
             </div>
 
-            <div style={{ borderBottom: "1px solid #000", padding: "16px 0" }}>
+            <div style={{ borderBottom: "1px solid var(--page-fg)", padding: "16px 0" }}>
               <select
                 name="subject"
                 value={subject}
@@ -204,7 +204,7 @@ export default function ContactPage() {
                   letterSpacing: "0.15em",
                   textTransform: "uppercase",
                   fontFamily: "var(--font-mono)",
-                  color: subject ? "#000" : "#999",
+                  color: subject ? "var(--page-fg)" : "var(--page-muted-2)",
                   appearance: "none",
                   cursor: "pointer",
                 }}
@@ -220,7 +220,7 @@ export default function ContactPage() {
               </select>
             </div>
 
-            <div style={{ borderBottom: "1px solid #000", padding: "16px 0" }}>
+            <div style={{ borderBottom: "1px solid var(--page-fg)", padding: "16px 0" }}>
               <textarea
                 name="message"
                 value={thoughts}
@@ -237,7 +237,7 @@ export default function ContactPage() {
                   letterSpacing: "0.15em",
                   textTransform: "uppercase",
                   fontFamily: "var(--font-mono)",
-                  color: "#000",
+                  color: "var(--page-fg)",
                   resize: "none",
                 }}
               />
@@ -252,7 +252,7 @@ export default function ContactPage() {
                 justifyContent: "space-between",
                 width: "100%",
                 border: "none",
-                borderBottom: "1px solid #000",
+                borderBottom: "1px solid var(--page-fg)",
                 backgroundColor: "transparent",
                 padding: "16px 0",
                 cursor: status === "sending" ? "not-allowed" : "pointer",
@@ -261,7 +261,7 @@ export default function ContactPage() {
                 fontSize: 11,
                 letterSpacing: "0.15em",
                 textTransform: "uppercase",
-                color: "#000",
+                color: "var(--page-fg)",
                 transition: "opacity 0.2s",
               }}
             >
