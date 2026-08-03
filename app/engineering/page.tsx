@@ -52,8 +52,8 @@ export default function EngineeringPage() {
     <main
       style={{
         minHeight: "100svh",
-        backgroundColor: "#fff",
-        color: "#000",
+        backgroundColor: "var(--page-bg)",
+        color: "var(--page-fg)",
         fontFamily: "var(--font-mono)",
       }}
     >
@@ -62,7 +62,7 @@ export default function EngineeringPage() {
       <hr
         style={{
           border: "none",
-          borderTop: "1px solid #000",
+          borderTop: "1px solid var(--page-fg)",
           margin: "0 24px",
         }}
       />
@@ -136,7 +136,7 @@ export default function EngineeringPage() {
 
         {ADDITIONAL_PROJECTS.map((project, i) => (
           <div key={project.title}>
-            <div style={{ borderTop: "1px solid #000" }} />
+            <div style={{ borderTop: "1px solid var(--page-fg)" }} />
             <a
               href={project.href}
               target="_blank"
@@ -147,7 +147,7 @@ export default function EngineeringPage() {
                 justifyContent: "space-between",
                 padding: "20px 0",
                 textDecoration: "none",
-                color: "#000",
+                color: "var(--page-fg)",
                 fontFamily: "var(--font-display)",
                 transition: "opacity 0.2s",
               }}
@@ -177,7 +177,7 @@ export default function EngineeringPage() {
               </svg>
             </a>
             {i === ADDITIONAL_PROJECTS.length - 1 && (
-              <div style={{ borderTop: "1px solid #000" }} />
+              <div style={{ borderTop: "1px solid var(--page-fg)" }} />
             )}
           </div>
         ))}
@@ -193,7 +193,7 @@ export default function EngineeringPage() {
         <Link
           href="/"
           style={{
-            color: "#000",
+            color: "var(--page-fg)",
             fontSize: 11,
             textTransform: "uppercase",
             letterSpacing: "0.2em",
@@ -240,13 +240,13 @@ function ProjectCard({
     <div
       style={{
         paddingLeft: index % 2 === 1 ? 24 : 0,
-        borderLeft: index % 2 === 1 ? "1px solid #000" : "none",
+        borderLeft: index % 2 === 1 ? "1px solid var(--page-fg)" : "none",
         marginTop: index < 2 ? 24 : 0,
       }}
     >
       <div
         style={{
-          borderTop: index >= 2 ? "1px solid #000" : "none",
+          borderTop: index >= 2 ? "1px solid var(--page-fg)" : "none",
           paddingTop: index >= 2 ? 24 : 0,
           paddingBottom: 24,
         }}
@@ -258,7 +258,7 @@ function ProjectCard({
             position: "relative",
             aspectRatio: "4 / 3",
             overflow: "hidden",
-            backgroundColor: "#f0f0f0",
+            backgroundColor: "var(--page-surface)",
             cursor: "pointer",
           }}
         >
@@ -299,7 +299,7 @@ function ProjectCard({
             textTransform: "uppercase",
             letterSpacing: "0.1em",
             marginTop: 16,
-            color: "#666",
+            color: "var(--page-muted)",
             fontFamily: "var(--font-mono)",
           }}
         >
@@ -325,7 +325,7 @@ function ProjectCard({
             fontSize: 11,
             textTransform: "uppercase",
             letterSpacing: "0.15em",
-            color: "#000",
+            color: "var(--page-fg)",
             textDecoration: "none",
             marginTop: 8,
             fontFamily: "var(--font-mono)",

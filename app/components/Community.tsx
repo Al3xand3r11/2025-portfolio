@@ -75,7 +75,7 @@ export default function Community() {
               display: "grid",
               gridTemplateColumns: "1fr 1fr",
               gap: 0,
-              borderTop: "1px solid #000",
+              borderTop: "1px solid var(--page-fg)",
               paddingTop: 24,
               paddingBottom: 48,
             }}
@@ -83,7 +83,7 @@ export default function Community() {
             <div
               style={{
                 paddingRight: 24,
-                borderRight: "1px solid #000",
+                borderRight: "1px solid var(--page-fg)",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",

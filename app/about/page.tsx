@@ -21,8 +21,8 @@ export default function AboutPage() {
     <main
       style={{
         minHeight: "100svh",
-        backgroundColor: "#fff",
-        color: "#000",
+        backgroundColor: "var(--page-bg)",
+        color: "var(--page-fg)",
         fontFamily: "var(--font-mono)",
       }}
     >
@@ -31,7 +31,7 @@ export default function AboutPage() {
       <hr
         style={{
           border: "none",
-          borderTop: "1px solid #000",
+          borderTop: "1px solid var(--page-fg)",
           margin: "0 24px",
         }}
       />
@@ -172,7 +172,7 @@ export default function AboutPage() {
         <Link
           href="/"
           style={{
-            color: "#000",
+            color: "var(--page-fg)",
             fontSize: 11,
             textTransform: "uppercase",
             letterSpacing: "0.2em",

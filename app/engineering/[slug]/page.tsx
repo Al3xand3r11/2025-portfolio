@@ -11,6 +11,7 @@ type CaseStudy = {
   readTime: string;
   deliverables: string[];
   hero: string;
+  video: string;
   images: string[];
   url: string;
   body: string[];
@@ -30,7 +31,13 @@ const CASE_STUDIES: Record<string, CaseStudy> = {
       "TypeScript",
     ],
     hero: "/images/shc-full.png",
-    images: [ "/studyimages/shc2.webp", "/studyimages/shc3.webp", "/studyimages/shc4.webp", "/studyimages/shc5.webp"],
+    video: "/videos/shcvid.mp4",
+    images: [
+      "/studyimages/shc2.webp",
+      "/studyimages/shc3.webp",
+      "/studyimages/shc4.webp",
+      "/studyimages/shc5.webp",
+    ],
     url: "https://thesaturdayhikecrew.com",
     body: [
       "The Saturday Hike started in late 2022 in Los Angeles as a group of friends, many new and black to the area looking for a way to get active through hiking and invite others as well. After about 6 months and a few more hikes, there were over 100 people regularly in attendance for a Saturday hike ranging from locations in Pasadena to Malibu and all in between.",
@@ -51,7 +58,13 @@ const CASE_STUDIES: Record<string, CaseStudy> = {
       "Next.js",
     ],
     hero: "/images/sbl-full.png",
-    images: ["/studyimages/sbl1.webp", "/studyimages/sbl2.webp", "/studyimages/sbl3.webp", "/studyimages/sbl4.webp"],
+    video: "/videos/sblvid.mp4",
+    images: [
+      "/studyimages/sbl1.webp",
+      "/studyimages/sbl2.webp",
+      "/studyimages/sbl3.webp",
+      "/studyimages/sbl4.webp",
+    ],
     url: "https://seenbyliz.com",
     body: [
       "Seen By Liz is a personal portfolio for a Los Angeles based photographer, focusing on events, landscape and portrait photography. Liz wanted to showcase her work and accept new clients. Utilizing images from various events showcasing her malleability when it comes to capturing moments and we wanted the site to reflect that.",
@@ -72,6 +85,7 @@ const CASE_STUDIES: Record<string, CaseStudy> = {
       "Entertainment",
     ],
     hero: "/images/metanoia-full.png",
+    video: "/videos/mmvid.mp4",
     images: ["/studyimages/mm2.webp", "/studyimages/mm3.webp"],
     url: "https://itscleoplus.com",
     body: [
@@ -94,6 +108,7 @@ const CASE_STUDIES: Record<string, CaseStudy> = {
       "Tailwind CSS",
     ],
     hero: "/images/bowie-full.png",
+    video: "/videos/bfvid.mp4",
     images: ["/studyimages/bf1.webp", "/studyimages/bf2.webp", "/studyimages/bf3.webp"],
     url: "https://bowieforward.com",
     body: [
@@ -118,6 +133,9 @@ export default async function CaseStudyPage({
   const study = CASE_STUDIES[slug];
   if (!study) notFound();
 
+  const index = Object.keys(CASE_STUDIES).indexOf(slug) + 1;
+  const paddedIndex = String(index).padStart(2, "0");
+
   const otherStudies = Object.entries(CASE_STUDIES)
     .filter(([key]) => key !== slug)
     .map(([key, val]) => ({ slug: key, ...val }));
@@ -126,320 +144,299 @@ export default async function CaseStudyPage({
     <main
       style={{
         minHeight: "100svh",
-        backgroundColor: "#fff",
-        color: "#000",
+        backgroundColor: "var(--page-bg)",
+        color: "var(--page-fg)",
         fontFamily: "var(--font-mono)",
       }}
     >
-      <PageHeader activeLabel="Engineering" />
-
-      <hr style={{ border: "none", borderTop: "1px solid #000", margin: "0 24px" }} />
-
-      {/* Three-column title section */}
-      <FadeIn y={20}>
+      {/* Hero: header + title/meta + video */}
       <section
         style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 3fr 1fr",
-          gap: 32,
-          padding: "48px 24px 56px",
-          alignItems: "start",
+          display: "flex",
+          flexDirection: "column",
+          minHeight: "100svh",
+          paddingBottom: 24,
         }}
       >
-        {/* Left — metadata */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-          <div>
-            <span
-              style={{
-                display: "block",
-                fontSize: 10,
-                textTransform: "uppercase",
-                letterSpacing: "0.2em",
-                color: "#999",
-                marginBottom: 4,
-              }}
-            >
-              Year
-            </span>
-            <span style={{ fontSize: 12, fontWeight: 500 }}>{study.year}</span>
-          </div>
-          <div>
-            <span
-              style={{
-                display: "block",
-                fontSize: 10,
-                textTransform: "uppercase",
-                letterSpacing: "0.2em",
-                color: "#999",
-                marginBottom: 4,
-              }}
-            >
-              Category
-            </span>
-            <span style={{ fontSize: 12, fontWeight: 500 }}>{study.category}</span>
-          </div>
-          <div>
-            <span style={{ fontSize: 11, color: "#666" }}>{study.readTime}</span>
-          </div>
-        </div>
+        <PageHeader activeLabel="Engineering" />
 
-        {/* Center — title */}
-        <div>
-          <h1
+        <FadeIn y={20}>
+          <div
             style={{
-              fontSize: "clamp(32px, 5vw, 64px)",
-              fontWeight: 400,
-              lineHeight: 1.1,
-              letterSpacing: "-0.02em",
-              fontFamily: "var(--font-display)",
-              textTransform: "uppercase",
-              margin: 0,
+              display: "flex",
+              flexDirection: "column",
+              gap: 24,
+              padding: "24px 24px 0",
             }}
           >
-            {study.title}
-          </h1>
-          <a
-            href={study.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 8,
-              fontSize: 11,
-              textTransform: "uppercase",
-              letterSpacing: "0.15em",
-              color: "#000",
-              textDecoration: "none",
-              marginTop: 20,
-              transition: "opacity 0.2s",
-            }}
-          >
-            Visit Site
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 16 16"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-            >
-              <path d="M3 8h10M9 4l4 4-4 4" />
-            </svg>
-          </a>
-        </div>
-
-        {/* Right — deliverables */}
-        <div>
-          <span
-            style={{
-              display: "block",
-              fontSize: 10,
-              textTransform: "uppercase",
-              letterSpacing: "0.2em",
-              color: "#999",
-              marginBottom: 8,
-            }}
-          >
-            Deliverables
-          </span>
-          {study.deliverables.map((d) => (
-            <span
-              key={d}
-              style={{
-                display: "block",
-                fontSize: 12,
-                lineHeight: 1.8,
-                fontWeight: 500,
-              }}
-            >
-              {d}
-            </span>
-          ))}
-        </div>
-      </section>
-      </FadeIn>
-
-      {/* Hero image */}
-      <FadeIn delay={0.2} y={40}>
-      <div
-        style={{
-          maxWidth: 800,
-          margin: "0 auto",
-          padding: "0 24px",
-        }}
-      >
-        <div
-          style={{
-            position: "relative",
-            width: "100%",
-            aspectRatio: "16 / 9",
-            overflow: "hidden",
-            backgroundColor: "#f0f0f0",
-          }}
-        >
-          <Image
-            src={study.hero}
-            alt={study.title}
-            fill
-            priority
-            style={{ objectFit: "cover", objectPosition: "top" }}
-            sizes="800px"
-          />
-        </div>
-      </div>
-      </FadeIn>
-
-      {/* Project images */}
-      {study.images.length > 1 && (
-        <FadeInView>
-        <div
-          style={{
-            maxWidth: 800,
-            margin: "0 auto",
-            padding: "0 24px",
-            display: "flex",
-            flexDirection: "column",
-            gap: 48,
-            marginTop: 48,
-          }}
-        >
-          {study.images.map((img, i) => (
             <div
-              key={i}
               style={{
-                position: "relative",
-                width: "100%",
-                aspectRatio: "16 / 9",
-                overflow: "hidden",
-                backgroundColor: "#f0f0f0",
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 24,
+                justifyContent: "space-between",
+                alignItems: "flex-end",
               }}
             >
-              <Image
-                src={img}
-                alt={`${study.title} detail ${i + 1}`}
-                fill
-                style={{ objectFit: "cover" }}
-                sizes="800px"
-              />
+              <div>
+                <span
+                  style={{
+                    fontSize: 11,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.3em",
+                    color: "var(--page-muted-2)",
+                  }}
+                >
+                  ({paddedIndex})
+                </span>
+                <h1
+                  style={{
+                    marginTop: 8,
+                    fontSize: "clamp(36px, 6vw, 80px)",
+                    fontWeight: 800,
+                    lineHeight: 0.95,
+                    letterSpacing: "-0.03em",
+                    fontFamily: "var(--font-display)",
+                    textTransform: "uppercase",
+                    margin: "8px 0 0",
+                  }}
+                >
+                  {study.title}
+                </h1>
+              </div>
+
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 4,
+                  fontSize: 11,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.3em",
+                  color: "var(--page-muted-2)",
+                  textAlign: "right",
+                }}
+              >
+                <span style={{ color: "var(--page-muted)" }}>{study.category}</span>
+                <span>{study.deliverables.slice(0, 3).join(" · ")}</span>
+                <span>{study.year}</span>
+              </div>
             </div>
-          ))}
-        </div>
+          </div>
+        </FadeIn>
+
+        <FadeIn delay={0.15} y={24} style={{ flex: 1, display: "flex", minHeight: 0, padding: "24px 24px 0" }}>
+          <div
+            style={{
+              position: "relative",
+              flex: 1,
+              minHeight: "45vh",
+              overflow: "hidden",
+              borderRadius: 6,
+              backgroundColor: "var(--page-surface)",
+            }}
+          >
+            <video
+              src={study.video}
+              poster={study.hero}
+              autoPlay
+              muted
+              loop
+              playsInline
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            />
+          </div>
+        </FadeIn>
+      </section>
+
+      {/* Description — full viewport width */}
+      <FadeInView>
+        <section style={{ padding: "72px 24px" }}>
+          <div
+            style={{
+              display: "grid",
+              gap: 48,
+              borderTop: "1px solid color-mix(in srgb, var(--page-fg) 20%, transparent)",
+              paddingTop: 40,
+            }}
+          >
+            {study.body.map((paragraph, i) => (
+              <div key={i}>
+                <h2
+                  style={{
+                    fontSize: 11,
+                    fontWeight: 500,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.3em",
+                    color: "var(--page-muted-2)",
+                    margin: 0,
+                  }}
+                >
+                  Section {String(i + 1).padStart(2, "0")}
+                </h2>
+                <p
+                  style={{
+                    marginTop: 20,
+                    fontSize: "clamp(18px, 2.2vw, 24px)",
+                    lineHeight: 1.7,
+                    color: "var(--page-body)",
+                    maxWidth: "none",
+                    width: "100%",
+                  }}
+                >
+                  {paragraph}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </FadeInView>
+
+      {/* Gallery */}
+      {study.images.length > 0 && (
+        <FadeInView>
+          <section style={{ padding: "0 24px 72px" }}>
+            <div
+              style={{
+                columns: 2,
+                columnGap: 16,
+              }}
+            >
+              {study.images.map((img, i) => (
+                <div
+                  key={i}
+                  style={{
+                    breakInside: "avoid",
+                    marginBottom: 16,
+                    position: "relative",
+                    width: "100%",
+                    aspectRatio: "16 / 10",
+                    overflow: "hidden",
+                    borderRadius: 6,
+                    backgroundColor: "var(--page-surface)",
+                  }}
+                >
+                  <Image
+                    src={img}
+                    alt={`${study.title} detail ${i + 1}`}
+                    fill
+                    style={{ objectFit: "cover" }}
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </div>
+              ))}
+            </div>
+          </section>
         </FadeInView>
       )}
 
-      {/* Body text */}
-      <FadeInView>
-      <section
+      {/* More */}
+      <hr
         style={{
-          maxWidth: 720,
-          margin: "0 auto",
-          padding: "72px 24px",
-          fontSize: 24,
-          lineHeight: 1.9,
-          color: "#222",
+          border: "none",
+          borderTop: "1px solid var(--page-fg)",
+          margin: "0 24px",
         }}
-      >
-        {study.body.map((paragraph, i) => (
-          <p
-            key={i}
+      />
+
+      <FadeInView>
+        <section style={{ padding: "64px 24px 80px" }}>
+          <div
             style={{
-              marginBottom: i < study.body.length - 1 ? 36 : 0,
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "baseline",
+              marginBottom: 48,
+              gap: 24,
             }}
           >
-            {paragraph}
-          </p>
-        ))}
-      </section>
-      </FadeInView>
-
-      {/* Divider */}
-      <hr style={{ border: "none", borderTop: "1px solid #000", margin: "0 24px" }} />
-
-      {/* More case studies */}
-      <FadeInView>
-      <section style={{ padding: "64px 24px 80px" }}>
-        <h2
-          style={{
-            fontSize: "clamp(36px, 5vw, 64px)",
-            fontWeight: 900,
-            fontFamily: "var(--font-display)",
-            textTransform: "uppercase",
-            marginBottom: 48,
-          }}
-        >
-          More
-        </h2>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 24,
-          }}
-        >
-          {otherStudies.map((other) => (
-            <Link
-              key={other.slug}
-              href={`/engineering/${other.slug}`}
-              style={{ textDecoration: "none", color: "#000" }}
+            <h2
+              style={{
+                fontSize: "clamp(36px, 5vw, 64px)",
+                fontWeight: 900,
+                fontFamily: "var(--font-display)",
+                textTransform: "uppercase",
+                margin: 0,
+              }}
             >
-              <div
-                style={{
-                  position: "relative",
-                  aspectRatio: "4 / 3",
-                  overflow: "hidden",
-                  backgroundColor: "#f0f0f0",
-                  marginBottom: 16,
-                }}
-              >
-                <Image
-                  src={other.hero}
-                  alt={other.title}
-                  fill
-                  style={{ objectFit: "cover", objectPosition: "top" }}
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
-              </div>
-              <p
-                style={{
-                  fontSize: 10,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.15em",
-                  color: "#999",
-                  marginBottom: 4,
-                }}
-              >
-                Project
-              </p>
-              <p
-                style={{
-                  fontSize: 14,
-                  fontWeight: 500,
-                  textTransform: "uppercase",
-                  lineHeight: 1.4,
-                }}
-              >
-                {other.title}
-              </p>
-              <p
-                style={{
-                  fontSize: 10,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.1em",
-                  color: "#666",
-                  marginTop: 8,
-                }}
-              >
-                {other.deliverables.slice(0, 3).join(", ")}
-              </p>
+              More
+            </h2>
+            <Link
+              href="/engineering"
+              style={{
+                fontSize: 12,
+                color: "var(--page-muted)",
+                textDecoration: "none",
+              }}
+            >
+              ← Back to all work
             </Link>
-          ))}
-        </div>
-      </section>
+          </div>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gap: 24,
+            }}
+          >
+            {otherStudies.map((other) => (
+              <Link
+                key={other.slug}
+                href={`/engineering/${other.slug}`}
+                style={{ textDecoration: "none", color: "var(--page-fg)" }}
+              >
+                <div
+                  style={{
+                    position: "relative",
+                    aspectRatio: "4 / 3",
+                    overflow: "hidden",
+                    backgroundColor: "var(--page-surface)",
+                    marginBottom: 16,
+                    borderRadius: 6,
+                  }}
+                >
+                  <Image
+                    src={other.hero}
+                    alt={other.title}
+                    fill
+                    style={{ objectFit: "cover", objectPosition: "top" }}
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                </div>
+                <p
+                  style={{
+                    fontSize: 10,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.15em",
+                    color: "var(--page-muted-2)",
+                    marginBottom: 4,
+                  }}
+                >
+                  Project
+                </p>
+                <p
+                  style={{
+                    fontSize: 14,
+                    fontWeight: 500,
+                    textTransform: "uppercase",
+                    lineHeight: 1.4,
+                  }}
+                >
+                  {other.title}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </section>
       </FadeInView>
 
-      {/* Footer */}
       <footer
         style={{
           display: "flex",
@@ -450,7 +447,7 @@ export default async function CaseStudyPage({
         <Link
           href="/"
           style={{
-            color: "#000",
+            color: "var(--page-fg)",
             fontSize: 11,
             textTransform: "uppercase",
             letterSpacing: "0.2em",

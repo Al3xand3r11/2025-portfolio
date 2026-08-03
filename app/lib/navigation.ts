@@ -8,6 +8,8 @@ export type NavItem = {
   external?: boolean;
 };
 
+export const LAGREE_URL = LAGREE_ORIGIN;
+
 export const navItems: NavItem[] = [
   { label: "About", href: "/about", type: "page" },
   { label: "Community", href: "/community", type: "page" },

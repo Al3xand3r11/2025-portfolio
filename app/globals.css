@@ -72,8 +72,17 @@
   font-display: swap;
 }
 
-:root {
-  /* Colors */
+:root,
+[data-theme="light"] {
+  /* Page chrome (white ↔ black) */
+  --page-bg: #ffffff;
+  --page-fg: #000000;
+  --page-muted: #666666;
+  --page-muted-2: #999999;
+  --page-surface: #f0f0f0;
+  --page-body: #222222;
+
+  /* Legacy tokens */
   --color-background: #0a0a0a;
   --color-foreground: #fafafa;
   --color-muted: #666666;
@@ -82,18 +91,30 @@
   --color-accent-warm: #d4c4a8;
   --color-border: #262626;
   --color-card: #141414;
-  
+
   /* Typography */
   --font-serif: "JetBrains Mono", monospace;
   --font-sans: "JetBrains Mono", monospace;
   --font-mono: "JetBrains Mono", monospace;
   --font-display: var(--font-display, "Space Grotesk", sans-serif);
-  
+
   /* Spacing */
   --header-height: 80px;
   --section-padding: clamp(4rem, 10vw, 8rem);
   --container-max: 1400px;
   --container-padding: clamp(1rem, 2vw, 1.5rem);
+
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --page-bg: #000000;
+  --page-fg: #ffffff;
+  --page-muted: #999999;
+  --page-muted-2: #666666;
+  --page-surface: #1a1a1a;
+  --page-body: #dddddd;
+  color-scheme: dark;
 }
 
 * {
@@ -104,14 +125,14 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #ffffff;
+  background-color: var(--page-bg);
   overscroll-behavior: none;
 }
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--color-background);
-  color: var(--color-foreground);
+  background-color: var(--page-bg);
+  color: var(--page-fg);
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
