@@ -61,14 +61,6 @@ export default function ContactPage() {
     >
       <PageHeader activeLabel="Contact" />
 
-      <hr
-        style={{
-          border: "none",
-          borderTop: "1px solid var(--page-fg)",
-          margin: 0,
-        }}
-      />
-
       <div
         style={{
           position: "relative",

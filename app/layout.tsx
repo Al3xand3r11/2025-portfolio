@@ -10,9 +10,9 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://alexandernance.com"),
-  title: "Brandon Nance | Software Engineer",
+  title: "Brandon Nance",
   description:
-    "Brandon Nance is a software engineer in Los Angeles specializing in TypeScript, React, and Next.js. Currently building live streaming technology at Paramount and teaching Lagree fitness in DTLA.",
+    "Software engineer in Los Angeles",
   keywords: [
     "Brandon Nance",
     "Software Engineer",
@@ -30,9 +30,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Brandon Nance | Software Engineer",
+    title: "Brandon Nance",
     description:
-      "Software engineer in Los Angeles specializing in TypeScript, React, and Next.js. Building live streaming technology at Paramount and teaching Lagree fitness.",
+      "Software engineer in Los Angeles",
     url: "https://alexandernance.com",
     siteName: "Brandon Nance",
     type: "website",
@@ -40,9 +40,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Brandon Nance | Software Engineer",
+    title: "Brandon Nance",
     description:
-      "Software engineer in Los Angeles specializing in TypeScript, React, and Next.js.",
+      "Los Angeles",
   },
   robots: {
     index: true,

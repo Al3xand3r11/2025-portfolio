@@ -1,43 +1,35 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import PageHeader from "../components/PageHeader";
+
+const PLACEHOLDER =
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.";
 
 const PROJECTS = [
   {
     title: "The Saturday Hike Crew",
     slug: "saturday-hike-crew",
     tags: "Next.js · TypeScript · Tailwind CSS",
-    video: "/videos/shcvid.mp4",
-    poster: "/studyimages/shc1.webp",
-    url: "https://thesaturdayhikecrew.com",
-  },
-  {
-    title: "T Minus Talent",
-    slug: "tminus-talent",
-    tags: "Next.js · Talent · Brand",
-    video: "/videos/tmtvid.mp4",
-    poster: "/studyimages/tmt1.webp",
-    url: "https://tminustalent.com",
+    description: PLACEHOLDER,
+    image: "/studyimages/shc1.webp",
   },
   {
     title: "Cleo +",
     slug: "cleo-plus",
     tags: "Next.js · WebGL · Entertainment",
-    video: "/videos/mmvid.mp4",
-    poster: "/studyimages/mm1.webp",
-    url: "https://itscleoplus.com",
+    description: PLACEHOLDER,
+    image: "/studyimages/mm1.webp",
   },
   {
     title: "Egle Zalpys",
     slug: "egle-zalpys",
     tags: "Next.js · Portfolio · Design",
-    video: "/videos/ezvid.mp4",
-    poster: "/studyimages/ez1.webp",
-    url: "https://portfolio.eglezalpys.com",
+    description: PLACEHOLDER,
+    image: "/studyimages/ez1.webp",
   },
 ];
 
@@ -50,6 +42,16 @@ const ADDITIONAL_PROJECTS = [
 ];
 
 export default function EngineeringPage() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
   return (
     <main
       style={{
@@ -59,95 +61,65 @@ export default function EngineeringPage() {
         fontFamily: "var(--font-mono)",
       }}
     >
-      <PageHeader activeLabel="Engineering" />
+      <PageHeader activeLabel="Work" />
 
-      <hr
-        style={{
-          border: "none",
-          borderTop: "1px solid var(--page-fg)",
-          margin: "0 24px",
-        }}
-      />
-
-      <motion.section
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        style={{ padding: "64px 24px 24px" }}
-      >
-        <h1
-          style={{
-            fontSize: "clamp(48px, 8vw, 96px)",
-            fontWeight: 900,
-            lineHeight: 0.95,
-            letterSpacing: "-0.02em",
-            textTransform: "uppercase",
-            fontFamily: "var(--font-display)",
-            maxWidth: "900px",
-          }}
+      <section style={{ padding: "48px 24px 80px" }}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
         >
-         Projects
-        </h1>
-        <p
-          style={{
-            fontSize: 11,
-            textTransform: "uppercase",
-            letterSpacing: "0.15em",
-            marginTop: 24,
-            fontFamily: "var(--font-mono)",
-          }}
+
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 120,
+              marginTop: 48,
+            }}
+          >
+            {PROJECTS.map((project, i) => (
+              <ProjectCard
+                key={project.slug}
+                project={project}
+                index={i}
+                isMobile={isMobile}
+              />
+            ))}
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          style={{ marginTop: 96, textAlign: "left" }}
         >
-          Written in TypeScript
-        </p>
-      </motion.section>
+          <h2
+            style={{
+              fontSize: 11,
+              textTransform: "uppercase",
+              letterSpacing: "0.2em",
+              fontFamily: "var(--font-mono)",
+              margin: "0 0 8px",
+            }}
+          >
+            Additional Projects
+          </h2>
 
-      <motion.section
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          columnGap: 16,
-          padding: "48px 24px 80px",
-        }}
-      >
-        {PROJECTS.map((project, i) => (
-          <ProjectCard key={project.title} project={project} index={i} />
-        ))}
-      </motion.section>
-
-      <motion.section
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.6 }}
-        style={{ padding: "0 24px 80px" }}
-      >
-        <h2
-          style={{
-            fontSize: 11,
-            textTransform: "uppercase",
-            letterSpacing: "0.2em",
-            fontFamily: "var(--font-mono)",
-            marginBottom: 24,
-          }}
-        >
-          Additional Projects
-        </h2>
-
-        {ADDITIONAL_PROJECTS.map((project, i) => (
-          <div key={project.title}>
-            <div style={{ borderTop: "1px solid var(--page-fg)" }} />
+          {ADDITIONAL_PROJECTS.map((project) => (
             <a
+              key={project.title}
               href={project.href}
               target="_blank"
               rel="noopener noreferrer"
               style={{
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "space-between",
-                padding: "20px 0",
+                justifyContent: "flex-start",
+                gap: 16,
+                padding: "16px 0",
                 textDecoration: "none",
                 color: "var(--page-fg)",
                 fontFamily: "var(--font-display)",
@@ -173,17 +145,14 @@ export default function EngineeringPage() {
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="1.5"
-                style={{ flexShrink: 0, marginLeft: 24, transform: "rotate(-45deg)" }}
+                style={{ flexShrink: 0, transform: "rotate(-45deg)" }}
               >
                 <path d="M5 12h14M13 5l6 7-6 7" />
               </svg>
             </a>
-            {i === ADDITIONAL_PROJECTS.length - 1 && (
-              <div style={{ borderTop: "1px solid var(--page-fg)" }} />
-            )}
-          </div>
-        ))}
-      </motion.section>
+          ))}
+        </motion.div>
+      </section>
 
       <footer
         style={{
@@ -213,126 +182,85 @@ export default function EngineeringPage() {
 function ProjectCard({
   project,
   index,
+  isMobile,
 }: {
   project: (typeof PROJECTS)[number];
   index: number;
+  isMobile: boolean;
 }) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  /* Tracks real playback rather than hover, so the poster stays put until there
-     are actual frames to reveal. The video carries preload="none", so the first
-     hover has to fetch it. */
-  const [playing, setPlaying] = useState(false);
-
-  const handleMouseEnter = () => {
-    const video = videoRef.current;
-    if (video) {
-      video.currentTime = 0;
-      /* Rejects if the pointer leaves before the fetch resolves. */
-      video.play().catch(() => {});
-    }
-  };
-
-  const handleMouseLeave = () => {
-    setPlaying(false);
-    const video = videoRef.current;
-    if (video) {
-      video.pause();
-      video.currentTime = 0;
-    }
-  };
-
   return (
-    <div
+    <motion.article
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.1 + index * 0.08 }}
       style={{
-        paddingLeft: index % 2 === 1 ? 24 : 0,
-        borderLeft: index % 2 === 1 ? "1px solid var(--page-fg)" : "none",
-        marginTop: index < 2 ? 24 : 0,
+        display: "grid",
+        gridTemplateColumns: isMobile ? "1fr" : "minmax(0, 2fr) minmax(0, 3fr)",
+        gap: isMobile ? 20 : 48,
+        alignItems: "stretch",
       }}
     >
       <div
         style={{
-          borderTop: index >= 2 ? "1px solid var(--page-fg)" : "none",
-          paddingTop: index >= 2 ? 24 : 0,
-          paddingBottom: 24,
+          textAlign: "left",
+          order: isMobile ? 2 : 1,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          gap: 24,
         }}
       >
-        <div
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          style={{
-            position: "relative",
-            aspectRatio: "4 / 3",
-            overflow: "hidden",
-            backgroundColor: "var(--page-surface)",
-            cursor: "pointer",
-          }}
-        >
-          <Link href={`/engineering/${project.slug}`} style={{ display: "block", position: "absolute", inset: 0 }}>
-            <video
-              ref={videoRef}
-              src={project.video}
-              muted
-              playsInline
-              loop
-              preload="none"
-              onPlaying={() => setPlaying(true)}
-              style={{
-                position: "absolute",
-                inset: 0,
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-              }}
-            />
-            <Image
-              src={project.poster}
-              alt={project.title}
-              fill
-              sizes="(max-width: 767px) 100vw, 50vw"
-              style={{
-                objectFit: "cover",
-                opacity: playing ? 0 : 1,
-                transition: "opacity 0.3s",
-                zIndex: 1,
-              }}
-            />
-          </Link>
+        <div>
+          <p
+            style={{
+              fontSize: "clamp(18px, 2vw, 26px)",
+              fontWeight: 500,
+              lineHeight: 1,
+              letterSpacing: "-0.02em",
+              textTransform: "uppercase",
+              fontFamily: "var(--font-display)",
+              margin: 0,
+            }}
+          >
+            {project.title}
+          </p>
+          <p
+            style={{
+              fontSize: 12,
+              lineHeight: 1.6,
+              maxWidth: "36ch",
+              margin: "16px 0 0",
+              fontFamily: "var(--font-mono)",
+            }}
+          >
+            {project.description}
+          </p>
         </div>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 12 }}>
         <p
           style={{
             fontSize: 10,
-            textTransform: "uppercase",
-            letterSpacing: "0.1em",
-            marginTop: 16,
+            lineHeight: 1.6,
+            letterSpacing: "0.04em",
+            margin: 0,
             color: "var(--page-muted)",
             fontFamily: "var(--font-mono)",
           }}
         >
           {project.tags}
         </p>
-        <p
-          style={{
-            fontSize: 14,
-            fontWeight: 500,
-            marginTop: 4,
-            fontFamily: "var(--font-mono)",
-            textTransform: "uppercase",
-          }}
-        >
-          {project.title}
-        </p>
         <Link
           href={`/engineering/${project.slug}`}
           style={{
             display: "inline-flex",
             alignItems: "center",
+            justifyContent: "flex-start",
             gap: 6,
-            fontSize: 11,
+            fontSize: 10,
             textTransform: "uppercase",
             letterSpacing: "0.15em",
             color: "var(--page-fg)",
             textDecoration: "none",
-            marginTop: 8,
             fontFamily: "var(--font-mono)",
             transition: "opacity 0.2s",
           }}
@@ -341,8 +269,8 @@ function ProjectCard({
         >
           View Case Study
           <svg
-            width="14"
-            height="14"
+            width="12"
+            height="12"
             viewBox="0 0 16 16"
             fill="none"
             stroke="currentColor"
@@ -351,7 +279,35 @@ function ProjectCard({
             <path d="M3 8h10M9 4l4 4-4 4" />
           </svg>
         </Link>
+        </div>
       </div>
-    </div>
+
+      <Link
+        href={`/engineering/${project.slug}`}
+        style={{
+          display: "block",
+          textDecoration: "none",
+          color: "inherit",
+          order: isMobile ? 1 : 2,
+        }}
+      >
+        <div
+          style={{
+            position: "relative",
+            aspectRatio: "16 / 10",
+            overflow: "hidden",
+            backgroundColor: "var(--page-surface)",
+          }}
+        >
+          <Image
+            src={project.image}
+            alt={`${project.title} landing page`}
+            fill
+            sizes="(max-width: 767px) 100vw, 60vw"
+            style={{ objectFit: "cover" }}
+          />
+        </div>
+      </Link>
+    </motion.article>
   );
 }

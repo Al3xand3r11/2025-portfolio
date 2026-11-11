@@ -163,7 +163,7 @@ export default async function CaseStudyPage({
           paddingBottom: 24,
         }}
       >
-        <PageHeader activeLabel="Engineering" />
+        <PageHeader activeLabel="Work" />
 
         <FadeIn y={20}>
           <div

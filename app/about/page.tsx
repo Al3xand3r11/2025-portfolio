@@ -69,14 +69,6 @@ export default function AboutPage() {
     >
       <PageHeader activeLabel="About" />
 
-      <hr
-        style={{
-          border: "none",
-          borderTop: "1px solid var(--page-fg)",
-          margin: "0 24px",
-        }}
-      />
-
       {isMobile ? (
         <section style={{ padding: "48px 24px 80px" }}>
           <motion.div

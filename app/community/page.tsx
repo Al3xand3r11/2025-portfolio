@@ -14,14 +14,6 @@ export default function CommunityPage() {
     >
       <PageHeader activeLabel="Community" />
 
-      <hr
-        style={{
-          border: "none",
-          borderTop: "1px solid var(--page-fg)",
-          margin: "0 24px",
-        }}
-      />
-
       <Community />
 
       <footer
