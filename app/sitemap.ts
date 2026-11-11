@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { CASE_STUDY_SLUGS } from "./engineering/[slug]/page";
+import { CASE_STUDY_SLUGS } from "./lib/caseStudies";
 import { ENGINEERING_ORIGIN } from "./lib/sites";
 
 /* The Lagree pages are on their own host now, and are listed by the sitemap

@@ -1,0 +1,218 @@
+.page {
+  --cs-inline: clamp(24px, 4vw, 72px);
+  min-height: 100svh;
+  background: var(--cs-bg);
+  color: var(--cs-fg);
+  font-family: var(--font-mono);
+}
+
+.lead {
+  padding: var(--cs-breathing) var(--cs-inline) 0;
+}
+
+.head {
+  width: 100%;
+}
+
+.index,
+.label,
+.slotLabel {
+  margin: 0;
+  font-size: var(--cs-label-size);
+  letter-spacing: var(--cs-label-tracking);
+  text-transform: uppercase;
+  color: var(--cs-muted);
+}
+
+.title {
+  width: 100%;
+  margin: 12px 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(40px, 7vw, 96px);
+  font-weight: var(--cs-display-weight);
+  letter-spacing: var(--cs-display-tracking);
+  line-height: 0.98;
+  color: var(--cs-fg);
+}
+
+.heroShot {
+  margin-top: clamp(36px, 5vw, 72px);
+  aspect-ratio: 16 / 9;
+}
+
+.statement,
+.bentoSection,
+.backend {
+  padding: var(--section-gap) var(--cs-inline) 0;
+}
+
+.intro {
+  max-width: 16em;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--cs-intro-size);
+  font-weight: var(--cs-display-weight);
+  line-height: var(--cs-intro-leading);
+  letter-spacing: var(--cs-display-tracking);
+  color: var(--cs-fg);
+}
+
+.columns,
+.backendGrid {
+  display: grid;
+  grid-template-columns: minmax(140px, 1fr) minmax(0, 1fr);
+  gap: 24px 64px;
+  align-items: start;
+}
+
+.columns {
+  margin-top: clamp(48px, 8vw, 96px);
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 42ch;
+}
+
+.detail,
+.blurb {
+  margin: 0;
+  font-size: var(--cs-detail-size);
+  line-height: var(--cs-detail-leading);
+  color: var(--cs-body);
+}
+
+.bento {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2vw, 24px);
+}
+
+.slot {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--cs-surface);
+}
+
+.heroShot,
+.backendShot {
+  border-radius: var(--radius-md);
+}
+
+.slotLabel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.videoRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: clamp(20px, 2.2vw, 36px);
+  border-radius: 10px;
+  background: var(--cs-bento);
+}
+
+.videoTile {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+}
+
+.pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.pairShot,
+.fullShot {
+  border-radius: 10px;
+}
+
+.pairShot {
+  aspect-ratio: 4 / 3;
+}
+
+.fullShot {
+  aspect-ratio: 16 / 9;
+}
+
+.videoFrame {
+  position: absolute;
+  inset: 0;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.stack {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px 32px;
+  margin-top: 36px;
+}
+
+.stackItem {
+  margin: 0;
+}
+
+.stackLabel {
+  margin: 0;
+  font-size: var(--cs-label-size);
+  letter-spacing: var(--cs-label-tracking);
+  text-transform: uppercase;
+  color: var(--cs-muted);
+}
+
+.stackValue {
+  margin: 8px 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: var(--cs-display-weight);
+  letter-spacing: var(--cs-display-tracking);
+  line-height: 1.3;
+  color: var(--cs-fg);
+}
+
+.backendShot {
+  margin-top: clamp(36px, 5vw, 64px);
+  aspect-ratio: 16 / 10;
+}
+
+.rule {
+  border: none;
+  border-top: 1px solid color-mix(in srgb, var(--cs-fg) 16%, transparent);
+  margin: var(--section-gap) var(--cs-inline) 0;
+}
+
+.follow {
+  padding: 64px var(--cs-inline) 80px;
+}
+
+@media (max-width: 767px) {
+  .columns,
+  .backendGrid,
+  .stack {
+    grid-template-columns: 1fr;
+  }
+
+  .videoTile {
+    width: 100%;
+  }
+
+  .pair {
+    grid-template-columns: 1fr;
+  }
+}
