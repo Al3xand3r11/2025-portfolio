@@ -89,6 +89,37 @@
   /* Spacing */
   --header-height: 80px;
 
+  /* Case study layout. Unused until the work pages are rebuilt.
+     Kept off the shared page tokens so the rest of the site stays as-is. */
+  --cs-bg: #faf8f5;
+  --cs-fg: #1c1916;
+  --cs-muted: #6f6a63;
+  --cs-muted-2: #a39c94;
+  --cs-body: #2a2622;
+  --cs-surface: #f3efe9;
+  --cs-bento: #efe8dc;
+  --cs-accent: var(--cs-accent-sage);
+  --cs-accent-sage: #dce8d6;
+  --cs-accent-lavender: #e4dff0;
+  --cs-accent-peach: #f6e3d6;
+
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+
+  --cs-breathing: clamp(96px, 14vw, 200px);
+  --section-gap: clamp(80px, 12vw, 160px);
+  --cs-gutter: 24px;
+
+  --cs-display-weight: 400;
+  --cs-display-tracking: -0.02em;
+  --cs-label-size: 11px;
+  --cs-label-tracking: 0.18em;
+  --cs-intro-size: clamp(32px, 4.2vw, 48px);
+  --cs-intro-leading: 1.25;
+  --cs-detail-size: 15px;
+  --cs-detail-leading: 1.65;
+
   color-scheme: light;
 }
 
@@ -99,6 +130,19 @@
   --page-muted-2: #666666;
   --page-surface: #1a1a1a;
   --page-body: #dddddd;
+
+  --cs-bg: #12110f;
+  --cs-fg: #f4f0ea;
+  --cs-muted: #a39c94;
+  --cs-muted-2: #6f6a63;
+  --cs-body: #e4dfd8;
+  --cs-surface: #1c1b18;
+  --cs-bento: #242220;
+  --cs-accent: var(--cs-accent-sage);
+  --cs-accent-sage: #2a3328;
+  --cs-accent-lavender: #2e2a38;
+  --cs-accent-peach: #3a2e26;
+
   color-scheme: dark;
 }
 
