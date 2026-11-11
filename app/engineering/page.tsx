@@ -63,7 +63,7 @@ export default function EngineeringPage() {
     >
       <PageHeader activeLabel="Work" />
 
-      <section style={{ padding: "48px 24px 80px" }}>
+      <section style={{ padding: "48px 24px 80px", paddingLeft: 24, paddingRight: 24 }}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -198,6 +198,8 @@ function ProjectCard({
         gridTemplateColumns: isMobile ? "1fr" : "minmax(0, 2fr) minmax(0, 3fr)",
         gap: isMobile ? 20 : 48,
         alignItems: "stretch",
+        width: "100%",
+        minWidth: 0,
       }}
     >
       <div
@@ -289,6 +291,7 @@ function ProjectCard({
           textDecoration: "none",
           color: "inherit",
           order: isMobile ? 1 : 2,
+          minWidth: 0,
         }}
       >
         <div
@@ -296,6 +299,7 @@ function ProjectCard({
             position: "relative",
             aspectRatio: "16 / 10",
             overflow: "hidden",
+            borderRadius: 12,
             backgroundColor: "var(--page-surface)",
           }}
         >
