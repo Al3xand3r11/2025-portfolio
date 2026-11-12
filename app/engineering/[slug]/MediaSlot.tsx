@@ -24,6 +24,7 @@ export default function MediaSlot({
           alt={alt}
           fill
           priority={priority}
+          unoptimized={src.includes("ez1.webp")}
           sizes={sizes}
           style={{ objectFit: "cover" }}
         />

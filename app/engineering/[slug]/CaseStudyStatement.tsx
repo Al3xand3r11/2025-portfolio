@@ -16,9 +16,9 @@ export default function CaseStudyStatement({
           <p className={styles.label}>Overview</p>
           <div className={styles.details}>
             {details.map((paragraph, i) => (
-              <p key={i} className={styles.detail}>
-                {paragraph}
-              </p>
+              <FadeInView key={i} y={16} delay={0.08 * (i + 1)}>
+                <p className={styles.detail}>{paragraph}</p>
+              </FadeInView>
             ))}
           </div>
         </div>

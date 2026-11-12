@@ -103,9 +103,9 @@ export default async function CaseStudyPage({
                     position: "relative",
                     aspectRatio: "4 / 3",
                     overflow: "hidden",
-                    backgroundColor: "var(--page-surface)",
+                    backgroundColor: "transparent",
                     marginBottom: 16,
-                    borderRadius: 6,
+                    borderRadius: 10,
                   }}
                 >
                   {other.heroImage ? (

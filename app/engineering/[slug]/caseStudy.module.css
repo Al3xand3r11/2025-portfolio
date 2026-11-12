@@ -97,11 +97,6 @@
   background: var(--cs-surface);
 }
 
-.heroShot,
-.backendShot {
-  border-radius: var(--radius-md);
-}
-
 .slotLabel {
   position: absolute;
   inset: 0;
@@ -132,13 +127,16 @@
   gap: 16px;
 }
 
+.heroShot,
 .pairShot,
-.fullShot {
+.fullShot,
+.backendShot {
   border-radius: 10px;
+  background: transparent;
 }
 
 .pairShot {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 5;
 }
 
 .fullShot {

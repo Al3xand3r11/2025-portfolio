@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import PageHeader from "../components/PageHeader";
 
 const PLACEHOLDER =
@@ -42,6 +42,7 @@ const ADDITIONAL_PROJECTS = [
 ];
 
 export default function EngineeringPage() {
+  const reduceMotion = useReducedMotion();
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -65,9 +66,9 @@ export default function EngineeringPage() {
 
       <section style={{ padding: "48px 24px 80px", paddingLeft: 24, paddingRight: 24 }}>
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: reduceMotion ? 0 : 0.7 }}
         >
 
           <div
@@ -84,16 +85,17 @@ export default function EngineeringPage() {
                 project={project}
                 index={i}
                 isMobile={isMobile}
+                reduceMotion={reduceMotion}
               />
             ))}
           </div>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: reduceMotion ? 0 : 0.7 }}
           style={{ marginTop: 96, textAlign: "left" }}
         >
           <h2
@@ -131,9 +133,8 @@ export default function EngineeringPage() {
               <span
                 style={{
                   fontSize: "clamp(20px, 3vw, 32px)",
-                  fontWeight: 300,
-                  textTransform: "uppercase",
-                  letterSpacing: "-0.01em",
+                  fontWeight: 400,
+                  letterSpacing: "-0.02em",
                 }}
               >
                 {project.title}
@@ -183,16 +184,21 @@ function ProjectCard({
   project,
   index,
   isMobile,
+  reduceMotion,
 }: {
   project: (typeof PROJECTS)[number];
   index: number;
   isMobile: boolean;
+  reduceMotion: boolean | null;
 }) {
   return (
     <motion.article
-      initial={{ opacity: 0, y: 24 }}
+      initial={reduceMotion ? false : { opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.1 + index * 0.08 }}
+      transition={{
+        duration: reduceMotion ? 0 : 0.7,
+        delay: reduceMotion ? 0 : 0.08 * (index + 1),
+      }}
       style={{
         display: "grid",
         gridTemplateColumns: isMobile ? "1fr" : "minmax(0, 2fr) minmax(0, 3fr)",
@@ -215,11 +221,10 @@ function ProjectCard({
         <div>
           <p
             style={{
-              fontSize: "clamp(18px, 2vw, 26px)",
-              fontWeight: 500,
-              lineHeight: 1,
+              fontSize: "clamp(28px, 3vw, 40px)",
+              fontWeight: 400,
+              lineHeight: 1.05,
               letterSpacing: "-0.02em",
-              textTransform: "uppercase",
               fontFamily: "var(--font-display)",
               margin: 0,
             }}
@@ -299,14 +304,15 @@ function ProjectCard({
             position: "relative",
             aspectRatio: "16 / 10",
             overflow: "hidden",
-            borderRadius: 12,
-            backgroundColor: "var(--page-surface)",
+            borderRadius: 10,
+            backgroundColor: "transparent",
           }}
         >
           <Image
             src={project.image}
             alt={`${project.title} landing page`}
             fill
+            unoptimized={project.slug === "egle-zalpys"}
             sizes="(max-width: 767px) 100vw, 60vw"
             style={{ objectFit: "cover" }}
           />
