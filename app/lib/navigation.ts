@@ -11,6 +11,5 @@ export const navItems: NavItem[] = [
   { label: "About", href: "/about" },
   { label: "Community", href: "/community" },
   { label: "Work", href: "/engineering" },
-  { label: "Lagree", href: LAGREE_ORIGIN, external: true },
   { label: "Contact", href: "/contact" },
 ];

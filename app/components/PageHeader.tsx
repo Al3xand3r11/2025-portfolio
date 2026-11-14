@@ -113,7 +113,7 @@ export default function PageHeader({ activeLabel }: { activeLabel?: string }) {
               style={{
                 position: "fixed",
                 inset: 0,
-                backgroundColor: "rgba(0,0,0,0.4)",
+                backgroundColor: "rgba(18, 17, 15, 0.4)",
                 zIndex: 998,
               }}
             />

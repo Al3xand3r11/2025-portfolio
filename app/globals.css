@@ -74,13 +74,13 @@
 
 :root,
 [data-theme="light"] {
-  /* Page chrome (white ↔ black) */
-  --page-bg: #ffffff;
-  --page-fg: #000000;
-  --page-muted: #666666;
-  --page-muted-2: #999999;
-  --page-surface: #f0f0f0;
-  --page-body: #222222;
+  /* Warm paper and ink, shared with the case studies. */
+  --page-bg: #faf8f5;
+  --page-fg: #1c1916;
+  --page-muted: #6f6a63;
+  --page-muted-2: #a39c94;
+  --page-surface: #f3efe9;
+  --page-body: #2a2622;
 
   /* Typography. --font-display is supplied by next/font on <html>. */
   --font-sans: "JetBrains Mono", monospace;
@@ -89,14 +89,13 @@
   /* Spacing */
   --header-height: 80px;
 
-  /* Case study layout. Unused until the work pages are rebuilt.
-     Kept off the shared page tokens so the rest of the site stays as-is. */
-  --cs-bg: #faf8f5;
-  --cs-fg: #1c1916;
-  --cs-muted: #6f6a63;
-  --cs-muted-2: #a39c94;
-  --cs-body: #2a2622;
-  --cs-surface: #f3efe9;
+  /* Case study neutrals follow the shared page ink. Accents stay local. */
+  --cs-bg: var(--page-bg);
+  --cs-fg: var(--page-fg);
+  --cs-muted: var(--page-muted);
+  --cs-muted-2: var(--page-muted-2);
+  --cs-body: var(--page-body);
+  --cs-surface: var(--page-surface);
   --cs-bento: #efeeeb;
   --cs-accent: var(--cs-accent-sage);
   --cs-accent-sage: #dce8d6;
@@ -124,19 +123,19 @@
 }
 
 [data-theme="dark"] {
-  --page-bg: #000000;
-  --page-fg: #ffffff;
-  --page-muted: #999999;
-  --page-muted-2: #666666;
-  --page-surface: #1a1a1a;
-  --page-body: #dddddd;
+  --page-bg: #12110f;
+  --page-fg: #f4f0ea;
+  --page-muted: #a39c94;
+  --page-muted-2: #6f6a63;
+  --page-surface: #1c1b18;
+  --page-body: #e4dfd8;
 
-  --cs-bg: #12110f;
-  --cs-fg: #f4f0ea;
-  --cs-muted: #a39c94;
-  --cs-muted-2: #6f6a63;
-  --cs-body: #e4dfd8;
-  --cs-surface: #1c1b18;
+  --cs-bg: var(--page-bg);
+  --cs-fg: var(--page-fg);
+  --cs-muted: var(--page-muted);
+  --cs-muted-2: var(--page-muted-2);
+  --cs-body: var(--page-body);
+  --cs-surface: var(--page-surface);
   --cs-bento: #242220;
   --cs-accent: var(--cs-accent-sage);
   --cs-accent-sage: #2a3328;
@@ -157,6 +156,14 @@ html {
   scroll-padding-top: var(--header-height);
   background-color: var(--page-bg);
   overscroll-behavior: none;
+}
+
+/* Lagree keeps its own pure black. The portfolio paper should not show
+   through overscroll on that subdomain. */
+html:has([data-site="fitness"]),
+html:has([data-site="fitness"]) body {
+  background-color: #000000;
+  color: #f5f2ec;
 }
 
 body {
