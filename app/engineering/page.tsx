@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import PageHeader from "../components/PageHeader";
+import { CASE_STUDIES } from "../lib/caseStudies";
 
 const PLACEHOLDER =
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.";
@@ -33,13 +34,13 @@ const PROJECTS = [
   },
 ];
 
+const GUTTER = "clamp(24px, 5vw, 80px)";
+
 const ADDITIONAL_PROJECTS = [
+  { title: "T Minus Talent", href: "https://tminustalent.com" },
   { title: "Seen By Liz", href: "https://seenbyliz.com" },
-  { title: "Bowie Forward", href: "https://bowieforward.com" },
   { title: "Python Image Converter", href: "https://github.com/Al3xand3r11/python-image-converter/tree/main" },
-  { title: "Sunday Runday LA", href: "https://www.sundayrundayla.com/" },
-  { title: "Food Desert Finder", href: "https://github.com/Al3xand3r11/food-desert-fixer" },
-];
+  { title: "Sunday Runday LA", href: "https://www.sundayrundayla.com/" },];
 
 export default function EngineeringPage() {
   const reduceMotion = useReducedMotion();
@@ -62,21 +63,103 @@ export default function EngineeringPage() {
         fontFamily: "var(--font-mono)",
       }}
     >
-      <PageHeader activeLabel="Work" />
+      <PageHeader activeLabel="Work" paddingInline={GUTTER} />
 
-      <section style={{ padding: "48px 24px 80px", paddingLeft: 24, paddingRight: 24 }}>
+      <section style={{ paddingBottom: 80, paddingInline: GUTTER }}>
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: reduceMotion ? 0 : 0.7 }}
         >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: isMobile ? "column" : "row",
+              alignItems: isMobile ? "flex-start" : "flex-end",
+              justifyContent: "space-between",
+              gap: isMobile ? 24 : 48,
+              paddingBlock: isMobile ? 96 : 200,
+              textAlign: "left",
+            }}
+          >
+            <div>
+              <span
+                style={{
+                  display: "inline-block",
+                  padding: "4px 10px",
+                  borderRadius: 999,
+                  fontSize: 11,
+                  fontFamily: "var(--font-display)",
+                  backgroundColor:
+                    "color-mix(in srgb, var(--page-fg) 6%, transparent)",
+                }}
+              >
+                Lorem ipsum dolor sit amet 2026
+              </span>
+              <h1
+                style={{
+                  margin: "16px 0 0",
+                  fontSize: "clamp(32px, 4vw, 52px)",
+                  fontWeight: 400,
+                  lineHeight: 1.1,
+                  letterSpacing: "-0.02em",
+                  fontFamily: "var(--font-display)",
+                }}
+              >
+                Lorem Ipsum Dolor Sit
+                <br />
+                <span style={{ color: "var(--page-muted)" }}>
+                  Consectetur, Adipiscing, and Elit
+                </span>
+              </h1>
+            </div>
+
+            <div style={{ display: "flex", gap: 8, flexShrink: 0 }}>
+              <a
+                href="https://www.linkedin.com/in/bnance1/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  ...pillBase,
+                  gap: 8,
+                  color: "var(--page-fg)",
+                  backgroundColor:
+                    "color-mix(in srgb, var(--page-fg) 6%, transparent)",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
+                onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+              >
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                </svg>
+                LinkedIn
+              </a>
+              <a
+                href="https://github.com/Al3xand3r11"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  ...pillBase,
+                  gap: 8,
+                  color: "var(--page-bg)",
+                  backgroundColor: "var(--page-fg)",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
+                onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+              >
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
+                  <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                </svg>
+                GitHub
+              </a>
+            </div>
+          </div>
 
           <div
             style={{
               display: "flex",
               flexDirection: "column",
-              gap: 120,
-              marginTop: 48,
+              gap: isMobile ? 64 : 96,
             }}
           >
             {PROJECTS.map((project, i) => (
@@ -159,7 +242,8 @@ export default function EngineeringPage() {
         style={{
           display: "flex",
           justifyContent: "flex-end",
-          padding: 24,
+          paddingBlock: 24,
+          paddingInline: GUTTER,
         }}
       >
         <Link
@@ -180,6 +264,19 @@ export default function EngineeringPage() {
   );
 }
 
+const pillBase: CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  padding: "10px 18px",
+  borderRadius: 999,
+  fontSize: 14,
+  fontFamily: "var(--font-display)",
+  textDecoration: "none",
+  whiteSpace: "nowrap",
+  transition: "opacity 0.2s",
+};
+
 function ProjectCard({
   project,
   index,
@@ -191,6 +288,9 @@ function ProjectCard({
   isMobile: boolean;
   reduceMotion: boolean | null;
 }) {
+  const study = CASE_STUDIES[project.slug];
+  const padding = isMobile ? 24 : 48;
+
   return (
     <motion.article
       initial={reduceMotion ? false : { opacity: 0, y: 16 }}
@@ -200,124 +300,103 @@ function ProjectCard({
         delay: reduceMotion ? 0 : 0.08 * (index + 1),
       }}
       style={{
-        display: "grid",
-        gridTemplateColumns: isMobile ? "1fr" : "minmax(0, 2fr) minmax(0, 3fr)",
-        gap: isMobile ? 20 : 48,
-        alignItems: "stretch",
+        position: "relative",
         width: "100%",
-        minWidth: 0,
+        aspectRatio: isMobile ? "4 / 5" : "16 / 8",
+        overflow: "hidden",
+        borderRadius: 12,
+        color: "#fff",
       }}
     >
+      <Image
+        src={project.image}
+        alt={`${project.title} landing page`}
+        fill
+        unoptimized={project.slug === "egle-zalpys"}
+        sizes="100vw"
+        style={{ objectFit: "cover" }}
+      />
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.25) 45%, rgba(0,0,0,0.2) 100%)",
+          pointerEvents: "none",
+        }}
+      />
+
       <div
         style={{
-          textAlign: "left",
-          order: isMobile ? 2 : 1,
+          position: "absolute",
+          inset: 0,
+          padding,
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
-          gap: 24,
+          justifyContent: "flex-end",
+          textAlign: "left",
         }}
       >
-        <div>
-          <p
+        <div style={{ maxWidth: 560 }}>
+          <h2
             style={{
-              fontSize: "clamp(28px, 3vw, 40px)",
+              margin: 0,
+              fontSize: "clamp(28px, 3.2vw, 44px)",
               fontWeight: 400,
-              lineHeight: 1.05,
+              lineHeight: 1.1,
               letterSpacing: "-0.02em",
               fontFamily: "var(--font-display)",
-              margin: 0,
             }}
           >
             {project.title}
-          </p>
+          </h2>
           <p
             style={{
-              fontSize: 12,
-              lineHeight: 1.6,
-              maxWidth: "36ch",
-              margin: "16px 0 0",
-              fontFamily: "var(--font-mono)",
+              margin: "10px 0 0",
+              fontSize: isMobile ? 14 : 16,
+              lineHeight: 1.45,
+              opacity: 0.85,
+              fontFamily: "var(--font-display)",
+              display: "-webkit-box",
+              WebkitLineClamp: 2,
+              WebkitBoxOrient: "vertical",
+              overflow: "hidden",
             }}
           >
             {project.description}
           </p>
-        </div>
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 12 }}>
-        <p
-          style={{
-            fontSize: 10,
-            lineHeight: 1.6,
-            letterSpacing: "0.04em",
-            margin: 0,
-            color: "var(--page-muted)",
-            fontFamily: "var(--font-mono)",
-          }}
-        >
-          {project.tags}
-        </p>
-        <Link
-          href={`/engineering/${project.slug}`}
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            justifyContent: "flex-start",
-            gap: 6,
-            fontSize: 10,
-            textTransform: "uppercase",
-            letterSpacing: "0.15em",
-            color: "var(--page-fg)",
-            textDecoration: "none",
-            fontFamily: "var(--font-mono)",
-            transition: "opacity 0.2s",
-          }}
-          onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.4")}
-          onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-        >
-          View Case Study
-          <svg
-            width="12"
-            height="12"
-            viewBox="0 0 16 16"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-          >
-            <path d="M3 8h10M9 4l4 4-4 4" />
-          </svg>
-        </Link>
+
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 24 }}>
+            <Link
+              href={`/engineering/${project.slug}`}
+              style={{ ...pillBase, backgroundColor: "#fff", color: "#111" }}
+              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.8")}
+              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+            >
+              View case study
+            </Link>
+            {study?.url && (
+              <a
+                href={study.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  ...pillBase,
+                  backgroundColor: "rgba(40, 36, 32, 0.55)",
+                  color: "#fff",
+                  backdropFilter: "blur(8px)",
+                  WebkitBackdropFilter: "blur(8px)",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.8")}
+                onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+              >
+                Visit website
+              </a>
+            )}
+          </div>
         </div>
       </div>
-
-      <Link
-        href={`/engineering/${project.slug}`}
-        style={{
-          display: "block",
-          textDecoration: "none",
-          color: "inherit",
-          order: isMobile ? 1 : 2,
-          minWidth: 0,
-        }}
-      >
-        <div
-          style={{
-            position: "relative",
-            aspectRatio: "16 / 10",
-            overflow: "hidden",
-            borderRadius: 10,
-            backgroundColor: "transparent",
-          }}
-        >
-          <Image
-            src={project.image}
-            alt={`${project.title} landing page`}
-            fill
-            unoptimized={project.slug === "egle-zalpys"}
-            sizes="(max-width: 767px) 100vw, 60vw"
-            style={{ objectFit: "cover" }}
-          />
-        </div>
-      </Link>
     </motion.article>
   );
 }

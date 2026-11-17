@@ -199,6 +199,12 @@
   padding: 64px var(--cs-inline) 80px;
 }
 
+.followGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
 @media (max-width: 767px) {
   .columns,
   .backendGrid,
@@ -210,7 +216,8 @@
     width: 100%;
   }
 
-  .pair {
+  .pair,
+  .followGrid {
     grid-template-columns: 1fr;
   }
 }

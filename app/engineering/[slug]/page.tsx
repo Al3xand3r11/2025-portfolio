@@ -85,13 +85,7 @@ export default async function CaseStudyPage({
             </Link>
           </div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gap: 24,
-            }}
-          >
+          <div className={styles.followGrid}>
             {otherStudies.map((other) => (
               <Link
                 key={other.slug}
@@ -113,8 +107,9 @@ export default async function CaseStudyPage({
                       src={other.heroImage}
                       alt={other.title}
                       fill
+                      unoptimized={other.slug === "egle-zalpys"}
                       style={{ objectFit: "cover", objectPosition: "top" }}
-                      sizes="(max-width: 768px) 100vw, 33vw"
+                      sizes="(max-width: 767px) 100vw, 50vw"
                     />
                   ) : null}
                 </div>
