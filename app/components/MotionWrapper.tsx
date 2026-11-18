@@ -1,12 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ReactNode } from "react";
 
 export function FadeIn({
   children,
   delay = 0,
-  y = 20,
+  y = 16,
   className,
   style,
 }: {
@@ -16,11 +16,13 @@ export function FadeIn({
   className?: string;
   style?: React.CSSProperties;
 }) {
+  const reduce = useReducedMotion();
+
   return (
     <motion.div
-      initial={{ opacity: 0, y }}
+      initial={reduce ? false : { opacity: 0, y }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay }}
+      transition={{ duration: reduce ? 0 : 0.7, delay: reduce ? 0 : delay }}
       className={className}
       style={style}
     >
@@ -32,7 +34,7 @@ export function FadeIn({
 export function FadeInView({
   children,
   delay = 0,
-  y = 40,
+  y = 16,
   className,
   style,
 }: {
@@ -42,12 +44,14 @@ export function FadeInView({
   className?: string;
   style?: React.CSSProperties;
 }) {
+  const reduce = useReducedMotion();
+
   return (
     <motion.div
-      initial={{ opacity: 0, y }}
+      initial={reduce ? false : { opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.6, delay }}
+      transition={{ duration: reduce ? 0 : 0.7, delay: reduce ? 0 : delay }}
       className={className}
       style={style}
     >

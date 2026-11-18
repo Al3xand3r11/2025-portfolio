@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { CASE_STUDY_SLUGS } from "./engineering/[slug]/page";
+import { CASE_STUDY_SLUGS } from "./lib/caseStudies";
 import { ENGINEERING_ORIGIN } from "./lib/sites";
 
 /* The Lagree pages are on their own host now, and are listed by the sitemap
@@ -11,8 +11,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["", "weekly", 1],
     ["/about", "monthly", 0.8],
     ["/engineering", "weekly", 0.8],
-    ["/community", "monthly", 0.6],
+    ["/life", "monthly", 0.6],
     ["/contact", "yearly", 0.5],
+    ["/contact/suggest", "yearly", 0.3],
   ];
 
   const caseStudies = CASE_STUDY_SLUGS.map((slug) => ({

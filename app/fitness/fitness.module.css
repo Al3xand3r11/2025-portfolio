@@ -6,6 +6,7 @@
   background-color: #000000;
   color: var(--ink);
   color-scheme: dark;
+  --font-mono: "JetBrains Mono", monospace;
   font-family: var(--font-mono);
 }
 

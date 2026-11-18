@@ -53,7 +53,7 @@ function drawRings(canvas: HTMLCanvasElement) {
   const angleStep = (Math.PI * 2) / segments;
 
   const isDark = document.documentElement.getAttribute("data-theme") === "dark";
-  ctx.strokeStyle = isDark ? "rgba(255, 255, 255, 0.24)" : "rgba(0, 0, 0, 0.24)";
+  ctx.strokeStyle = isDark ? "rgba(244, 240, 234, 0.24)" : "rgba(28, 25, 22, 0.24)";
   ctx.lineWidth = 0.4;
 
   for (let i = 1; i <= count; i++) {
@@ -95,6 +95,7 @@ export default function Home() {
   return (
     <main
       style={{
+        paddingInline: "clamp(24px, 5vw, 80px)",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
@@ -123,7 +124,7 @@ export default function Home() {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "flex-start",
-          padding: 24,
+          paddingBlock: 24,
         }}
       >
         <nav style={{ display: "flex", flexDirection: "column", gap: 10 }}>
@@ -181,7 +182,7 @@ export default function Home() {
         style={{
           display: "flex",
           justifyContent: "flex-end",
-          padding: 24,
+          paddingBlock: 24,
         }}
       >
         <span

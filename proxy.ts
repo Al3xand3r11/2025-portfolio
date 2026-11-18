@@ -18,6 +18,11 @@ const MOVED_FROM_ENGINEERING: Record<string, string> = {
   "/music": "/music",
 };
 
+/* Portfolio pages that were renamed but stay on the portfolio. */
+const RENAMED: Record<string, string> = {
+  "/community": "/life",
+};
+
 const PUBLIC_LAGREE_ROUTES = new Set<string>(LAGREE_ROUTES);
 
 /** `/fitness/schedule` -> `/schedule`, `/fitness` -> `/` */
@@ -55,6 +60,13 @@ function handleLagreeHost(request: NextRequest): NextResponse {
 
 function handleEngineeringHost(request: NextRequest): NextResponse {
   const pathname = withoutTrailingSlash(request.nextUrl.pathname);
+
+  const renamed = RENAMED[pathname];
+  if (renamed) {
+    const url = request.nextUrl.clone();
+    url.pathname = renamed;
+    return NextResponse.redirect(url, 308);
+  }
 
   const moved = MOVED_FROM_ENGINEERING[pathname];
   const isLagreePath =

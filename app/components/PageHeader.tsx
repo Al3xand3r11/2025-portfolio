@@ -7,7 +7,13 @@ import NavLink from "./NavLink";
 import ThemeToggle from "./ThemeToggle";
 import { navItems } from "../lib/navigation";
 
-export default function PageHeader({ activeLabel }: { activeLabel?: string }) {
+export default function PageHeader({
+  activeLabel,
+  paddingInline = 0,
+}: {
+  activeLabel?: string;
+  paddingInline?: number | string;
+}) {
   const [isMobile, setIsMobile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -37,7 +43,8 @@ export default function PageHeader({ activeLabel }: { activeLabel?: string }) {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          padding: 24,
+          paddingBlock: 24,
+          paddingInline,
         }}
       >
         {isMobile ? (
@@ -113,7 +120,7 @@ export default function PageHeader({ activeLabel }: { activeLabel?: string }) {
               style={{
                 position: "fixed",
                 inset: 0,
-                backgroundColor: "rgba(0,0,0,0.4)",
+                backgroundColor: "rgba(18, 17, 15, 0.4)",
                 zIndex: 998,
               }}
             />

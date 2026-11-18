@@ -2,25 +2,18 @@ import Link from "next/link";
 import Community from "../components/Community";
 import PageHeader from "../components/PageHeader";
 
-export default function CommunityPage() {
+export default function LifePage() {
   return (
     <main
       style={{
+        paddingInline: "clamp(24px, 5vw, 80px)",
         minHeight: "100svh",
         backgroundColor: "var(--page-bg)",
         color: "var(--page-fg)",
         fontFamily: "var(--font-mono)",
       }}
     >
-      <PageHeader activeLabel="Community" />
-
-      <hr
-        style={{
-          border: "none",
-          borderTop: "1px solid var(--page-fg)",
-          margin: "0 24px",
-        }}
-      />
+      <PageHeader activeLabel="Life" />
 
       <Community />
 
@@ -28,7 +21,7 @@ export default function CommunityPage() {
         style={{
           display: "flex",
           justifyContent: "flex-end",
-          padding: 24,
+          paddingBlock: 24,
         }}
       >
         <Link

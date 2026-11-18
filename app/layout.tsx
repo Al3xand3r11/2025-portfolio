@@ -1,18 +1,17 @@
 import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
+import { Inter_Tight } from "next/font/google";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
+const interTight = Inter_Tight({
   subsets: ["latin"],
   variable: "--font-display",
-  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://alexandernance.com"),
-  title: "Brandon Nance | Software Engineer",
+  title: "Brandon Nance",
   description:
-    "Brandon Nance is a software engineer in Los Angeles specializing in TypeScript, React, and Next.js. Currently building live streaming technology at Paramount and teaching Lagree fitness in DTLA.",
+    "Based inLos Angeles",
   keywords: [
     "Brandon Nance",
     "Software Engineer",
@@ -30,9 +29,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Brandon Nance | Software Engineer",
+    title: "Brandon Nance",
     description:
-      "Software engineer in Los Angeles specializing in TypeScript, React, and Next.js. Building live streaming technology at Paramount and teaching Lagree fitness.",
+      "Based in Los Angeles",
     url: "https://alexandernance.com",
     siteName: "Brandon Nance",
     type: "website",
@@ -40,9 +39,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Brandon Nance | Software Engineer",
+    title: "Brandon Nance",
     description:
-      "Software engineer in Los Angeles specializing in TypeScript, React, and Next.js.",
+      "Los Angeles",
   },
   robots: {
     index: true,
@@ -56,7 +55,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={spaceGrotesk.variable} suppressHydrationWarning>
+    <html lang="en" className={interTight.variable} suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
