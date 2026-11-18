@@ -98,7 +98,7 @@ export default function EngineeringPage() {
                   fontFamily: "var(--font-display)",
                 }}
               >
-                Current Projects
+                <span style={{ fontWeight: 900 }}>Current Projects</span>
                 <br />
                 <span style={{ color: "var(--page-muted)" }}>
                   Higlighting Activity, Art, and Culture
@@ -336,7 +336,7 @@ function ProjectCard({
             style={{
               margin: 0,
               fontSize: "clamp(28px, 3.2vw, 44px)",
-              fontWeight: 400,
+              fontWeight: 900,
               lineHeight: 1.1,
               letterSpacing: "-0.02em",
               fontFamily: "var(--font-display)",

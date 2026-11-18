@@ -17,8 +17,9 @@ const TABS: { id: TabId; title: string }[] = [
   { id: "suggest", title: "Suggest" },
 ];
 
-const BUDGETS = ["Under $5k", "$5k – $10k", "$10k – $25k", "$25k+", "Not sure yet"];
+const BUDGETS = ["Under $1k", "$1k – $3k", "$3k – $10k", "$10k+", "Not sure yet"];
 const TIMELINES = ["ASAP", "1 – 3 months", "3 – 6 months", "Flexible"];
+const INPIRATION = ["alexandernance.com", "saturdayhikecrew.com", "itscleoplus.com", "portfolio.eglezalpys.com", "tminustalent.com", "N/A"]
 
 const RATING_QUESTIONS = [
   "How responsive is the website?",
@@ -201,6 +202,7 @@ function ProjectForm() {
         <TextField label="Organization" name="organization" />
         <SelectField label="Budget" name="budget" options={BUDGETS} placeholder="Select a range" />
         <SelectField label="Timeline" name="timeline" options={TIMELINES} placeholder="Select a timeline" />
+        <SelectField label="Inspiration" name="inspiration" options={INPIRATION} placeholder="Select a website" />
       </div>
       <MessageField
         label="Additional message"

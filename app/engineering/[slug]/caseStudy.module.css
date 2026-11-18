@@ -29,7 +29,7 @@
   margin: 12px 0 0;
   font-family: var(--font-display);
   font-size: clamp(40px, 7vw, 96px);
-  font-weight: var(--cs-display-weight);
+  font-weight: 900;
   letter-spacing: var(--cs-display-tracking);
   line-height: 0.98;
   color: var(--cs-fg);
