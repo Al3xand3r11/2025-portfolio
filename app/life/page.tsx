@@ -2,7 +2,7 @@ import Link from "next/link";
 import Community from "../components/Community";
 import PageHeader from "../components/PageHeader";
 
-export default function CommunityPage() {
+export default function LifePage() {
   return (
     <main
       style={{
@@ -13,7 +13,7 @@ export default function CommunityPage() {
         fontFamily: "var(--font-mono)",
       }}
     >
-      <PageHeader activeLabel="Community" />
+      <PageHeader activeLabel="Life" />
 
       <Community />
 

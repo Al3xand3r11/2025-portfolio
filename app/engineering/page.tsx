@@ -9,29 +9,26 @@ import Parallax from "../components/Parallax";
 import { CASE_STUDIES } from "../lib/caseStudies";
 import { ADDITIONAL_PROJECTS } from "../lib/additionalProjects";
 
-const PLACEHOLDER =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.";
-
 const PROJECTS = [
   {
     title: "The Saturday Hike Crew",
     slug: "saturday-hike-crew",
     tags: "Next.js · TypeScript · Tailwind CSS",
-    description: PLACEHOLDER,
+    description: CASE_STUDIES["saturday-hike-crew"].intro,
     image: "/studyimages/shc1.webp",
   },
   {
     title: "Cleo +",
     slug: "cleo-plus",
     tags: "Next.js · WebGL · Entertainment",
-    description: PLACEHOLDER,
+    description: CASE_STUDIES["cleo-plus"].intro,
     image: "/studyimages/mm1.webp",
   },
   {
     title: "Egle Zalpys",
     slug: "egle-zalpys",
     tags: "Next.js · Portfolio · Design",
-    description: PLACEHOLDER,
+    description: CASE_STUDIES["egle-zalpys"].intro,
     image: "/studyimages/ez1.webp",
   },
 ];
@@ -89,7 +86,7 @@ export default function EngineeringPage() {
                     "color-mix(in srgb, var(--page-fg) 6%, transparent)",
                 }}
               >
-                Lorem ipsum dolor sit amet 2026
+                Written in TypeScript
               </span>
               <h1
                 style={{
@@ -101,10 +98,10 @@ export default function EngineeringPage() {
                   fontFamily: "var(--font-display)",
                 }}
               >
-                Lorem Ipsum Dolor Sit
+                Current Projects
                 <br />
                 <span style={{ color: "var(--page-muted)" }}>
-                  Consectetur, Adipiscing, and Elit
+                  Higlighting Activity, Art, and Culture
                 </span>
               </h1>
             </div>
@@ -350,7 +347,7 @@ function ProjectCard({
           <p
             style={{
               margin: "10px 0 0",
-              fontSize: isMobile ? 14 : 16,
+              fontSize: isMobile ? 20 : 22,
               lineHeight: 1.45,
               opacity: 0.85,
               fontFamily: "var(--font-display)",
@@ -370,7 +367,7 @@ function ProjectCard({
               onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.8")}
               onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
             >
-              View case study
+              View more
             </Link>
             {study?.url && (
               <a

@@ -97,9 +97,18 @@
   border-color: var(--page-fg);
 }
 
+.cards {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: 12px;
+  width: 100%;
+  align-items: start;
+}
+
 @media (max-width: 767px) {
   .tabs,
-  .grid2 {
+  .grid2,
+  .cards {
     grid-template-columns: 1fr;
   }
 }

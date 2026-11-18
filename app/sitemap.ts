@@ -11,7 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["", "weekly", 1],
     ["/about", "monthly", 0.8],
     ["/engineering", "weekly", 0.8],
-    ["/community", "monthly", 0.6],
+    ["/life", "monthly", 0.6],
     ["/contact", "yearly", 0.5],
     ["/contact/suggest", "yearly", 0.3],
   ];

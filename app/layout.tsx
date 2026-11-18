@@ -1,18 +1,17 @@
 import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
+import { Inter_Tight } from "next/font/google";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
+const interTight = Inter_Tight({
   subsets: ["latin"],
   variable: "--font-display",
-  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://alexandernance.com"),
   title: "Brandon Nance",
   description:
-    "Software engineer in Los Angeles",
+    "Based inLos Angeles",
   keywords: [
     "Brandon Nance",
     "Software Engineer",
@@ -32,7 +31,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Brandon Nance",
     description:
-      "Software engineer in Los Angeles",
+      "Based in Los Angeles",
     url: "https://alexandernance.com",
     siteName: "Brandon Nance",
     type: "website",
@@ -56,7 +55,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={spaceGrotesk.variable} suppressHydrationWarning>
+    <html lang="en" className={interTight.variable} suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{

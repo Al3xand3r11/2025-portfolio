@@ -82,9 +82,11 @@
   --page-surface: #f3efe9;
   --page-body: #2a2622;
 
-  /* Typography. --font-display is supplied by next/font on <html>. */
-  --font-sans: "JetBrains Mono", monospace;
-  --font-mono: "JetBrains Mono", monospace;
+  /* Typography. --font-display is supplied by next/font on <html>. One
+     typeface throughout; --font-mono is kept as an alias so existing
+     references resolve to it. */
+  --font-sans: var(--font-display), sans-serif;
+  --font-mono: var(--font-display), sans-serif;
 
   /* Spacing */
   --header-height: 80px;
@@ -116,8 +118,8 @@
   --cs-label-tracking: 0.18em;
   --cs-intro-size: clamp(32px, 4.2vw, 48px);
   --cs-intro-leading: 1.25;
-  --cs-detail-size: 15px;
-  --cs-detail-leading: 1.65;
+  --cs-detail-size: 28px;
+  --cs-detail-leading: 1.4;
 
   color-scheme: light;
 }
@@ -168,6 +170,7 @@ html:has([data-site="fitness"]) body {
 
 body {
   font-family: var(--font-sans);
+  font-weight: 300;
   background-color: var(--page-bg);
   color: var(--page-fg);
   line-height: 1.6;
@@ -219,6 +222,13 @@ button {
   cursor: pointer;
   font-family: inherit;
   color: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+  font-weight: inherit;
 }
 
 /* Image defaults */

@@ -37,7 +37,7 @@ export default function Community() {
       >
         <h1
           style={{
-            fontSize: "clamp(48px, 8vw, 96px)",
+            fontSize: "clamp(28px, 4vw, 48px)",
             fontWeight: 900,
             lineHeight: 0.95,
             letterSpacing: "-0.02em",
@@ -46,7 +46,7 @@ export default function Community() {
             maxWidth: 900,
           }}
         >
-          Community
+          Recent Activities
         </h1>
       </motion.div>
 
@@ -103,7 +103,7 @@ export default function Community() {
 
               <p
                 style={{
-                  fontSize: 13,
+                  fontSize: 19,
                   lineHeight: 1.8,
                   color: "var(--page-body)",
                   marginTop: 16,

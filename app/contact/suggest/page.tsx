@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getGitHubActivity } from "../../lib/github";
 import ContactView from "../ContactView";
 
 export const metadata: Metadata = {
@@ -7,6 +8,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/contact/suggest" },
 };
 
-export default function SuggestPage() {
-  return <ContactView initialTab="suggest" />;
+export default async function SuggestPage() {
+  const github = await getGitHubActivity();
+  return <ContactView initialTab="suggest" github={github} />;
 }

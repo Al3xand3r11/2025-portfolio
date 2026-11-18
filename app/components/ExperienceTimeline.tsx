@@ -3,14 +3,11 @@
 import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
-const LOREM =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
-
 type Entry = {
   title: string;
   org: string;
   dates: string;
-  description: string;
+  bullets: string[];
 };
 
 type Track = {
@@ -24,27 +21,90 @@ const TRACKS: Track[] = [
     id: "engineering",
     label: "Engineering",
     entries: [
-      { title: "Software Engineer", org: "Lorem Studio", dates: "2024 — Present", description: LOREM },
-      { title: "Frontend Developer", org: "Ipsum Labs", dates: "2023 — 2024", description: LOREM },
-      { title: "Engineering Intern", org: "Dolor Systems", dates: "2021 — 2022", description: LOREM },
+      {
+        title: "Software Engineer",
+        org: "Paramount",
+        dates: "2024 — Present",
+        bullets: [
+          "Designed and shipped the NestJS/TypeScript backend for an internal live-streaming operations tool used by 400+ employees across 5 teams; owned it in production for 3+ years at 99.9% uptime.",
+          "Built role-based authorization with Keycloak: administering dozens of roles across channels, teams, and settings, with a self-service permissions dashboard that let managers administer their own team access and cut access-related bottlenecks 70%.",
+          "Architected the data model and workflow system for user preferences, metrics, and streaming insights, persisted across devices; doubled internal active users in 6 months.",
+          "Delivered UFC integration components within 37 days of acquisition approval, ensuring seamless platform launch for Paramount\u2019s first UFC event and reaching 7M+ households globally.",
+          "Set up production-parity local development with Tilt, Docker, and Kubernetes, coupled with documentation and video walkthroughs reducing onboarding time for new engineers from 4 days to 1.",
+        ],
+      },
+      {
+        title: "Associate Software Engineer",
+        org: "Paramount",
+        dates: "2022 — 2024",
+        bullets: [
+          "Expanded scope from front end to full stack by leading sprint sessions, code reviews, and end-to-end build processes; architected and shipped backend service for a critical internal live streaming tool.",
+          "Architected a database and workflow system integrating user preferences, analytical metrics, and live streaming insights; enabled media professionals to access, edit, and persist settings across devices, doubling internal service users within 6 months.",
+          "Engineered ad insertion and live streaming technology for Super Bowl LVIII on Paramount+, supporting 120M+ total viewers.",
+        ],
+      },
     ],
   },
   {
     id: "customer-service",
     label: "Customer Service",
     entries: [
-      { title: "Community Ambassador", org: "Lorem Collective", dates: "2023 — Present", description: LOREM },
-      { title: "Client Experience Lead", org: "Ipsum & Co.", dates: "2022 — 2023", description: LOREM },
-      { title: "Customer Associate", org: "Dolor Retail", dates: "2019 — 2022", description: LOREM },
+      {
+        title: "On Point Specialist",
+        org: "Apple",
+        dates: "2021 — 2022",
+        bullets: [
+          "Personally checked in and triaged over 300 customer appointments a day at the store entrance on an iPad, working out each person\u2019s need within 30 seconds.",
+          "Fixed device issues on the spot when I could, which cut wait times, freed up Genius Bar appointments for more complex repairs and got customers back to their day faster.",
+          "Kept the front of the store moving at high volume by looking up pending appointments and booking future visits for device purchases and repairs.",
+        ],
+      },
+      {
+        title: "Running Footwear Specialist",
+        org: "Nike",
+        dates: "2020 — 2022",
+        bullets: [
+          "Matched runners to the right shoes based on their gait, training goals and terrain, and featured the current running lineup to drive sales of new and key products.",
+          "Ordered running footwear in quantities planned around the season and what customers needed, so the right sizes and styles were in stock without excess inventory.",
+          "Raised employee enrollment in the company benefits from 40% to 83% by holding one-on-one sessions with coworkers to explain their options and walk them through signing up.",
+        ],
+      },
     ],
   },
   {
     id: "fitness",
     label: "Fitness",
     entries: [
-      { title: "Lagree Instructor", org: "Lorem Fitness", dates: "2023 — Present", description: LOREM },
-      { title: "Hike Crew Organizer", org: "Ipsum Outdoors", dates: "2022 — Present", description: LOREM },
-      { title: "Group Fitness Coach", org: "Dolor Athletics", dates: "2020 — 2022", description: LOREM },
+      {
+        title: "Lagree Certified Instructor",
+        org: "Lagree 213",
+        dates: "2026 — Present",
+        bullets: [
+          "Create balanced and challenging routines for all levels of fitness focused on time under tension and stability.",
+          "Curate unique hourly and daily 45 min playlists to accompany the routines and their intensity points.",
+          "Achieve level 2 certification focused on more intricate and nuanced movements with an emphasis on safety and stability.",
+        ],
+      },
+      {
+        title: "Front Desk Concierge",
+        org: "Lagree 213",
+        dates: "2025 — 2026",
+        bullets: [
+          "Cultivate relationships with clients to establish and progress through strength training goals.",
+          "Advise on membership and class recommendations for clients based on their weekly schedule and long term fitness goals.",
+          "Participate in city wide volunteer initiatives and activations.",
+        ],
+      },
+      {
+        title: "Running Community Ambassador",
+        org: "Nike",
+        dates: "2024 — 2026",
+        bullets: [
+          "Participate in and assist in facilitating Nike events in Los Angeles on a weekly basis ranging from 20 members to 5,000 for a given event.",
+          "Advise and mentor distance runners on hydration, body awareness and recovery for half marathons and marathons.",
+          "Strategize operations for large scale shoe trialing and giveaways in crowded city environments with minimal support.",
+        ],
+      },
     ],
   },
 ];
@@ -223,19 +283,24 @@ export default function ExperienceTimeline({ isMobile }: { isMobile: boolean }) 
                           transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
                           style={{ overflow: "hidden" }}
                         >
-                          <p
+                          <ul
                             style={{
                               margin: 0,
-                              paddingTop: 14,
+                              padding: "14px 0 0 18px",
                               fontSize: 13,
                               lineHeight: 1.8,
                               maxWidth: "60ch",
                               fontFamily: "var(--font-mono)",
                               color: "var(--page-body)",
+                              display: "flex",
+                              flexDirection: "column",
+                              gap: 10,
                             }}
                           >
-                            {entry.description}
-                          </p>
+                            {entry.bullets.map((bullet) => (
+                              <li key={bullet}>{bullet}</li>
+                            ))}
+                          </ul>
                         </motion.div>
                       )}
                     </AnimatePresence>

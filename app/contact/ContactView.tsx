@@ -4,8 +4,9 @@ import { useEffect, useState, type FormEvent, type ReactNode } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import PageHeader from "../components/PageHeader";
-import SocialButtons from "../components/SocialButtons";
 import { ADDITIONAL_PROJECTS } from "../lib/additionalProjects";
+import type { GitHubActivity } from "../lib/github";
+import ContactCards from "./ContactCards";
 import styles from "./contact.module.css";
 
 export type TabId = "touch" | "project" | "suggest";
@@ -31,7 +32,13 @@ const MESSAGE_LIMIT = 500;
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
-export default function ContactView({ initialTab = "touch" }: { initialTab?: TabId }) {
+export default function ContactView({
+  initialTab = "touch",
+  github,
+}: {
+  initialTab?: TabId;
+  github?: GitHubActivity;
+}) {
   const reduceMotion = useReducedMotion();
   const [isMobile, setIsMobile] = useState(false);
   const [tab, setTab] = useState<TabId>(initialTab);
@@ -92,7 +99,7 @@ export default function ContactView({ initialTab = "touch" }: { initialTab?: Tab
               exit={reduceMotion ? undefined : { opacity: 0, y: -6 }}
               transition={{ duration: 0.3, ease }}
             >
-              {tab === "touch" && <GetInTouch />}
+              {tab === "touch" && <GetInTouch github={github} />}
               {tab === "project" && <ProjectForm />}
               {tab === "suggest" && <SuggestForm isMobile={isMobile} />}
             </motion.div>
@@ -157,7 +164,7 @@ function TabCard({
   );
 }
 
-function GetInTouch() {
+function GetInTouch({ github }: { github?: GitHubActivity }) {
   return (
     <div
       style={{
@@ -177,10 +184,9 @@ function GetInTouch() {
           color: "var(--page-body)",
         }}
       >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-        tempor incididunt ut labore.
+        Connect with me below.
       </p>
-      <SocialButtons />
+      <ContactCards github={github} />
     </div>
   );
 }
