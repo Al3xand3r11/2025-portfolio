@@ -24,6 +24,7 @@ export default function CaseStudyIntro({
           alt={title}
           label="Hero image"
           priority
+          parallax
           sizes="(max-width: 767px) 100vw, 90vw"
         />
       </FadeIn>

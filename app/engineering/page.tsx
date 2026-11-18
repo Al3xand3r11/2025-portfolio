@@ -5,7 +5,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import PageHeader from "../components/PageHeader";
+import Parallax from "../components/Parallax";
 import { CASE_STUDIES } from "../lib/caseStudies";
+import { ADDITIONAL_PROJECTS } from "../lib/additionalProjects";
 
 const PLACEHOLDER =
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.";
@@ -34,14 +36,6 @@ const PROJECTS = [
   },
 ];
 
-const GUTTER = "clamp(24px, 5vw, 80px)";
-
-const ADDITIONAL_PROJECTS = [
-  { title: "T Minus Talent", href: "https://tminustalent.com" },
-  { title: "Seen By Liz", href: "https://seenbyliz.com" },
-  { title: "Python Image Converter", href: "https://github.com/Al3xand3r11/python-image-converter/tree/main" },
-  { title: "Sunday Runday LA", href: "https://www.sundayrundayla.com/" },];
-
 export default function EngineeringPage() {
   const reduceMotion = useReducedMotion();
   const [isMobile, setIsMobile] = useState(false);
@@ -57,15 +51,16 @@ export default function EngineeringPage() {
   return (
     <main
       style={{
+        paddingInline: "clamp(24px, 5vw, 80px)",
         minHeight: "100svh",
         backgroundColor: "var(--page-bg)",
         color: "var(--page-fg)",
         fontFamily: "var(--font-mono)",
       }}
     >
-      <PageHeader activeLabel="Work" paddingInline={GUTTER} />
+      <PageHeader activeLabel="Work" />
 
-      <section style={{ paddingBottom: 80, paddingInline: GUTTER }}>
+      <section style={{ paddingBottom: 80 }}>
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -243,7 +238,6 @@ export default function EngineeringPage() {
           display: "flex",
           justifyContent: "flex-end",
           paddingBlock: 24,
-          paddingInline: GUTTER,
         }}
       >
         <Link
@@ -304,18 +298,20 @@ function ProjectCard({
         width: "100%",
         aspectRatio: isMobile ? "4 / 5" : "16 / 8",
         overflow: "hidden",
-        borderRadius: 12,
+        borderRadius: 8,
         color: "#fff",
       }}
     >
-      <Image
-        src={project.image}
-        alt={`${project.title} landing page`}
-        fill
-        unoptimized={project.slug === "egle-zalpys"}
-        sizes="100vw"
-        style={{ objectFit: "cover" }}
-      />
+      <Parallax>
+        <Image
+          src={project.image}
+          alt={`${project.title} landing page`}
+          fill
+          unoptimized={project.slug === "egle-zalpys"}
+          sizes="100vw"
+          style={{ objectFit: "cover" }}
+        />
+      </Parallax>
       <div
         aria-hidden
         style={{

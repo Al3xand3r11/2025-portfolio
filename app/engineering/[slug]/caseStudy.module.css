@@ -1,5 +1,5 @@
 .page {
-  --cs-inline: clamp(24px, 4vw, 72px);
+  --cs-inline: 0px;
   min-height: 100svh;
   background: var(--cs-bg);
   color: var(--cs-fg);
@@ -93,7 +93,7 @@
 .slot {
   position: relative;
   overflow: hidden;
-  border-radius: var(--radius-lg);
+  border-radius: 8px;
   background: var(--cs-surface);
 }
 
@@ -111,7 +111,7 @@
   justify-content: center;
   width: 100%;
   padding: clamp(20px, 2.2vw, 36px);
-  border-radius: 10px;
+  border-radius: 8px;
   background: var(--cs-bento);
 }
 
@@ -131,7 +131,7 @@
 .pairShot,
 .fullShot,
 .backendShot {
-  border-radius: 10px;
+  border-radius: 8px;
   background: transparent;
 }
 

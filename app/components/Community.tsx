@@ -29,7 +29,7 @@ const communities = [
 
 export default function Community() {
   return (
-    <section style={{ padding: "48px 24px 80px" }}>
+    <section style={{ padding: "48px 0 80px" }}>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -124,6 +124,7 @@ export default function Community() {
                   position: "relative",
                   aspectRatio: "4 / 3",
                   overflow: "hidden",
+                  borderRadius: 8,
                   backgroundColor: "var(--page-surface)",
                 }}
               >

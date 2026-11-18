@@ -95,6 +95,7 @@ export default function Home() {
   return (
     <main
       style={{
+        paddingInline: "clamp(24px, 5vw, 80px)",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
@@ -123,7 +124,7 @@ export default function Home() {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "flex-start",
-          padding: 24,
+          paddingBlock: 24,
         }}
       >
         <nav style={{ display: "flex", flexDirection: "column", gap: 10 }}>
@@ -181,7 +182,7 @@ export default function Home() {
         style={{
           display: "flex",
           justifyContent: "flex-end",
-          padding: 24,
+          paddingBlock: 24,
         }}
       >
         <span

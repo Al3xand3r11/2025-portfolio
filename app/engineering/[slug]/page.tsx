@@ -31,7 +31,10 @@ export default async function CaseStudyPage({
     .filter(([key]) => key !== slug)
     .map(([key, val]) => ({ slug: key, ...val }));
 
-  const accent = { "--cs-accent": `var(${study.accent})` } as CSSProperties;
+  const accent = {
+    "--cs-accent": `var(${study.accent})`,
+    paddingInline: "clamp(24px, 5vw, 80px)",
+  } as CSSProperties;
 
   return (
     <main className={styles.page} style={accent}>
@@ -99,7 +102,7 @@ export default async function CaseStudyPage({
                     overflow: "hidden",
                     backgroundColor: "transparent",
                     marginBottom: 16,
-                    borderRadius: 10,
+                    borderRadius: 8,
                   }}
                 >
                   {other.heroImage ? (
@@ -144,7 +147,7 @@ export default async function CaseStudyPage({
         style={{
           display: "flex",
           justifyContent: "flex-end",
-          padding: 24,
+          paddingBlock: 24,
         }}
       >
         <Link

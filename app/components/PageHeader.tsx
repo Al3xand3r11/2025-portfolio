@@ -9,7 +9,7 @@ import { navItems } from "../lib/navigation";
 
 export default function PageHeader({
   activeLabel,
-  paddingInline = 24,
+  paddingInline = 0,
 }: {
   activeLabel?: string;
   paddingInline?: number | string;

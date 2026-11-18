@@ -128,6 +128,7 @@ export default function AboutPage() {
   return (
     <main
       style={{
+        paddingInline: "clamp(24px, 5vw, 80px)",
         minHeight: "100svh",
         backgroundColor: "var(--page-bg)",
         color: "var(--page-fg)",
@@ -137,7 +138,7 @@ export default function AboutPage() {
       <PageHeader activeLabel="About" />
 
       {isMobile ? (
-        <section style={{ padding: "48px 24px 80px" }}>
+        <section style={{ padding: "48px 0 80px" }}>
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -163,6 +164,7 @@ export default function AboutPage() {
               aspectRatio: "3 / 4",
               maxHeight: "50vh",
               overflow: "hidden",
+              borderRadius: 8,
               marginTop: 32,
             }}
           >
@@ -189,7 +191,7 @@ export default function AboutPage() {
             display: "grid",
             gridTemplateColumns: "4fr 7fr",
             gap: 64,
-            padding: "48px 24px 80px",
+            padding: "48px 0 80px",
             width: "100%",
           }}
         >
@@ -202,6 +204,7 @@ export default function AboutPage() {
               aspectRatio: "3 / 4",
               maxHeight: "60vh",
               overflow: "hidden",
+              borderRadius: 8,
             }}
           >
             <Image
@@ -254,7 +257,7 @@ export default function AboutPage() {
           >
             <div
               style={{
-                padding: isMobile ? "48px 24px 96px" : "96px 24px 160px",
+                padding: isMobile ? "48px 0 96px" : "96px 0 160px",
                 display: "grid",
                 gridTemplateColumns: isMobile ? "1fr" : "4fr 7fr",
                 gap: isMobile ? 32 : 64,
@@ -282,7 +285,7 @@ export default function AboutPage() {
         style={{
           display: "flex",
           justifyContent: "flex-end",
-          padding: 24,
+          paddingBlock: 24,
         }}
       >
         <Link

@@ -6,6 +6,7 @@ export default function CommunityPage() {
   return (
     <main
       style={{
+        paddingInline: "clamp(24px, 5vw, 80px)",
         minHeight: "100svh",
         backgroundColor: "var(--page-bg)",
         color: "var(--page-fg)",
@@ -20,7 +21,7 @@ export default function CommunityPage() {
         style={{
           display: "flex",
           justifyContent: "flex-end",
-          padding: 24,
+          paddingBlock: 24,
         }}
       >
         <Link

@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["/engineering", "weekly", 0.8],
     ["/community", "monthly", 0.6],
     ["/contact", "yearly", 0.5],
+    ["/contact/suggest", "yearly", 0.3],
   ];
 
   const caseStudies = CASE_STUDY_SLUGS.map((slug) => ({
