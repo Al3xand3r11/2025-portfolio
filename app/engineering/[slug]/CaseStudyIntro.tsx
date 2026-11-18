@@ -3,11 +3,9 @@ import MediaSlot from "./MediaSlot";
 import styles from "./caseStudy.module.css";
 
 export default function CaseStudyIntro({
-  index,
   title,
   image,
 }: {
-  index: string;
   title: string;
   image: string;
 }) {
@@ -15,7 +13,6 @@ export default function CaseStudyIntro({
     <section className={styles.lead}>
       <FadeIn y={16}>
         <div className={styles.head}>
-          <p className={styles.index}>({index})</p>
           <h1 className={styles.title}>{title}</h1>
         </div>
         <MediaSlot

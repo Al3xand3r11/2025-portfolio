@@ -1,11 +1,20 @@
 "use client";
 
-import { useEffect, useState, type FormEvent, type ReactNode } from "react";
+import { startTransition, useActionState, useEffect, useState, type FormEvent, type ReactNode } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import PageHeader from "../components/PageHeader";
-import { ADDITIONAL_PROJECTS } from "../lib/additionalProjects";
+import {
+  BUDGETS,
+  INSPIRATIONS,
+  MESSAGE_LIMIT,
+  RATING_QUESTIONS,
+  SUGGEST_PROJECTS,
+  TIMELINES,
+} from "../lib/contact/options";
+import type { FormState } from "../lib/contact/schemas";
 import type { GitHubActivity } from "../lib/github";
+import { submitFeedback, submitProjectInquiry } from "./actions";
 import ContactCards from "./ContactCards";
 import styles from "./contact.module.css";
 
@@ -16,20 +25,6 @@ const TABS: { id: TabId; title: string }[] = [
   { id: "project", title: "Work together" },
   { id: "suggest", title: "Suggest" },
 ];
-
-const BUDGETS = ["Under $1k", "$1k – $3k", "$3k – $10k", "$10k+", "Not sure yet"];
-const TIMELINES = ["ASAP", "1 – 3 months", "3 – 6 months", "Flexible"];
-const INPIRATION = ["alexandernance.com", "saturdayhikecrew.com", "itscleoplus.com", "portfolio.eglezalpys.com", "tminustalent.com", "N/A"]
-
-const RATING_QUESTIONS = [
-  "How responsive is the website?",
-  "How much time did you spend on this website?",
-  "Would you recommend this website?",
-];
-
-const SUGGEST_PROJECTS = ["alexandernance.com", ...ADDITIONAL_PROJECTS.map((p) => p.title)];
-
-const MESSAGE_LIMIT = 500;
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
@@ -192,25 +187,56 @@ function GetInTouch({ github }: { github?: GitHubActivity }) {
   );
 }
 
+function useContactForm(action: (prev: FormState, formData: FormData) => Promise<FormState>) {
+  const [state, dispatch, pending] = useActionState(action, { status: "idle" });
+
+  /* Dispatched by hand rather than through <form action>, which would reset
+     the uncontrolled inputs whenever the server returns an error. */
+  function onSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    startTransition(() => dispatch(formData));
+  }
+
+  return { state, pending, onSubmit, errors: state.status === "error" ? state.fieldErrors : {} };
+}
+
+function Honeypot() {
+  return (
+    <div
+      aria-hidden
+      style={{ position: "absolute", width: 1, height: 1, overflow: "hidden", clipPath: "inset(50%)" }}
+    >
+      <input type="text" name="fax" tabIndex={-1} autoComplete="off" />
+    </div>
+  );
+}
+
 function ProjectForm() {
   const [message, setMessage] = useState("");
+  const { state, pending, onSubmit, errors } = useContactForm(submitProjectInquiry);
+
+  if (state.status === "success") return <Sent>Thanks. I&apos;ll reply to the email you gave.</Sent>;
 
   return (
-    <form onSubmit={preventSubmit} style={{ display: "flex", flexDirection: "column", gap: 40 }}>
+    <form onSubmit={onSubmit} style={{ position: "relative", display: "flex", flexDirection: "column", gap: 40 }}>
+      <Honeypot />
       <div className={styles.grid2}>
-        <TextField label="Name" name="name" />
-        <TextField label="Organization" name="organization" />
+        <TextField label="Name" name="name" required error={errors.name?.[0]} />
+        <TextField label="Email" name="email" type="email" required error={errors.email?.[0]} />
+        <TextField label="Organization" name="organization" error={errors.organization?.[0]} />
         <SelectField label="Budget" name="budget" options={BUDGETS} placeholder="Select a range" />
         <SelectField label="Timeline" name="timeline" options={TIMELINES} placeholder="Select a timeline" />
-        <SelectField label="Inspiration" name="inspiration" options={INPIRATION} placeholder="Select a website" />
+        <SelectField label="Inspiration" name="inspiration" options={INSPIRATIONS} placeholder="Select a website" />
       </div>
       <MessageField
         label="Additional message"
         value={message}
         onChange={setMessage}
         placeholder="Tell me about the project"
+        error={errors.message?.[0]}
       />
-      <SendRow />
+      <SendRow pending={pending} error={state.status === "error" ? state.message : undefined} />
     </form>
   );
 }
@@ -219,9 +245,17 @@ function SuggestForm({ isMobile }: { isMobile: boolean }) {
   const [ratings, setRatings] = useState<(number | null)[]>(RATING_QUESTIONS.map(() => null));
   const [reportProblem, setReportProblem] = useState(false);
   const [message, setMessage] = useState("");
+  const { state, pending, onSubmit, errors } = useContactForm(submitFeedback);
+
+  if (state.status === "success") return <Sent>Thanks. I read every one of these.</Sent>;
 
   return (
-    <form onSubmit={preventSubmit} style={{ display: "flex", flexDirection: "column", gap: 40 }}>
+    <form onSubmit={onSubmit} style={{ position: "relative", display: "flex", flexDirection: "column", gap: 40 }}>
+      <Honeypot />
+      {RATING_QUESTIONS.map((q, i) => (
+        <input key={q.name} type="hidden" name={q.name} value={ratings[i] ?? ""} />
+      ))}
+      <input type="hidden" name="reportsProblem" value={String(reportProblem)} />
       <Link
         href="/"
         style={{
@@ -251,10 +285,10 @@ function SuggestForm({ isMobile }: { isMobile: boolean }) {
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
-        {RATING_QUESTIONS.map((question, qi) => (
+        {RATING_QUESTIONS.map((q, qi) => (
           <Rating
-            key={question}
-            question={question}
+            key={q.name}
+            question={q.question}
             value={ratings[qi]}
             onChange={(v) => setRatings((prev) => prev.map((r, i) => (i === qi ? v : r)))}
           />
@@ -280,32 +314,70 @@ function SuggestForm({ isMobile }: { isMobile: boolean }) {
         value={message}
         onChange={setMessage}
         placeholder="Anything you'd like to share"
+        error={errors.message?.[0]}
       />
-      <SendRow />
+      <SendRow pending={pending} error={state.status === "error" ? state.message : undefined} />
     </form>
   );
 }
 
-function preventSubmit(e: FormEvent) {
-  e.preventDefault();
+function Sent({ children }: { children: ReactNode }) {
+  return (
+    <p style={{ margin: 0, fontSize: 16, fontFamily: "var(--font-display)", color: "var(--page-fg)" }}>{children}</p>
+  );
 }
 
-function Field({ label, htmlFor, children }: { label: string; htmlFor: string; children: ReactNode }) {
+function Field({
+  label,
+  htmlFor,
+  error,
+  children,
+}: {
+  label: string;
+  htmlFor: string;
+  error?: string;
+  children: ReactNode;
+}) {
   return (
     <div className={styles.field}>
       <label htmlFor={htmlFor} className={styles.label}>
         {label}
       </label>
       {children}
+      {error && (
+        <span role="alert" className={styles.error}>
+          {error}
+        </span>
+      )}
     </div>
   );
 }
 
-function TextField({ label, name }: { label: string; name: string }) {
+function TextField({
+  label,
+  name,
+  type = "text",
+  required,
+  error,
+}: {
+  label: string;
+  name: string;
+  type?: string;
+  required?: boolean;
+  error?: string;
+}) {
   const id = `contact-${name}`;
   return (
-    <Field label={label} htmlFor={id}>
-      <input id={id} name={name} type="text" className={styles.input} autoComplete="off" />
+    <Field label={label} htmlFor={id} error={error}>
+      <input
+        id={id}
+        name={name}
+        type={type}
+        required={required}
+        aria-invalid={error ? true : undefined}
+        className={styles.input}
+        autoComplete={type === "email" ? "email" : "off"}
+      />
     </Field>
   );
 }
@@ -319,7 +391,7 @@ function SelectField({
 }: {
   label: string;
   name: string;
-  options: string[];
+  options: readonly string[];
   placeholder?: string;
   defaultValue?: string;
 }) {
@@ -357,19 +429,22 @@ function MessageField({
   value,
   onChange,
   placeholder,
+  error,
 }: {
   label: string;
   value: string;
   onChange: (v: string) => void;
   placeholder: string;
+  error?: string;
 }) {
   return (
-    <Field label={label} htmlFor="contact-message">
+    <Field label={label} htmlFor="contact-message" error={error}>
       <textarea
         id="contact-message"
         name="message"
         value={value}
         maxLength={MESSAGE_LIMIT}
+        aria-invalid={error ? true : undefined}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         className={`${styles.input} ${styles.textarea}`}
@@ -504,11 +579,17 @@ function YesNoToggle({ value, onChange }: { value: boolean; onChange: (v: boolea
   );
 }
 
-function SendRow() {
+function SendRow({ pending, error }: { pending: boolean; error?: string }) {
   return (
-    <div style={{ display: "flex", justifyContent: "flex-end" }}>
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 16 }}>
+      {error && (
+        <span role="alert" className={styles.error} style={{ textAlign: "right" }}>
+          {error}
+        </span>
+      )}
       <button
         type="submit"
+        disabled={pending}
         style={{
           display: "inline-flex",
           alignItems: "center",
@@ -520,12 +601,17 @@ function SendRow() {
           fontFamily: "var(--font-display)",
           color: "var(--page-bg)",
           backgroundColor: "var(--page-fg)",
+          opacity: pending ? 0.5 : 1,
           transition: "opacity 0.2s",
         }}
-        onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.8")}
-        onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+        onMouseEnter={(e) => {
+          if (!pending) e.currentTarget.style.opacity = "0.8";
+        }}
+        onMouseLeave={(e) => {
+          if (!pending) e.currentTarget.style.opacity = "1";
+        }}
       >
-        Send
+        {pending ? "Sending" : "Send"}
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden>
           <path d="M3 8h10M9 4l4 4-4 4" />
         </svg>
