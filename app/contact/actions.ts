@@ -1,7 +1,5 @@
 "use server";
 
-import { createHmac } from "node:crypto";
-import { headers } from "next/headers";
 import { z } from "zod";
 import {
   feedbackSchema,
@@ -10,13 +8,7 @@ import {
   type FormState,
 } from "../lib/contact/schemas";
 import { createFeedback, createProjectInquiry, type CreateResult } from "../lib/contact/service";
-
-async function getIpHash(): Promise<string | null> {
-  const secret = process.env.IP_HASH_SECRET;
-  const ip = (await headers()).get("x-forwarded-for")?.split(",")[0]?.trim();
-  if (!secret || !ip) return null;
-  return createHmac("sha256", secret).update(ip).digest("hex");
-}
+import { getIpHash } from "../lib/ipHash";
 
 async function submit<S extends z.ZodType>(
   formData: FormData,

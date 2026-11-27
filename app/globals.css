@@ -121,6 +121,14 @@
   --cs-detail-size: 28px;
   --cs-detail-leading: 1.4;
 
+  --dash-ok: #3f6b4a;
+  --dash-attention: #9a6230;
+  --dash-down: #8c3a32;
+  --dash-unknown: var(--page-muted-2);
+  --dash-border: color-mix(in srgb, var(--page-fg) 12%, transparent);
+  --dash-row-height: 44px;
+  --dash-sidebar-width: 200px;
+
   color-scheme: light;
 }
 
@@ -143,6 +151,11 @@
   --cs-accent-sage: #2a3328;
   --cs-accent-lavender: #2e2a38;
   --cs-accent-peach: #3a2e26;
+
+  --dash-ok: #8fbf9a;
+  --dash-attention: #e0b07a;
+  --dash-down: #e09a92;
+  --dash-unknown: var(--page-muted-2);
 
   color-scheme: dark;
 }

@@ -1,13 +1,13 @@
 import { ADDITIONAL_PROJECTS } from "../additionalProjects";
+import { CASE_STUDIES, CASE_STUDY_SLUGS } from "../caseStudies";
 
 export const BUDGETS = ["Under $1k", "$1k – $3k", "$3k – $10k", "$10k+", "Not sure yet"] as const;
 export const TIMELINES = ["ASAP", "1 – 3 months", "3 – 6 months", "Flexible"] as const;
+
+/** Hosts of the live case studies, plus this site. Stored inquiry text is left as it was. */
 export const INSPIRATIONS = [
   "alexandernance.com",
-  "saturdayhikecrew.com",
-  "itscleoplus.com",
-  "portfolio.eglezalpys.com",
-  "tminustalent.com",
+  ...CASE_STUDY_SLUGS.map((slug) => new URL(CASE_STUDIES[slug].url).hostname.replace(/^www\./, "")),
   "N/A",
 ] as const;
 

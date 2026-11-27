@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { SESSION_COOKIE } from "./app/lib/auth/cookie";
 import {
   LAGREE_BASE_PATH,
   LAGREE_ORIGIN,
@@ -36,9 +37,19 @@ function withoutTrailingSlash(pathname: string): string {
     : pathname;
 }
 
+function isDashboardPath(pathname: string): boolean {
+  return pathname === "/dashboard" || pathname.startsWith("/dashboard/");
+}
+
 function handleLagreeHost(request: NextRequest): NextResponse {
   const url = request.nextUrl.clone();
   const pathname = withoutTrailingSlash(url.pathname);
+
+  /* The dashboard belongs to the portfolio. Rewriting it under /fitness would
+     make a missing page look like a Lagree page. */
+  if (isDashboardPath(pathname)) {
+    return new NextResponse(null, { status: 404 });
+  }
 
   if (pathname === LAGREE_BASE_PATH || pathname.startsWith(`${LAGREE_BASE_PATH}/`)) {
     const publicPath = stripBasePath(pathname);
@@ -60,6 +71,17 @@ function handleLagreeHost(request: NextRequest): NextResponse {
 
 function handleEngineeringHost(request: NextRequest): NextResponse {
   const pathname = withoutTrailingSlash(request.nextUrl.pathname);
+
+  /* Presence only. The signed cookie is checked again in the dashboard layout
+     and in every action, which is what actually protects the data. */
+  if (isDashboardPath(pathname) && pathname !== "/dashboard/login") {
+    if (!request.cookies.get(SESSION_COOKIE)?.value) {
+      const url = request.nextUrl.clone();
+      url.pathname = "/dashboard/login";
+      return NextResponse.redirect(url);
+    }
+    return NextResponse.next();
+  }
 
   const renamed = RENAMED[pathname];
   if (renamed) {
